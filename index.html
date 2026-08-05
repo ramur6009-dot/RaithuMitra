@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="te">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#2E7D32">
+    <meta name="description" content="Raithu Mitra - Smart Agriculture App">
+
+    <title>🌾 రైతు మిత్ర - Raithu Mitra</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="manifest" href="manifest.json">
+</head>
+
+<body>
+
+    <!-- Loading Screen -->
+    <div id="loadingScreen" style="position:fixed; top:0; left:0; width:100%; height:100%; background:#1b5e20; display:flex; flex-direction:column; justify-content:center; align-items:center; z-index:99999; color:white;">
+        <div class="loader"></div>
+        <h2>🌾 రైతు మిత్ర</h2>
+        <p>స్మార్ట్ వ్యవసాయ సహాయకుడు లోడ్ అవుతోంది...</p>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="logo">
+            <i class="fa-solid fa-seedling"></i>
+            <div>
+                <h2>Raithu Mitra</h2>
+                <p>Smart Farming Assistant</p>
+            </div>
+        </div>
+
+        <div class="header-buttons">
+            <button id="languageBtn" aria-label="Language">
+                <i class="fa-solid fa-language"></i>
+            </button>
+            <button id="themeBtn" aria-label="Theme">
+                <i class="fa-solid fa-moon"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Hero Banner with Functional Search Box & Side Scrolling Tags -->
+    <section class="hero">
+        <div class="hero-overlay">
+            <h1>🌾 రైతే దేశానికి అన్నదాత</h1>
+            <p>
+                <a href="weather.html" style="color: inherit; text-decoration: none;">వాతావరణం</a> • 
+                <a href="market.html" style="color: inherit; text-decoration: none;">మార్కెట్ ధరలు</a> • 
+                <a href="fertilizer-calculator.html" style="color: inherit; text-decoration: none;">ఎరువులు</a> • 
+                <a href="spray-calculator.html" style="color: inherit; text-decoration: none;">స్ప్రేలు</a> • 
+                <a href="crop-doctor.html" style="color: inherit; text-decoration: none;">పంట వైద్యుడు</a>
+            </p>
+            
+            <!-- Side Scrolling Tags -->
+            <div class="scroll-tags">
+                <div class="scroll-tag-item" onclick="window.location.href='weather.html'">🌤️ వాతావరణం</div>
+                <div class="scroll-tag-item" onclick="window.location.href='market.html'">📈 మార్కెట్ ధరలు</div>
+                <div class="scroll-tag-item" onclick="window.location.href='crops.html'">🌱 పంటలు & గైడ్స్</div>
+                <div class="scroll-tag-item" onclick="window.location.href='fertilizer-calculator.html'">🧪 ఎరువులు</div>
+                <div class="scroll-tag-item" onclick="window.location.href='spray-calculator.html'">💧 స్ప్రే కాలిక్యులేటర్</div>
+                <div class="scroll-tag-item" onclick="window.location.href='crop-doctor.html'">👨‍⚕️ పంట వైద్యుడు</div>
+                <div class="scroll-tag-item" onclick="window.location.href='seasonal-works.html'">📅 క్యాలెండర్ పనులు</div>
+                <div class="scroll-tag-item" onclick="window.location.href='khata.html'">📖 రైతు ఖాతా</div>
+                <div class="scroll-tag-item" onclick="window.location.href='government-schemes.html'">🏛️ పథకాలు</div>
+                <div class="scroll-tag-item" onclick="window.location.href='sagu-videos.html'">🎬 వీడియోలు</div>
+                <div class="scroll-tag-item" onclick="window.location.href='agriculture-news.html'">📰 వార్తలు</div>
+                <div class="scroll-tag-item" onclick="window.location.href='crop-alerts.html'">⏰ హెచ్చరికలు</div>
+            </div>
+
+            <!-- Functional Search Box -->
+            <div class="hero-search">
+                <input type="text" id="searchBox" placeholder="తెలుగు/English లో శోధించండి (ఉదా: వాతావరణం, weather, ma)..." onkeyup="handleSearchInput(event)">
+                <button aria-label="Search" onclick="triggerSearch()">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Dashboard Grid -->
+    <section class="dashboard">
+        <div class="dashboard-grid" id="dashboardGrid">
+            <div class="card" data-keywords="వాతావరణం weather va watavaranam" onclick="window.location.href='weather.html'">
+                <i class="fa-solid fa-cloud-sun card-icon"></i>
+                <h3>వాతావరణం</h3>
+                <p>లైవ్ వాతావరణం & అంచనాలు</p>
+            </div>
+            <div class="card" data-keywords="మార్కెట్ ధరలు market dharalu ma" onclick="window.location.href='market.html'">
+                <i class="fa-solid fa-chart-line card-icon"></i>
+                <h3>మార్కెట్ ధరలు</h3>
+                <p>నేటి పంట ధరలు</p>
+            </div>
+            <div class="card" data-keywords="పంటలు గైడ్స్ crops panta pan" onclick="window.location.href='crops.html'">
+                <i class="fa-solid fa-wheat-awn card-icon"></i>
+                <h3>పంటలు & గైడ్స్</h3>
+                <p>100+ పంటల సమగ్ర సమాచారం</p>
+            </div>
+            <div class="card" data-keywords="ఎరువుల క్యాల్క్యులేటర్ fertilizer eru er" onclick="window.location.href='fertilizer-calculator.html'">
+                <i class="fa-solid fa-flask card-icon"></i>
+                <h3>ఎరువుల క్యాల్క్యులేటర్</h3>
+                <p>పోషకాల మోతాదు లెక్కలు</p>
+            </div>
+            <div class="card" data-keywords="స్ప్రే కాలిక్యులేటర్ spray sp" onclick="window.location.href='spray-calculator.html'">
+                <i class="fa-solid fa-spray-can card-icon"></i>
+                <h3>స్ప్రే కాలిక్యులేటర్</h3>
+                <p>మందుల పిచికారీ కొలతలు</p>
+            </div>
+            <div class="card" data-keywords="పంట వైద్యుడు crop doctor doc panta vaidyudu" onclick="window.location.href='crop-doctor.html'">
+                <i class="fa-solid fa-user-doctor card-icon"></i>
+                <h3>పంట వైద్యుడు</h3>
+                <p>వ్యాధులు మరియు నివారణ</p>
+            </div>
+            <div class="card" data-keywords="సీజనల్ పనుల క్యాలెండర్ seasonal works cal calendar se" onclick="window.location.href='seasonal-works.html'">
+                <i class="fa-solid fa-calendar-days card-icon"></i>
+                <h3>సీజనల్ పనుల క్యాలెండర్</h3>
+                <p>A నుండి Z నెలవారీ సాగు పనులు</p>
+            </div>
+            <div class="card" data-keywords="రైతు ఖాతా khata ledger rath kh" onclick="window.location.href='khata.html'">
+                <i class="fa-solid fa-book-bookmark card-icon" style="color: #1976d2;"></i>
+                <h3>రైతు ఖాతా (Khata)</h3>
+                <p>ఖర్చులు & రాబడుల లెక్కలు</p>
+            </div>
+            <div class="card" data-keywords="ప్రభుత్వ పథకాలు government schemes gov sch pr" onclick="window.location.href='government-schemes.html'">
+                <i class="fa-solid fa-hand-holding-dollar card-icon"></i>
+                <h3>ప్రభుత్వ పథకాలు</h3>
+                <p>లేటెస్ట్ అగ్రికల్చర్ స్కీమ్స్</p>
+            </div>
+            <div class="card" data-keywords="సాగు శిక్షణ వీడియోలు sagu videos vid vi" onclick="window.location.href='sagu-videos.html'">
+                <i class="fa-solid fa-video card-icon"></i>
+                <h3>సాగు శిక్షణ వీడియోలు</h3>
+                <p>A నుండి Z అన్ని వీడియో గైడ్స్</p>
+            </div>
+            <div class="card" data-keywords="వ్యవసాయ వార్తలు agriculture news new ne" onclick="window.location.href='agriculture-news.html'">
+                <i class="fa-solid fa-newspaper card-icon"></i>
+                <h3>వ్యవసాయ వార్తలు</h3>
+                <p>రోజువారీ లేటెస్ట్ అప్‌డేట్లు</p>
+            </div>
+            <div class="card" data-keywords="పంట హెచ్చరికలు crop alerts al alert he" onclick="window.location.href='crop-alerts.html'">
+                <i class="fa-solid fa-clock card-icon" style="color: #e65100;"></i>
+                <h3>పంట హెచ్చరికలు</h3>
+                <p>ఆటోమేటిక్ అలర్ట్స్ & రిమైండర్లు</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Starts -->
+    <footer class="footer">
+        <div class="footer-content">
+            <h3>🌾 రైతు మిత్ర</h3>
+            <p>స్మార్ట్ అగ్రికల్చర్ ప్లాట్‌ఫారమ్</p>
+            <p>రైతుల కోసం ప్రేమతో రూపొందించబడింది ❤️</p>
+        </div>
+        <p class="copyright">© 2026 Raithu Mitra. అన్ని హక్కులూ ప్రత్యేకించబడ్డాయి.</p>
+    </footer>
+
+    <!-- Bottom Navigation -->
+    <nav class="bottom-nav">
+        <a href="#" class="active" onclick="goHome(event)"><i class="fa-solid fa-house"></i><span>హోమ్</span></a>
+        <a href="crops.html"><i class="fa-solid fa-seedling"></i><span>పంటలు</span></a>
+        <a href="market.html"><i class="fa-solid fa-chart-line"></i><span>మార్కెట్</span></a>
+        <a href="fertilizer-calculator.html"><i class="fa-solid fa-flask"></i><span>ఎరువులు</span></a>
+        <a href="spray-calculator.html"><i class="fa-solid fa-spray-can"></i><span>స్ప్రే</span></a>
+        <a href="crop-doctor.html"><i class="fa-solid fa-user-doctor"></i><span>డాక్టర్</span></a>
+    </nav>
+
+    <!-- JavaScript Logic -->
+    <script>
+        // Page Load Hide Loading Screen
+        window.addEventListener('load', function() {
+            const loadingScreen = document.getElementById('loadingScreen');
+            if (loadingScreen) {
+                loadingScreen.style.display = 'none';
+            }
+        });
+
+        // Fix for Back button loading spinner freeze (bfcache issue)
+        window.addEventListener('pageshow', function(event) {
+            const loadingScreen = document.getElementById('loadingScreen');
+            if (loadingScreen) {
+                loadingScreen.style.display = 'none';
+            }
+        });
+
+        function goHome(e) {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Search Filtering Logic
+        function handleSearchInput(event) {
+            let query = document.getElementById('searchBox').value.toLowerCase().trim();
+            let cards = document.querySelectorAll('.dashboard-grid .card');
+
+            cards.forEach(card => {
+                let text = card.innerText.toLowerCase();
+                let keywords = card.getAttribute('data-keywords') || "";
+                
+                if (text.includes(query) || keywords.includes(query)) {
+                    card.style.display = "flex";
+                } else {
+                    card.style.display = "none";
+                }
+            });
+
+            if (event.key === 'Enter') {
+                triggerSearch();
+            }
+        }
+
+        // Search Button or Enter Action
+        function triggerSearch() {
+            let query = document.getElementById('searchBox').value.toLowerCase().trim();
+            let cards = document.querySelectorAll('.dashboard-grid .card');
+
+            for (let card of cards) {
+                if (card.style.display !== "none") {
+                    let link = card.getAttribute('onclick');
+                    if (link) {
+                        let match = link.match(/'([^']+)'/);
+                        if (match && match[1]) {
+                            window.location.href = match[1];
+                            return;
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+</html>
