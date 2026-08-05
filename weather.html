@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="te">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>రైతు మిత్ర - వాతావరణం</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:#eef6ee;
+}
+
+.header{
+    background:#2E7D32;
+    color:#fff;
+    padding:18px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    position:sticky;
+    top:0;
+    z-index:100;
+}
+
+.header h2{
+    font-size:22px;
+}
+
+.back-btn{
+    color:white;
+    text-decoration:none;
+    font-size:22px;
+}
+
+.container{
+    padding:18px;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.weather-card{
+    background:#fff;
+    border-radius:18px;
+    padding:22px;
+    box-shadow:0 5px 18px rgba(0,0,0,.15);
+    text-align:center;
+}
+
+.weather-icon{
+    font-size:70px;
+    color:#ff9800;
+    margin-bottom:10px;
+}
+
+.city{
+    font-size:22px;
+    font-weight:bold;
+    color: #222;
+}
+
+.temp{
+    font-size:50px;
+    color:#2E7D32;
+    margin:12px 0;
+}
+
+.condition{
+    color:#666;
+    font-size:18px;
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:15px;
+    margin-top:20px;
+}
+
+.box{
+    background:#fff;
+    padding:18px;
+    border-radius:15px;
+    box-shadow:0 3px 10px rgba(0,0,0,.1);
+    text-align:center;
+}
+
+.box i{
+    color:#2E7D32;
+    font-size:28px;
+    margin-bottom:10px;
+}
+
+.box h3{
+    font-size:16px;
+    color: #444;
+}
+
+.box p{
+    margin-top:8px;
+    font-size:18px;
+    font-weight:bold;
+    color: #222;
+}
+
+.forecast{
+    margin-top:25px;
+}
+
+.forecast h2{
+    margin-bottom:15px;
+    color:#2E7D32;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.day{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    background:#fff;
+    padding:15px;
+    margin-bottom:10px;
+    border-radius:12px;
+    box-shadow:0 3px 8px rgba(0,0,0,.08);
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">
+<a href="index.html" class="back-btn">
+<i class="fa fa-arrow-left"></i>
+</a>
+<h2>🌦️ వాతావరణం</h2>
+<i class="fa-solid fa-location-dot" style="font-size: 20px;"></i>
+</div>
+
+<div class="container">
+
+<div class="weather-card">
+  <input type="text" id="cityInput" placeholder="ఉదా: Keshampet, Telangana"
+  style="width:100%;padding:12px;border:1px solid #ccc;border-radius:10px;font-size:16px;margin-bottom:12px;">
+
+  <button onclick="getWeatherByCity()"
+  style="width:100%;padding:12px;background:#2E7D32;color:white;border:none;border-radius:10px;font-size:16px;cursor:pointer;margin-bottom:8px;">
+  🔍 వాతావరణం చూడండి
+  </button>
+  
+  <button onclick="currentLocationWeather()"
+  style="width:100%;padding:12px;background:#2196F3;color:white;border:none;border-radius:10px;font-size:16px;cursor:pointer;">
+  📍 నా లొకేషన్ వాతావరణం
+  </button>
+
+  <div class="weather-icon" style="margin-top: 15px;">
+    <i class="fa-solid fa-cloud-sun"></i>
+  </div>
+
+  <div class="city" id="city">లొకేషన్ ఎంచుకోండి</div>
+  <div class="temp" id="temp">--</div>
+  <div class="condition" id="condition">సమాచారం కోసం వెతకండి</div>
+</div>
+
+<div class="grid">
+    <div class="box">
+        <i class="fa-solid fa-droplet"></i>
+        <h3>తేమ</h3>
+        <p id="humidity">--%</p>
+    </div>
+    <div class="box">
+        <i class="fa-solid fa-wind"></i>
+        <h3>గాలి వేగం</h3>
+        <p id="wind">-- km/h</p>
+    </div>
+    <div class="box">
+        <i class="fa-solid fa-cloud-rain"></i>
+        <h3>వర్షం అవకాశం</h3>
+        <p id="rain">--%</p>
+    </div>
+    <div class="box">
+        <i class="fa-solid fa-temperature-half"></i>
+        <h3>Feels Like</h3>
+        <p id="feels">--°C</p>
+    </div>
+</div>
+
+<div class="forecast">
+    <h2><i class="fa-solid fa-calendar-days"></i> 7 రోజుల వాతావరణం</h2>
+    <div id="forecastList">
+        <div style="text-align:center;padding:20px;color:#666;background:#fff;border-radius:12px;">
+            సమాచారం కోసం పైన సెర్చ్ చేయండి లేదా లొకేషన్ బటన్ నొక్కండి.
+        </div>
+    </div>
+</div>
+
+</div>
+
+<script>
+const API_KEY = "03dce901d74e4dbe941104123260408";
+
+function updateWeatherUI(data, customName) {
+    document.getElementById("city").innerHTML = customName || (data.location.name + ", Telangana");
+    document.getElementById("temp").innerHTML = Math.round(data.current.temp_c) + "°C";
+    document.getElementById("condition").innerHTML = data.current.condition.text;
+    document.getElementById("humidity").innerHTML = data.current.humidity + "%";
+    document.getElementById("wind").innerHTML = Math.round(data.current.wind_kph) + " km/h";
+    document.getElementById("feels").innerHTML = Math.round(data.current.feelslike_c) + "°C";
+    
+    let chanceOfRain = data.forecast.forecastday[0].day.daily_chance_of_rain;
+    document.getElementById("rain").innerHTML = chanceOfRain + "%";
+
+    let html = "";
+    data.forecast.forecastday.forEach(day => {
+        html += `
+        <div class="day">
+            <span><b>${day.date}</b></span>
+            <span style="display:flex; align-items:center; gap:8px;">
+                <img src="https:${day.day.condition.icon}" width="32">
+                ${Math.round(day.day.maxtemp_c)}° / ${Math.round(day.day.mintemp_c)}°
+            </span>
+        </div>`;
+    });
+    document.getElementById("forecastList").innerHTML = html;
+}
+
+async function getWeatherByCity() {
+    let cityInputVal = document.getElementById("cityInput").value.trim();
+    if(cityInputVal === ""){
+        alert("దయచేసి ఊరి పేరు నమోదు చేయండి");
+        return;
+    }
+
+    try {
+        const url = `https://api.weatherapi.com/v1/forecast.json?key=${API_KEY}&q=${cityInputVal}&days=7&aqi=no&alerts=no`;
+        const res = await fetch(url);
+        const data = await res.json();
+
+        if (data.error) {
+            alert("ఈ పేరుతో లొకేషన్ దొరకలేదు. దయచేసి 'Keshampet, Telangana' లేదా మండలం పేరుతో ప్రయత్నించండి.");
+            return;
+        }
+
+        updateWeatherUI(data, cityInputVal + ", Telangana");
+    } catch (e) {
+        alert("సర్వర్ లోపం సంభవించింది.");
+    }
+}
+
+async function currentLocationWeather() {
+    if (!navigator.geolocation) {
+        alert("మీ బ్రౌజర్ లొకేషన్‌ను సపోర్ట్ చేయడం లేదు");
+        return;
+    }
+
+    document.getElementById("city").innerHTML = "లొకేషన్ గుర్తిస్తోంది...";
+
+    navigator.geolocation.getCurrentPosition(async function(position){
+        const lat = position.coords.latitude;
+        const lon = position.coords.longitude;
+
+        try {
+            const url = `https://api.weatherapi.com/v1/forecast.json?key=${API_KEY}&q=${lat},${lon}&days=7&aqi=no&alerts=no`;
+            const res = await fetch(url);
+            const data = await res.json();
+
+            if (data.error) {
+                alert(data.error.message);
+                return;
+            }
+
+            updateWeatherUI(data, "Lingarawpally, Telangana");
+        } catch (e) {
+            alert("డేటా తెచ్చుకోవడంలో విఫలమైంది.");
+        }
+
+    }, function() {
+        alert("దయచేసి GPS లొకేషన్ పర్మిషన్ (Location Allow) ఇవ్వండి.");
+        document.getElementById("city").innerHTML = "లొకేషన్ అనుమతి నిరాకరించబడింది";
+    });
+}
+
+window.onload = function() {
+    document.getElementById("cityInput").value = "Keshampet";
+    getWeatherByCity();
+};
+</script>
+
+</body>
+</html>

@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="te">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>రైతు మిత్ర - పంటలు & గైడ్స్</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+body{
+background:#eef7ee;
+}
+.header{
+background:#2E7D32;
+color:white;
+padding:18px;
+display:flex;
+align-items:center;
+justify-content:space-between;
+position:sticky;
+top:0;
+z-index:100;
+}
+.back{
+color:white;
+font-size:24px;
+text-decoration:none;
+}
+.container{
+padding:16px;
+}
+.search{
+width:100%;
+padding:14px;
+border-radius:12px;
+border:1px solid #ccc;
+font-size:16px;
+margin-bottom:20px;
+}
+.section-title{
+color:#2E7D32;
+font-size:20px;
+margin:20px 0 10px 0;
+display:flex;
+align-items:center;
+gap:8px;
+}
+.grid{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:15px;
+margin-bottom:10px;
+}
+.card{
+background:white;
+border-radius:18px;
+padding:18px;
+text-align:center;
+box-shadow:0 4px 12px rgba(0,0,0,.12);
+transition:.3s;
+cursor:pointer;
+}
+.card:hover{
+transform:scale(1.03);
+}
+.card img{
+width:80px;
+height:80px;
+object-fit:cover;
+border-radius:50%;
+margin-bottom:10px;
+}
+.card h3{
+color:#2E7D32;
+font-size:18px;
+margin-bottom:8px;
+}
+.card p{
+font-size:14px;
+color:#666;
+}
+</style>
+</head>
+<body>
+
+<!-- Loading Screen -->
+<div id="loadingScreen" style="position:fixed; top:0; left:0; width:100%; height:100%; background:#1b5e20; display:none; flex-direction:column; justify-content:center; align-items:center; z-index:99999; color:white;">
+    <div class="loader"></div>
+    <h2>🌾 రైతు మిత్ర</h2>
+    <p>లోడ్ అవుతోంది...</p>
+</div>
+
+<div class="header">
+<a href="index.html" class="back" onclick="showLoading()">
+<i class="fa fa-arrow-left"></i>
+</a>
+<h2>🌾 పంటలు & గైడ్స్</h2>
+<i class="fa-solid fa-seedling"></i>
+</div>
+
+<div class="container">
+
+<input type="text" class="search" placeholder="పంట పేరు వెతకండి (ఉదా: pa, వరి, chilli)...">
+
+<!-- 1. ప్రధాన పంటలు -->
+<div class="category-section">
+<h3 class="section-title">🌾 1. ప్రధాన పంటలు</h3>
+<div class="grid">
+  <div class="card" data-keywords="pathi cotton పత్తి" onclick="openPage('cotton.html')">
+    <img src="images/pathi.png" alt="పత్తి">
+    <h3>🌿 పత్తి</h3>
+    <p>సాగు పూర్తి గైడ్</p>
+  </div>
+  <div class="card" data-keywords="paddy vari వరి" onclick="openPage('paddy.html')">
+    <img src="images/vari.png" alt="వరి">
+    <h3>🌾 వరి</h3>
+    <p>సాగు పూర్తి గైడ్</p>
+  </div>
+  <div class="card" data-keywords="maize mokkajonna మొక్కజొన్న" onclick="openPage('maize.html')">
+    <img src="images/mokkajonna.png" alt="మొక్కజొన్న">
+    <h3>🌽 మొక్కజొన్న</h3>
+    <p>సాగు పూర్తి గైడ్</p>
+  </div>
+  <div class="card" data-keywords="sunflower పొద్దుతిరుగుడు" onclick="openPage('sunflower.html')">
+    <img src="https://images.unsplash.com/photo-1470509037663-253afd7f0f51?w=200" alt="పొద్దుతిరుగుడు">
+    <h3>🌻 పొద్దుతిరుగుడు</h3>
+    <p>సాగు పూర్తి గైడ్</p>
+  </div>
+  <div class="card" data-keywords="sugarcane cheruku చెరకు" onclick="openPage('sugarcane.html')">
+    <img src="images/cheruku.png" alt="చెరకు">
+    <h3>🎋 చెరకు</h3>
+    <p>సాగు పూర్తి గైడ్</p>
+  </div>
+  <div class="card" data-keywords="turmeric pasupu పసుపు" onclick="openPage('turmeric.html')">
+    <img src="images/pasupu.png" alt="పసుపు">
+    <h3>🟡 పసుపు</h3>
+    <p>సాగు పూర్తి గైడ్</p>
+  </div>
+  <div class="card" data-keywords="chilli mirchi మిర్చి" onclick="openPage('chilli.html')">
+    <img src="images/mirchi.png" alt="మిర్చి">
+    <h3>🌶️ మిర్చి</h3>
+    <p>సాగు పూర్తి గైడ్</p>
+  </div>
+</div>
+</div>
+
+<!-- 2. కూరగాయలు -->
+<div class="category-section">
+<h3 class="section-title">🥬 2. కూరగాయలు</h3>
+<div class="grid">
+  <div class="card" data-keywords="tomato tamato టమాట" onclick="openPage('tomato.html')">
+    <img src="images/tamato.png" alt="టమాట">
+    <h3>🍅 టమాట</h3>
+    <p>సాగు పూర్తి గైడ్</p>
+  </div>
+  <div class="card" data-keywords="brinjal vankaya వంకాయ" onclick="openPage('brinjal.html')">
+    <img src="images/vankaya.png" alt="వంకాయ">
+    <h3>🍆 వంకాయ</h3>
+    <p>సాగు పూర్తి గైడ్</p>
+  </div>
+  <div class="card" data-keywords="okra bendakaya బెండకాయ" onclick="openPage('okra.html')">
+    <img src="images/bendakaya.png" alt="బెండకాయ">
+    <h3>🥒 బెండకాయ</h3>
+    <p>సాగు పూర్తి గైడ్</p>
+  </div>
+  <div class="card" data-keywords="onion ullipaya ఉల్లిపాయ" onclick="openPage('onion.html')">
+    <img src="images/ullipaya.png" alt="ఉల్లిపాయ">
+    <h3>🧅 ఉల్లిపాయ</h3>
+    <p>సాగు పూర్తి గైడ్</p>
+  </div>
+  <div class="card" data-keywords="cabbage క్యాబేజీ" onclick="openPage('cabbage.html')">
+    <img src="images/1785679450452.png" alt="క్యాబేజీ">
+    <h3>🥬 క్యాబేజీ</h3>
+    <p>సాగు పూర్తి గైడ్</p>
+  </div>
+</div>
+</div>
+
+<!-- 3. పప్పు ధాన్యాలు -->
+<div class="category-section">
+<h3 class="section-title">🌱 3. పప్పు ధాన్యాలు</h3>
+<div class="grid">
+  <div class="card" data-keywords="pigeonpea kandi కంది" onclick="openPage('pigeonpea.html')">
+    <img src="images/kandi.png" alt="కంది">
+    <h3>🌱 కంది</h3>
+    <p>సాగు పూర్తి గైడ్</p>
+  </div>
+  <div class="card" data-keywords="pesara పెసర" onclick="openPage('pesara.html')">
+    <img src="images/pesara.png" alt="పెసర">
+    <h3>🌿 పెసర</h3>
+    <p>సాగు పూర్తి గైడ్</p>
+  </div>
+  <div class="card" data-keywords="minumulu మినుములు" onclick="openPage('minumulu.html')">
+    <img src="images/minumulu.png" alt="మినుములు">
+    <h3>⚫ మినుములు</h3>
+    <p>సాగు పూర్తి గైడ్</p>
+  </div>
+  <div class="card" data-keywords="shanaga bengalgram శనగలు" onclick="openPage('shanaga.html')">
+    <img src="images/chenagalu.png" alt="శనగలు">
+    <h3>🟤 శనగ</h3>
+    <p>సాగు పూర్తి గైడ్</p>
+  </div>
+</div>
+</div>
+
+<!-- 4. చిరుధాన్యాలు & ఇతర ధాన్యాలు -->
+<div class="category-section">
+<h3 class="section-title">🌾 4. చిరుధాన్యాలు & ఇతర ధాన్యాలు</h3>
+<div class="grid">
+  <div class="card" data-keywords="jowar jonna జొన్న" onclick="openPage('jonna.html')">
+    <img src="images/jonna.png" alt="జొన్న">
+    <h3>🌾 జొన్న</h3>
+    <p>సాగు పూర్తి గైడ్</p>
+  </div>
+  <div class="card" data-keywords="bajra sajjalu సజ్జలు" onclick="openPage('sajjalu.html')">
+    <img src="images/1785679182399.png" alt="సజ్జలు">
+    <h3>🌾 సజ్జలు</h3>
+    <p>సాగు పూర్తి గైడ్</p>
+  </div>
+  <div class="card" data-keywords="ragi ragulu రాగులు" onclick="openPage('ragulu.html')">
+    <img src="images/ragulu.png" alt="రాగులు">
+    <h3>🌾 రాగులు</h3>
+    <p>సాగు పూర్తి గైడ్</p>
+  </div>
+  <div class="card" data-keywords="sesame nuvulu నువ్వులు" onclick="openPage('nuvulu.html')">
+    <img src="images/nuvulu.png" alt="నువ్వులు">
+    <h3>🌾 నువ్వులు</h3>
+    <p>సాగు పూర్తి గైడ్</p>
+  </div>
+  <div class="card" data-keywords="castor aamudham ఆముదం" onclick="openPage('aamudham.html')">
+    <img src="images/aamidham.png" alt="ఆముదం">
+    <h3>🌿 ఆముదం</h3>
+    <p>సాగు పూర్తి గైడ్</p>
+  </div>
+  <div class="card" data-keywords="groundnut budda వేరుశెనగ" onclick="openPage('groundnut.html')">
+    <img src="images/budda.png" alt="వేరుశెనగ">
+    <h3>🥜 వేరుశెనగ</h3>
+    <p>సాగు పూర్తి గైడ్</p>
+  </div>
+  <div class="card" data-keywords="soybean సోయాబీన్" onclick="openPage('soybean.html')">
+    <img src="images/soyabeen.png" alt="సోయాబీన్">
+    <h3>🫘 సోయాబీన్</h3>
+    <p>సాగు పూర్తి గైడ్</p>
+  </div>
+</div>
+</div>
+
+<!-- 5. పండ్ల తోటలు -->
+<div class="category-section">
+<h3 class="section-title">🍎 5. పండ్ల తోటలు</h3>
+<div class="grid">
+  <div class="card" data-keywords="banana aarati అరటి" onclick="openPage('aarati.html')">
+    <img src="images/aarati.png" alt="అరటి">
+    <h3>🍌 అరటి</h3>
+    <p>సాగు పూర్తి గైడ్</p>
+  </div>
+  <div class="card" data-keywords="mango మామిడి" onclick="openPage('mango.html')">
+    <img src="https://images.unsplash.com/photo-1553279768-865429fa0078?w=200" alt="మామిడి">
+    <h3>🥭 మామిడి</h3>
+    <p>సాగు పూర్తి గైడ్</p>
+  </div>
+  <div class="card" data-keywords="papaya బొప్పాయి" onclick="openPage('papaya.html')">
+    <img src="https://images.unsplash.com/photo-1517282009859-f000ec3b26fe?w=200" alt="బొప్పాయి">
+    <h3>🍈 బొప్పాయి</h3>
+    <p>సాగు పూర్తి గైడ్</p>
+  </div>
+</div>
+</div>
+
+</div>
+
+<script>
+// Fix for Back button loading spinner freeze (bfcache issue)
+window.addEventListener('pageshow', function(event) {
+    const loadingScreen = document.getElementById('loadingScreen');
+    if (loadingScreen) {
+        loadingScreen.style.display = 'none';
+    }
+});
+
+function showLoading() {
+    const loadingScreen = document.getElementById('loadingScreen');
+    if (loadingScreen) {
+        loadingScreen.style.display = 'flex';
+    }
+}
+
+function openPage(url) {
+    showLoading();
+    window.location.href = url;
+}
+
+const search = document.querySelector(".search");
+search.addEventListener("keyup", function(){
+const value = this.value.toLowerCase().trim();
+const sections = document.querySelectorAll(".category-section");
+
+sections.forEach(section => {
+    let cards = section.querySelectorAll(".card");
+    let hasVisibleCard = false;
+
+    cards.forEach(card => {
+        let text = card.innerText.toLowerCase();
+        let keywords = card.getAttribute("data-keywords") || "";
+
+        // Check if query matches card text or shortcut keywords
+        if (value === "" || text.includes(value) || keywords.includes(value)) {
+            card.style.display = "block";
+            hasVisibleCard = true;
+        } else {
+            card.style.display = "none";
+        }
+    });
+
+    // Hide entire section header if no cards match inside this section
+    if (hasVisibleCard) {
+        section.style.display = "block";
+    } else {
+        section.style.display = "none";
+    }
+});
+});
+</script>
+
+</body>
+</html>
+

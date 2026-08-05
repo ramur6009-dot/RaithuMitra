@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="te">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🌿 పంట వైద్యుడు - రైతు మిత్ర V3</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+body{
+background:#eef7ee;
+}
+.header{
+background:#2E7D32;
+color:#fff;
+padding:18px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+position:sticky;
+top:0;
+z-index:1000;
+}
+.header a{
+color:#fff;
+font-size:24px;
+text-decoration:none;
+}
+.container{
+max-width:900px;
+margin:auto;
+padding:18px;
+}
+.banner{
+background:linear-gradient(135deg,#43A047,#81C784);
+padding:25px;
+border-radius:20px;
+color:#fff;
+text-align:center;
+margin-bottom:20px;
+box-shadow:0 4px 15px rgba(0,0,0,.15);
+}
+.banner h1{
+font-size:30px;
+margin-bottom:8px;
+}
+.banner p{
+font-size:16px;
+}
+.card{
+background:#fff;
+padding:20px;
+border-radius:18px;
+box-shadow:0 4px 12px rgba(0,0,0,.12);
+margin-bottom:20px;
+}
+label{
+display:block;
+margin-top:15px;
+margin-bottom:8px;
+font-size:17px;
+font-weight:bold;
+color:#2E7D32;
+}
+select{
+width:100%;
+padding:15px;
+font-size:16px;
+border-radius:12px;
+border:1px solid #ccc;
+}
+button{
+width:100%;
+padding:16px;
+margin-top:20px;
+border:none;
+border-radius:12px;
+background:#2E7D32;
+color:#fff;
+font-size:18px;
+font-weight:bold;
+cursor:pointer;
+}
+.result{
+display:none;
+margin-top:20px;
+padding:20px;
+background:#f4fff4;
+border-left:6px solid #2E7D32;
+border-radius:15px;
+}
+.result img{
+width:100%;
+max-height:220px;
+object-fit:cover;
+border-radius:12px;
+margin-bottom:15px;
+}
+.result h2{
+color:#2E7D32;
+margin-bottom:15px;
+}
+.result p{
+margin:10px 0;
+font-size:17px;
+line-height:1.7;
+}
+.level{
+display:inline-block;
+padding:6px 12px;
+border-radius:20px;
+background:#ff9800;
+color:#fff;
+font-weight:bold;
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+<a href="index.html">
+<i class="fa fa-arrow-left"></i>
+</a>
+<h2>🌿 పంట వైద్యుడు</h2>
+<i class="fa-solid fa-stethoscope"></i>
+</div>
+
+<div class="container">
+<div class="banner">
+<h1>రైతు మిత్ర Crop Doctor</h1>
+<p>పంటను మరియు సమస్యను ఎంచుకుని పూర్తి వ్యవసాయ సలహా పొందండి</p>
+</div>
+
+<div class="card">
+<label>🌾 పంట</label>
+<select id="crop" onchange="loadProblems()">
+<option value="">-- పంటను ఎంచుకోండి --</option>
+<option value="cotton">🌿 పత్తి</option>
+<option value="paddy">🌾 వరి</option>
+<option value="maize">🌽 మొక్కజొన్న</option>
+<option value="tomato">🍅 టమాట</option>
+<option value="chilli">🌶️ మిర్చి</option>
+<option value="groundnut">🥜 వేరుశెనగ</option>
+<option value="soybean">🫘 సోయాబీన్</option>
+<option value="turmeric">🟡 పసుపు</option>
+<option value="onion">🧅 ఉల్లిపాయ</option>
+<option value="brinjal">🍆 వంకాయ</option>
+<option value="okra">🥒 బెండకాయ</option>
+<option value="banana">🍌 అరటి</option>
+<option value="mango">🥭 మామిడి</option>
+<option value="papaya">🍈 బొప్పాయి</option>
+<option value="cabbage">🥬 క్యాబేజీ</option>
+</select>
+
+<label>🐛 సమస్య</label>
+<select id="problem">
+<option>ముందుగా పంటను ఎంచుకోండి</option>
+</select>
+
+<button onclick="checkProblem()">🩺 పూర్తి సలహా చూడండి</button>
+
+<div class="result" id="result">
+<img id="diseaseImage" src="" alt="Disease Image">
+<h2>🌱 పంట వైద్యుడి నివేదిక</h2>
+<p><b>🦠 సమస్య :</b> <span id="disease"></span></p>
+<p><b>👀 లక్షణాలు :</b> <span id="symptoms"></span></p>
+<p><b>🔍 కారణం :</b> <span id="reason"></span></p>
+<p><b>💊 మందు :</b> <span id="medicine"></span></p>
+<p><b>📏 మోతాదు :</b> <span id="dose"></span></p>
+<p><b>💧 నీరు :</b> <span id="water"></span></p>
+<p><b>⏰ స్ప్రే సమయం :</b> <span id="time"></span></p>
+<p><b>⚠️ జాగ్రత్తలు :</b> <span id="warning"></span></p>
+<p><b>🌱 నివారణ :</b> <span id="prevention"></span></p>
+<p><b>🚨 తీవ్రత :</b> <span class="level" id="level"></span></p>
+</div>
+</div>
+</div>
+
+<script>
+const cropDatabase = {
+cotton:{
+name:"🌿 పత్తి",
+problems:["తెల్లదోమ", "పేనుబంక", "త్రిప్స్", "జాసిడ్స్", "గులాబీ కాయ తొలిచే పురుగు", "అమెరికన్ కాయ తొలిచే పురుగు", "ఎర్రపురుగు", "ఆకు ముడత", "ఆకులు పసుపు", "ఆకుమచ్చ", "వేరుకుళ్ళు", "నత్రజని లోపం", "ఫాస్పరస్ లోపం", "పొటాష్ లోపం", "కాల్షియం లోపం", "మెగ్నీషియం లోపం", "సల్ఫర్ లోపం", "జింక్ లోపం", "బోరాన్ లోపం", "ఐరన్ లోపం"]
+},
+paddy:{
+name:"🌾 వరి",
+problems:["బ్లాస్ట్", "షీత్ బ్లైట్", "బ్రౌన్ ప్లాంట్ హాపర్", "గ్రీన్ లీఫ్ హాపర్", "కాండం తొలిచే పురుగు", "ఆకు మడత పురుగు", "గాల్ మిడ్జ్", "బాక్టీరియల్ లీఫ్ బ్లైట్", "బ్రౌన్ స్పాట్", "జింక్ లోపం", "నత్రజని లోపం", "పొటాష్ లోపం", "ఐరన్ లోపం"]
+},
+maize:{
+name:"🌽 మొక్కజొన్న",
+problems:["ఫాల్ ఆర్మీవార్మ్", "స్టెమ్ బోరర్", "రస్ట్", "లీఫ్ బ్లైట్", "డౌనీ మిల్డ్యూ", "తొడిమ పురుగు", "ఆకులు పసుపు", "నత్రజని లోపం", "జింక్ లోపం"]
+},
+tomato:{
+name:"🍅 టమాట",
+problems:["తెల్లదోమ", "త్రిప్స్", "లీఫ్ కర్ల్ వైరస్", "ఎర్లీ బ్లైట్", "లేట్ బ్లైట్", "బాక్టీరియల్ విల్ట్", "పండు తొలిచే పురుగు"]
+},
+chilli:{
+name:"🌶️ మిర్చి",
+problems:["త్రిప్స్", "తెల్లదోమ", "పేనుబంక", "చిల్లీ లీఫ్ కర్ల్", "డై బ్యాక్", "పండు కుళ్ళు", "పౌడరీ మిల్డ్యూ", "ఆంథ్రాక్నోస్", "నత్రజని లోపం", "పొటాష్ లోపం"]
+},
+groundnut:{
+name:"🥜 వేరుశెనగ",
+problems:["టిక్కా లీఫ్ స్పాట్", "రస్ట్", "వేరు కుళ్ళు", "కాలర్ రాట్", "ఆకు తినే గొంగళి పురుగు", "తెల్ల గ్రబ్", "నత్రజని లోపం", "కాల్షియం లోపం"]
+},
+soybean:{
+name:"🫘 సోయాబీన్",
+problems:["స్టెమ్ ఫ్లై", "గర్డిల్ బీటిల్", "రస్ట్", "పసుపు మొజాయిక్", "ఆంథ్రాక్నోస్", "వేరు కుళ్ళు", "పొటాష్ లోపం"]
+},
+turmeric:{
+name:"🟡 పసుపు",
+problems:["లీఫ్ బ్లాచ్", "రైజోమ్ రాట్", "షూట్ బోరర్", "స్కేల్ పురుగు", "ఆకులు పసుపు", "నత్రజని లోపం"]
+},
+onion:{
+name:"🧅 ఉల్లిపాయ",
+problems:["త్రిప్స్", "పర్పుల్ బ్లాచ్", "డౌనీ మిల్డ్యూ", "బేసల్ రాట్", "ఆకులు పసుపు", "పొటాష్ లోపం"]
+},
+brinjal:{
+name:"🍆 వంకాయ",
+problems:["షూట్ & ఫ్రూట్ బోరర్", "తెల్లదోమ", "త్రిప్స్", "జాసిడ్స్", "బాక్టీరియల్ విల్ట్", "ఫోమాప్సిస్ బ్లైట్"]
+},
+okra:{
+name:"🥒 బెండకాయ",
+problems:["పసుపు మొజాయిక్", "జాసిడ్స్", "తెల్లదోమ", "త్రిప్స్", "ఎర్రపురుగు", "పొడి తెగులు"]
+},
+banana:{
+name:"🍌 అరటి",
+problems:["పనామా విల్ట్", "సిగటోకా", "రైజోమ్ వీవిల్", "నెమటోడ్స్", "ఆకు మచ్చ", "పొటాష్ లోపం"]
+},
+mango:{
+name:"🥭 మామిడి",
+problems:["మామిడి హాపర్", "పౌడరీ మిల్డ్యూ", "ఆంత్రాక్నోస్", "బ్లాక్ టిప్", "గమ్ స్రావం", "ఫ్రూట్ ఫ్లై"]
+},
+papaya:{
+name:"🍈 బొప్పాయి",
+problems:[ "రింగ్ స్పాట్ వైరస్", "మీలీ బగ్", "కాలర్ రాట్", "పౌడరీ మిల్డ్యూ", "ఆంథ్రాక్నోస్"]
+},
+cabbage:{
+name:"🥬 క్యాబేజీ",
+problems:[ "డైమండ్ బ్యాక్ మాత్", "ఆఫిడ్స్", "బ్లాక్ రాట్", "డౌనీ మిల్డ్యూ", "క్లబ్ రూట్"]
+}
+};
+
+const cropData = {
+"cotton":{
+"తెల్లదోమ":{
+image:"images/cotton/whitefly.jpg",
+symptoms:"ఆకులు పసుపు రంగులోకి మారడం, రసం పీల్చడం, మొక్క బలహీనపడటం.",
+reason:"తెల్లదోమ రసం పీల్చే పురుగు.",
+medicine:"ఇమిడాక్లోప్రిడ్ 17.8 SL",
+dose:"40 ml / ఎకరం",
+water:"200 లీటర్ల నీరు",
+time:"ఉదయం 7-9 లేదా సాయంత్రం 4-6",
+warning:"అధిక మోతాదు వాడవద్దు.",
+prevention:"పసుపు స్టిక్కీ ట్రాప్స్ ఏర్పాటు చేయండి.",
+level:"🔴 ఎక్కువ"
+},
+"త్రిప్స్":{
+image:"images/cotton/thrips.jpg",
+symptoms:"ఆకులు వెండి రంగులోకి మారడం.",
+reason:"త్రిప్స్ రసం పీల్చడం.",
+medicine:"ఫిప్రోనిల్ 5 SC",
+dose:"300 ml / ఎకరం",
+water:"200 లీటర్లు",
+time:"సాయంత్రం",
+warning:"సిఫార్సు చేసిన మోతాదులో మాత్రమే వాడండి.",
+prevention:"కలుపు మొక్కలు తొలగించండి.",
+level:"🟠 మధ్యస్థ"
+}
+},
+"paddy":{
+"బ్లాస్ట్":{
+image:"images/paddy/blast.jpg",
+symptoms:"ఆకులపై వజ్రాకార మచ్చలు.",
+reason:"శిలీంధ్ర వ్యాధి.",
+medicine:"ట్రైసైక్లాజోల్ 75 WP",
+dose:"120 గ్రా / ఎకరం",
+water:"200 లీటర్లు",
+time:"ఉదయం",
+warning:"వర్షం ముందు స్ప్రే చేయవద్దు.",
+prevention:"సమతుల్య ఎరువులు వాడండి.",
+level:"🔴 ఎక్కువ"
+}
+},
+"maize":{
+"ఫాల్ ఆర్మీవార్మ్":{
+image:"images/maize/fall-armyworm.jpg",
+symptoms:"ఆకులు తినివేయడం.",
+reason:"ఫాల్ ఆర్మీవార్మ్ పురుగు.",
+medicine:"ఎమామెక్టిన్ బెంజోయేట్ 5 SG",
+dose:"80 గ్రా / ఎకరం",
+water:"200 లీటర్లు",
+time:"సాయంత్రం",
+warning:"ప్రారంభ దశలోనే స్ప్రే చేయండి.",
+prevention:"ఫెరోమోన్ ట్రాప్స్ ఏర్పాటు చేయండి.",
+level:"🔴 ఎక్కువ"
+}
+}
+};
+
+function loadProblems(){
+const crop = document.getElementById("crop").value;
+const problem = document.getElementById("problem");
+problem.innerHTML="";
+if(!crop){
+problem.innerHTML="<option>ముందుగా పంటను ఎంచుకోండి</option>";
+return;
+}
+if(cropDatabase[crop] && cropDatabase[crop].problems){
+cropDatabase[crop].problems.forEach(function(item){
+problem.innerHTML += `<option value="${item}">${item}</option>`;
+});
+}
+}
+
+function checkProblem(){
+const crop = document.getElementById("crop").value;
+const problem = document.getElementById("problem").value;
+
+if(crop=="" || problem==""){
+alert("ముందుగా పంట మరియు సమస్యను ఎంచుకోండి.");
+return;
+}
+
+if(!cropData[crop] || !cropData[crop][problem]){
+alert("ఈ సమస్యకు సమాచారం ఇంకా జోడించలేదు.");
+return;
+}
+
+const info = cropData[crop][problem];
+
+document.getElementById("diseaseImage").src = info.image;
+document.getElementById("disease").innerHTML = problem;
+document.getElementById("symptoms").innerHTML = info.symptoms;
+document.getElementById("reason").innerHTML = info.reason;
+document.getElementById("medicine").innerHTML = info.medicine;
+document.getElementById("dose").innerHTML = info.dose;
+document.getElementById("water").innerHTML = info.water;
+document.getElementById("time").innerHTML = info.time;
+document.getElementById("warning").innerHTML = info.warning;
+document.getElementById("prevention").innerHTML = info.prevention;
+document.getElementById("level").innerHTML = info.level;
+
+document.getElementById("result").style.display = "block";
+}
+
+function shareAdvice(){
+let disease = document.getElementById("disease").innerText;
+let medicine = document.getElementById("medicine").innerText;
+let dose = document.getElementById("dose").innerText;
+let prevention = document.getElementById("prevention").innerText;
+
+let text = "🌿 రైతు మిత్ర - పంట వైద్యుడు\n\n🦠 సమస్య : "+disease+"\n\n💊 మందు : "+medicine+"\n\n📏 మోతాదు : "+dose+"\n\n🌱 నివారణ : "+prevention;
+
+if(navigator.share){
+navigator.share({
+title:"రైతు మిత్ర",
+text:text
+});
+} else {
+navigator.clipboard.writeText(text);
+alert("సలహా కాపీ చేయబడింది");
+}
+}
+
+function printAdvice(){
+window.print();
+}
+
+function saveFavourite(){
+let crop = document.getElementById("crop").value;
+let problem = document.getElementById("problem").value;
+localStorage.setItem("favCrop", crop);
+localStorage.setItem("favProblem", problem);
+alert("⭐ Favourite గా సేవ్ చేయబడింది");
+}
+
+window.onload = function(){
+let crop = localStorage.getItem("favCrop");
+let problem = localStorage.getItem("favProblem");
+if(crop){
+document.getElementById("crop").value = crop;
+loadProblems();
+setTimeout(function(){
+document.getElementById("problem").value = problem;
+},200);
+}
+};
+
+const resultEl = document.getElementById("result");
+resultEl.insertAdjacentHTML("beforeend", `
+<div style="display:grid; grid-template-columns:repeat(2,1fr); gap:10px; margin-top:20px;">
+<button onclick="saveFavourite()" style="background:#ff9800;">⭐ Favourite</button>
+<button onclick="shareAdvice()" style="background:#2196F3;">📤 Share</button>
+<button onclick="printAdvice()" style="background:#4CAF50;">🖨️ Print</button>
+<button onclick="copyMedicine()" style="background:#9C27B0;">📋 Copy</button>
+</div>
+`);
+
+function copyMedicine(){
+let text = "🌿 సమస్య : "+document.getElementById("disease").innerText +
+"\n\n💊 మందు : "+document.getElementById("medicine").innerText +
+"\n📏 మోతాదు : "+document.getElementById("dose").innerText +
+"\n💧 నీరు : "+document.getElementById("water").innerText +
+"\n⏰ స్ప్రే సమయం : "+document.getElementById("time").innerText;
+
+navigator.clipboard.writeText(text);
+alert("📋 సమాచారం Copy అయింది");
+}
+</script>
+</body>
+</html>

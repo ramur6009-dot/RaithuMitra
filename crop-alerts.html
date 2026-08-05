@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="te">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>పంట హెచ్చరికలు - రైతు మిత్ర</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#eef7ee;
+}
+
+.header{
+background:#2E7D32;
+color:#fff;
+padding:18px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+position:sticky;
+top:0;
+z-index:999;
+box-shadow:0 5px 15px rgba(0,0,0,.15);
+}
+
+.header a{
+color:#fff;
+font-size:24px;
+text-decoration:none;
+}
+
+.container{
+max-width:1000px;
+margin:auto;
+padding:18px;
+}
+
+.banner{
+background:linear-gradient(135deg,#2E7D32,#66BB6A);
+padding:30px;
+border-radius:22px;
+text-align:center;
+color:white;
+margin-bottom:20px;
+}
+
+.banner h1{
+font-size:32px;
+margin-bottom:10px;
+}
+
+.banner p{
+font-size:17px;
+opacity:.95;
+}
+
+.liveBadge{
+display:inline-block;
+margin-top:15px;
+padding:8px 16px;
+background:#e53935;
+color:#fff;
+font-size:14px;
+font-weight:bold;
+border-radius:30px;
+animation:blink 1s infinite;
+}
+
+@keyframes blink{
+50%{
+opacity:.4;
+}
+}
+
+.searchBox{
+background:#fff;
+padding:15px;
+border-radius:18px;
+box-shadow:0 4px 12px rgba(0,0,0,.12);
+margin-bottom:20px;
+}
+
+.searchBox input{
+width:100%;
+padding:14px;
+border:none;
+outline:none;
+border-radius:12px;
+background:#f5f5f5;
+font-size:16px;
+}
+
+.dashboard{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:15px;
+margin-bottom:20px;
+}
+
+.card{
+background:#fff;
+padding:20px;
+border-radius:18px;
+text-align:center;
+box-shadow:0 4px 12px rgba(0,0,0,.12);
+}
+
+.card i{
+font-size:34px;
+color:#2E7D32;
+margin-bottom:10px;
+}
+
+.card h3{
+color:#2E7D32;
+margin-bottom:8px;
+}
+
+.card p{
+font-size:16px;
+color:#666;
+}
+
+.section{
+background:#fff;
+padding:20px;
+border-radius:18px;
+box-shadow:0 4px 12px rgba(0,0,0,.12);
+margin-bottom:20px;
+}
+
+.section h2{
+color:#2E7D32;
+margin-bottom:15px;
+}
+
+.alert-card{
+display:flex;
+gap:15px;
+background:#fff;
+padding:15px;
+margin-bottom:18px;
+border-radius:18px;
+box-shadow:0 4px 12px rgba(0,0,0,.12);
+border: 1px solid #e0e0e0;
+}
+
+.alert-image{
+position:relative;
+}
+
+.alert-image img{
+width:145px;
+height:105px;
+object-fit:cover;
+border-radius:14px;
+}
+
+.danger,
+.warning{
+position:absolute;
+top:8px;
+left:8px;
+padding:4px 8px;
+border-radius:8px;
+font-size:11px;
+font-weight:bold;
+color:#fff;
+}
+
+.danger{
+background:#d32f2f;
+}
+
+.warning{
+background:#f9a825;
+}
+
+.alert-info{
+flex:1;
+}
+
+.alert-info h3{
+color:#2E7D32;
+margin-bottom:8px;
+}
+
+.date{
+color:#777;
+font-size:13px;
+margin-bottom:8px;
+}
+
+.alert-info p{
+font-size:14px;
+color:#555;
+line-height:1.6;
+}
+
+.buttons{
+display:flex;
+gap:8px;
+margin-top:12px;
+}
+
+.readBtn{
+flex:1;
+padding:10px;
+background:#2E7D32;
+color:#fff;
+border:none;
+border-radius:10px;
+font-weight:bold;
+cursor:pointer;
+}
+
+.shareBtn,
+.favBtn{
+width:42px;
+border:none;
+border-radius:10px;
+background:#f3f3f3;
+font-size:17px;
+cursor:pointer;
+}
+
+.categoryGrid{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:12px;
+margin-bottom:20px;
+}
+
+.category{
+padding:14px;
+border:none;
+border-radius:12px;
+background:#E8F5E9;
+color:#2E7D32;
+font-weight:bold;
+cursor:pointer;
+transition:.3s;
+text-align:center;
+}
+
+.category.active{
+background:#2E7D32;
+color:#fff;
+}
+
+.riskBox{
+background:#fff;
+padding:18px;
+border-radius:18px;
+box-shadow:0 4px 12px rgba(0,0,0,.12);
+margin-bottom:20px;
+}
+
+.riskBox h3{
+color:#2E7D32;
+margin-bottom:15px;
+}
+
+.riskCards{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:10px;
+}
+
+.risk{
+padding:15px;
+text-align:center;
+border-radius:12px;
+font-weight:bold;
+}
+
+.high{
+background:#ffebee;
+color:#c62828;
+}
+
+.medium{
+background:#fff8e1;
+color:#f9a825;
+}
+
+.low{
+background:#e8f5e9;
+color:#2e7d32;
+}
+
+.liveAlert{
+display:flex;
+align-items:center;
+gap:15px;
+background:#e3f2fd;
+padding:18px;
+border-radius:18px;
+margin-top:20px;
+}
+
+.liveAlert i{
+font-size:42px;
+color:#1976d2;
+}
+
+.liveAlert h3{
+color:#1565c0;
+margin-bottom:6px;
+}
+
+.liveAlert p{
+color:#555;
+line-height:1.6;
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">
+<a href="index.html"><i class="fa fa-arrow-left"></i></a>
+<h2>⚠️ పంట హెచ్చరికలు</h2>
+<i class="fa-solid fa-triangle-exclamation"></i>
+</div>
+
+<div class="container">
+
+<div class="banner">
+<h1>రైతు మిత్ర</h1>
+<p>తెలంగాణ రైతులకు ప్రత్యక్ష పంట & వాతావరణ హెచ్చరికలు</p>
+<div class="liveBadge">🔴 LIVE ALERTS</div>
+</div>
+
+<div class="searchBox">
+<input type="text" id="search" placeholder="🔍 హెచ్చరిక కోసం వెతకండి...">
+</div>
+
+<div class="dashboard">
+<div class="card">
+<i class="fa-solid fa-bell"></i>
+<h3>మొత్తం హెచ్చరికలు</h3>
+<p id="alertCount">25</p>
+</div>
+<div class="card">
+<i class="fa-solid fa-circle-exclamation"></i>
+<h3>అత్యవసర హెచ్చరికలు</h3>
+<p>5</p>
+</div>
+<div class="card">
+<i class="fa-solid fa-cloud-rain"></i>
+<h3>వాతావరణ Alerts</h3>
+<p>8</p>
+</div>
+<div class="card">
+<i class="fa-solid fa-bug"></i>
+<h3>పురుగు హెచ్చరికలు</h3>
+<p>12</p>
+</div>
+</div>
+
+<!-- ===== Alert Categories (Moved to Top for Better UX) ===== -->
+<div class="section">
+<h2>📂 హెచ్చరికల విభాగాలు</h2>
+<div class="categoryGrid">
+<button class="category active" data-filter="all">🚨 అన్ని</button>
+<button class="category" data-filter="weather">🌧️ వాతావరణం</button>
+<button class="category" data-filter="pest">🐛 పురుగులు</button>
+<button class="category" data-filter="disease">🦠 వ్యాధులు</button>
+<button class="category" data-filter="crop">🌾 పంటలు</button>
+<button class="category" data-filter="government">🏛️ ప్రభుత్వం</button>
+<button class="category" data-filter="market">💰 మార్కెట్</button>
+<button class="category" data-filter="emergency">🔴 అత్యవసరం</button>
+</div>
+</div>
+
+<!-- ===== తాజా హెచ్చరికలు (Latest Alerts) ===== -->
+<div class="section">
+<h2>🚨 తాజా హెచ్చరికలు</h2>
+
+<!-- ===== Alert 1 ===== -->
+<div class="alert-card" data-category="weather">
+<div class="alert-image">
+<img src="images/heavy-rain.jpg" alt="Heavy Rain" onerror="this.src='https://via.placeholder.com/145x105?text=Rain'">
+<span class="danger">🔴 HIGH</span>
+</div>
+<div class="alert-info">
+<h3>🌧️ భారీ వర్ష హెచ్చరిక</h3>
+<p class="date">📅 ఈరోజు • 🕒 08:30 AM</p>
+<p>రాబోయే 48 గంటల్లో తెలంగాణలో పలుచోట్ల భారీ వర్షాలు కురిసే అవకాశం ఉంది.</p>
+<div class="buttons">
+<button class="readBtn">📖 పూర్తి వివరాలు</button>
+<button class="shareBtn"><i class="fa-solid fa-share-nodes"></i></button>
+<button class="favBtn"><i class="fa-regular fa-heart"></i></button>
+</div>
+</div>
+</div>
+
+<!-- ===== Alert 2 ===== -->
+<div class="alert-card" data-category="pest">
+<div class="alert-image">
+<img src="images/pest-alert.jpg" alt="Pest Alert" onerror="this.src='https://via.placeholder.com/145x105?text=Pest'">
+<span class="warning">🟡 MEDIUM</span>
+</div>
+<div class="alert-info">
+<h3>🐛 తెల్లదోమ హెచ్చరిక</h3>
+<p class="date">📅 ఈరోజు • 🕒 06:45 AM</p>
+<p>పత్తి పంటలో తెల్లదోమ ఉధృతి పెరిగే అవకాశం ఉంది. పంటను ప్రతిరోజూ పరిశీలించండి.</p>
+<div class="buttons">
+<button class="readBtn">📖 పూర్తి వివరాలు</button>
+<button class="shareBtn"><i class="fa-solid fa-share-nodes"></i></button>
+<button class="favBtn"><i class="fa-regular fa-heart"></i></button>
+</div>
+</div>
+</div>
+
+</div>
+
+<!-- ===== Risk Levels ===== -->
+<div class="riskBox">
+<h3>⚠️ ప్రమాద స్థాయి</h3>
+<div class="riskCards">
+<div class="risk high">🔴 High Risk</div>
+<div class="risk medium">🟡 Medium Risk</div>
+<div class="risk low">🟢 Low Risk</div>
+</div>
+</div>
+
+<!-- ===== Live Alert ===== -->
+<div class="liveAlert">
+<i class="fa-solid fa-satellite-dish"></i>
+<div>
+<h3>📡 Live Alert System</h3>
+<p>తాజా హెచ్చరికలు ఇంటర్నెట్ అందుబాటులో ఉన్నప్పుడు ఆటోమేటిక్‌గా అప్డేట్ అవుతాయి.</p>
+</div>
+</div>
+
+</div>
+
+<script>
+// Search Functionality
+document.getElementById("search").addEventListener("keyup", function(){
+const value = this.value.toLowerCase();
+document.querySelectorAll(".alert-card").forEach(card => {
+const text = card.innerText.toLowerCase();
+card.style.display = text.includes(value) ? "flex" : "none";
+});
+});
+
+// Favorite Toggle
+document.querySelectorAll(".favBtn").forEach(btn => {
+btn.addEventListener("click", function(){
+const icon = this.querySelector("i");
+if(icon.classList.contains("fa-regular")){
+icon.classList.replace("fa-regular", "fa-solid");
+icon.style.color = "#e53935";
+} else {
+icon.classList.replace("fa-solid", "fa-regular");
+icon.style.color = "";
+}
+});
+});
+
+// Share Functionality
+document.querySelectorAll(".shareBtn").forEach(btn => {
+btn.addEventListener("click", function(){
+const alertTitle = this.closest(".alert-card").querySelector("h3").innerText;
+if(navigator.share){
+navigator.share({
+title: "రైతు మిత్ర - పంట హెచ్చరిక",
+text: alertTitle
+}).catch(err => console.log(err));
+} else {
+alert("ఈ Browserలో Share Support లేదు.");
+}
+});
+});
+
+// Category Filter Functionality
+document.querySelectorAll(".category").forEach(btn => {
+btn.addEventListener("click", function(){
+document.querySelectorAll(".category").forEach(x => {
+x.classList.remove("active");
+});
+this.classList.add("active");
+
+const filter = this.getAttribute("data-filter");
+document.querySelectorAll(".alert-card").forEach(card => {
+if(filter === "all" || card.getAttribute("data-category") === filter){
+card.style.display = "flex";
+} else {
+card.style.display = "none";
+}
+});
+});
+});
+
+// Read More Button
+document.querySelectorAll(".readBtn").forEach(btn => {
+btn.addEventListener("click", function(){
+alert("🚨 పూర్తి హెచ్చరిక, సూచనలు మరియు అధికారిక లింక్ త్వరలో అందుబాటులో ఉంటాయి.");
+});
+});
+
+// Live Time Update
+function updateTime(){
+const now = new Date();
+const badge = document.querySelector(".liveBadge");
+if(badge){
+badge.innerHTML = "🔴 LIVE • " + now.toLocaleTimeString("en-IN", {
+hour: "2-digit",
+minute: "2-digit"
+});
+}
+}
+
+updateTime();
+setInterval(updateTime, 60000);
+</script>
+
+</body>
+</html>

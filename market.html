@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="te">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>రైతు మిత్ర - మార్కెట్ ధరలు</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+        body {
+            background-color: #f2f7f2;
+            color: #333;
+        }
+        .header {
+            background-color: #2E7D32;
+            color: white;
+            padding: 15px 18px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .header h2 {
+            font-size: 20px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .header a {
+            color: white;
+            font-size: 20px;
+            text-decoration: none;
+        }
+        .container {
+            padding: 15px;
+        }
+        .search-box {
+            background: white;
+            padding: 15px;
+            border-radius: 15px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        .search-box input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 15px;
+            outline: none;
+            background-color: #fafafa;
+        }
+        .gps-btn-box {
+            background: #e8f5e9;
+            border: 1px solid #a5d6a7;
+            padding: 12px;
+            border-radius: 12px;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .gps-btn-box button {
+            background-color: #2E7D32;
+            color: white;
+            border: none;
+            padding: 10px 18px;
+            font-size: 14px;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .quick-location-bar {
+            background: #fff;
+            border: 1px solid #c8e6c9;
+            padding: 12px 15px;
+            border-radius: 12px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.03);
+        }
+        .quick-location-bar span {
+            font-size: 14px;
+            color: #2E7D32;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .section-title {
+            margin: 15px 5px 12px;
+            font-size: 16px;
+            color: #2E7D32;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .categories {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+        .cat-card {
+            background: white;
+            padding: 18px 15px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+            border: 2px solid #e0e0e0;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .cat-card.active {
+            border-color: #2E7D32;
+            background-color: #f7faf7;
+        }
+        .cat-card i {
+            font-size: 22px;
+            color: #2E7D32;
+            margin-bottom: 8px;
+        }
+        .cat-card h3 {
+            font-size: 14px;
+            color: #333;
+        }
+        .markets-container {
+            display: none;
+            background: white;
+            padding: 15px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            max-height: 280px;
+            overflow-y: auto;
+        }
+        .market-group-title {
+            font-size: 14px;
+            color: #1b5e20;
+            margin: 10px 0 5px 0;
+            font-weight: bold;
+        }
+        .markets-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px;
+        }
+        .market-chip {
+            background: #f2f7f2;
+            border: 1px solid #c8e6c9;
+            padding: 8px;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 13px;
+            color: #2E7D32;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .market-chip:hover, .market-chip.active-market {
+            background: #2E7D32;
+            color: white;
+        }
+        .prices-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .price-card {
+            background: white;
+            padding: 15px;
+            border-radius: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+            border: 1px solid #eaeaea;
+        }
+        .item-info h3 {
+            font-size: 16px;
+            color: #111;
+            margin-bottom: 5px;
+        }
+        .item-info p {
+            font-size: 13px;
+            color: #2E7D32;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .price-tag {
+            background-color: #e8f5e9;
+            color: #2E7D32;
+            padding: 8px 14px;
+            border-radius: 10px;
+            font-weight: bold;
+            font-size: 14px;
+            white-space: nowrap;
+        }
+        .no-data {
+            display: none;
+            text-align: center;
+            padding: 20px;
+            background: white;
+            border-radius: 12px;
+            color: #777;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <a href="index.html"><i class="fa fa-arrow-left"></i></a>
+        <h2><i class="fa-solid fa-store"></i> మార్కెట్ ధరలు (TS & AP)</h2>
+        <i class="fa-solid fa-fire" style="color: #ff9800;"></i>
+    </div>
+
+    <div class="container">
+
+        <!-- పంట పేరు సెర్చ్ బాక్స్ -->
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="పంట పేరు (ఉదా: పత్తి, Cotton, వరి)..." oninput="filterData()">
+        </div>
+
+        <!-- GPS లొకేషన్ పర్మిషన్ బటన్ బాక్స్ -->
+        <div class="gps-btn-box">
+            <button onclick="requestGPSLocation()"><i class="fa-solid fa-crosshairs"></i> నా లోకేషన్ మార్కెట్ గుర్తించు (GPS)</button>
+        </div>
+
+        <!-- ప్రస్తుత లొకేషన్ బార్ -->
+        <div class="quick-location-bar">
+            <span id="currentLocText"><i class="fa-solid fa-location-dot"></i> మార్కెట్: అన్ని మార్కెట్లు</span>
+            <span style="font-size: 12px; background: #2E7D32; color: white; padding: 4px 10px; border-radius: 6px; cursor: pointer;" onclick="toggleMarketSearch(document.getElementById('marketCatBtn'))">మార్చు</span>
+        </div>
+
+        <!-- మార్కెట్ల జాబితా బాక్స్ (TS & AP మార్కెట్లు) -->
+        <div class="markets-container" id="marketsContainer">
+            <div class="market-chip active-market" onclick="selectMarket('', this, 'అన్ని మార్కెట్లు')" style="grid-column: span 2; margin-bottom: 5px;">అన్ని మార్కెట్లు (TS & AP)</div>
+
+            <div class="market-group-title">🌱 తెలంగాణ (TS) మార్కెట్లు</div>
+            <div class="markets-grid">
+                <div class="market-chip" onclick="selectMarket('రంగారెడ్డి', this, 'రంగారెడ్డి (TS)')">రంగారెడ్డి</div>
+                <div class="market-chip" onclick="selectMarket('షాద్‌నగర్', this, 'షాద్‌నగర్ (TS)')">షాద్‌నగర్</div>
+                <div class="market-chip" onclick="selectMarket('మహబూబ్‌నగర్', this, 'మహబూబ్‌నగర్ (TS)')">మహబూబ్‌నగర్</div>
+                <div class="market-chip" onclick="selectMarket('హైదరాబాద్', this, 'హైదరాబాద్ (TS)')">హైదరాబాద్</div>
+                <div class="market-chip" onclick="selectMarket('గద్వాల్', this, 'గద్వాల్ (TS)')">గద్వాల్</div>
+                <div class="market-chip" onclick="selectMarket('వరంగల్', this, 'వరంగల్ (TS)')">వరంగల్</div>
+                <div class="market-chip" onclick="selectMarket('ఖమ్మం', this, 'ఖమ్మం (TS)')">ఖమ్మం</div>
+                <div class="market-chip" onclick="selectMarket('నిజామాబాద్', this, 'నిజామాబాద్ (TS)')">నిజామాబాద్</div>
+            </div>
+
+            <div class="market-group-title" style="margin-top: 15px;">🌿 ఆంధ్రప్రదేశ్ (AP) మార్కెట్లు</div>
+            <div class="markets-grid">
+                <div class="market-chip" onclick="selectMarket('విజయవాడ', this, 'విజయవాడ (AP)')">విజయవాడ</div>
+                <div class="market-chip" onclick="selectMarket('గుంటూరు', this, 'గుంటూరు (AP)')">గుంటూరు</div>
+                <div class="market-chip" onclick="selectMarket('కర్నూలు', this, 'కర్నూలు (AP)')">కర్నూలు</div>
+                <div class="market-chip" onclick="selectMarket('తిరుపతి', this, 'తిరుపతి / మదనపల్లె (AP)')">తిరుపతి</div>
+                <div class="market-chip" onclick="selectMarket('అనంతపురం', this, 'అనంతపురం (AP)')">అనంతపురం</div>
+                <div class="market-chip" onclick="selectMarket('ఏలూరు', this, 'ఏలూరు (AP)')">ఏలూరు</div>
+            </div>
+        </div>
+
+        <div class="section-title">🌱 కేటగిరీలు</div>
+        <div class="categories">
+            <div class="cat-card active" onclick="selectCategory('all', this)">
+                <i class="fa-solid fa-table-cells"></i>
+                <h3>అన్ని రకాలు</h3>
+            </div>
+            <div class="cat-card" onclick="selectCategory('panta', this)">
+                <i class="fa-solid fa-seedling"></i>
+                <h3>అన్ని పంటలు</h3>
+            </div>
+            <div class="cat-card" onclick="selectCategory('kooragaya', this)">
+                <i class="fa-solid fa-carrot"></i>
+                <h3>అన్ని కూరగాయలు</h3>
+            </div>
+            <div class="cat-card" id="marketCatBtn" onclick="toggleMarketSearch(this)">
+                <i class="fa-solid fa-location-dot"></i>
+                <h3>మార్కెట్ సెర్చ్</h3>
+            </div>
+        </div>
+
+        <div class="section-title">💰 లైవ్ ధరలు (Live Market Data)</div>
+        
+        <div class="prices-list" id="priceList">
+            
+            <!-- TS Crops -->
+            <div class="price-card" data-tags="పత్తి cotton pathi" data-market="మహబూబ్‌నగర్" data-category="panta">
+                <div class="item-info">
+                    <h3>పత్తి (Cotton)</h3>
+                    <p><i class="fa-solid fa-location-dot"></i> మహబూబ్‌నగర్ (TS)</p>
+                </div>
+                <div class="price-tag">₹7,100 / క్వింటాల్</div>
+            </div>
+
+            <div class="price-card" data-tags="పత్తి cotton pathi" data-market="గద్వాల్" data-category="panta">
+                <div class="item-info">
+                    <h3>పత్తి (Cotton)</h3>
+                    <p><i class="fa-solid fa-location-dot"></i> గద్వాల్ (TS)</p>
+                </div>
+                <div class="price-tag">₹7,050 / క్వింటాల్</div>
+            </div>
+
+            <div class="price-card" data-tags="వరి ధాన్యం paddy vari" data-market="షాద్‌నగర్" data-category="panta">
+                <div class="item-info">
+                    <h3>వరి ధాన్యం (Paddy)</h3>
+                    <p><i class="fa-solid fa-location-dot"></i> షాద్‌నగర్ (TS)</p>
+                </div>
+                <div class="price-tag">₹2,200 / క్వింటాల్</div>
+            </div>
+
+            <div class="price-card" data-tags="మొక్కజొన్న maize mokkajonna" data-market="హైదరాబాద్" data-category="panta">
+                <div class="item-info">
+                    <h3>మొక్కజొన్న (Maize)</h3>
+                    <p><i class="fa-solid fa-location-dot"></i> హైదరాబాద్ (TS)</p>
+                </div>
+                <div class="price-tag">₹2,050 / క్వింటాల్</div>
+            </div>
+
+            <div class="price-card" data-tags="మిరపకాయలు green chilli mirapa" data-market="వరంగల్" data-category="kooragaya">
+                <div class="item-info">
+                    <h3>ఎండు మిరపకాయలు (Chilli)</h3>
+                    <p><i class="fa-solid fa-location-dot"></i> వరంగల్ (TS)</p>
+                </div>
+                <div class="price-tag">₹18,500 / క్వింటాల్</div>
+            </div>
+
+            <!-- AP Crops -->
+            <div class="price-card" data-tags="మిరపకాయలు chilli mirapa" data-market="గుంటూరు" data-category="panta">
+                <div class="item-info">
+                    <h3>మిరపకాయలు (Mirchi)</h3>
+                    <p><i class="fa-solid fa-location-dot"></i> గుంటూరు (AP)</p>
+                </div>
+                <div class="price-tag">₹19,200 / క్వింటాల్</div>
+            </div>
+
+            <div class="price-card" data-tags="పసుపు turmeric pasupu" data-market="విజయవాడ" data-category="panta">
+                <div class="item-info">
+                    <h3>పసుపు (Turmeric)</h3>
+                    <p><i class="fa-solid fa-location-dot"></i> విజయవాడ (AP)</p>
+                </div>
+                <div class="price-tag">₹12,400 / క్వింటాల్</div>
+            </div>
+
+            <div class="price-card" data-tags="వేరుశనగ groundnut verusenaga" data-market="అనంతపురం" data-category="panta">
+                <div class="item-info">
+                    <h3>వేరుశనగ (Groundnut)</h3>
+                    <p><i class="fa-solid fa-location-dot"></i> అనంతపురం (AP)</p>
+                </div>
+                <div class="price-tag">₹5,900 / క్వింటాల్</div>
+            </div>
+
+            <div class="price-card" data-tags="టమాటా tomato tamata" data-market="తిరుపతి" data-category="kooragaya">
+                <div class="item-info">
+                    <h3>టమాటా (Tomato)</h3>
+                    <p><i class="fa-solid fa-location-dot"></i> తిరుపతి / మదనపల్లె (AP)</p>
+                </div>
+                <div class="price-tag">₹32 / కేజీ</div>
+            </div>
+
+            <div class="price-card" data-tags="వరి ధాన్యం paddy vari" data-market="ఏలూరు" data-category="panta">
+                <div class="item-info">
+                    <h3>వరి ధాన్యం - BPT (Paddy)</h3>
+                    <p><i class="fa-solid fa-location-dot"></i> ఏలూరు (AP)</p>
+                </div>
+                <div class="price-tag">₹2,350 / క్వింటాల్</div>
+            </div>
+
+        </div>
+
+        <div class="no-data" id="noData">ఈ మార్కెట్‌లో ఎంట్రీలు అందుబాటులో లేవు</div>
+
+    </div>
+
+    <script>
+        let currentCategory = 'all';
+        let selectedMarket = '';
+
+        // యూజర్ బటన్ నొక్కగానే లొకేషన్ పర్మిషన్ అడుగుతుంది
+        function requestGPSLocation() {
+            if (navigator.geolocation) {
+                document.getElementById('currentLocText').innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> లోకేషన్ గుర్తిస్తోంది...`;
+                navigator.geolocation.getCurrentPosition(
+                    (position) => {
+                        // లొకేషన్ పర్మిషన్ ఇచ్చినప్పుడు సమీప మార్కెట్‌ని సెట్ చేయవచ్చు (ఇక్కడ ఉదాహరణకు రంగారెడ్డి)
+                        selectMarket('రంగారెడ్డి', null, 'రంగారెడ్డి (GPS లొకేషన్)');
+                    },
+                    (error) => {
+                        alert("లొకేషన్ యాక్సెస్ లభించలేదు. దయచేసి లిస్ట్ నుండి మీ మార్కెట్‌ను ఎంచుకోండి.");
+                        document.getElementById('currentLocText').innerHTML = `<i class="fa-solid fa-location-dot"></i> మార్కెట్: అన్ని మార్కెట్లు`;
+                    },
+                    { timeout: 10000, enableHighAccuracy: true }
+                );
+            } else {
+                alert("మీ బ్రౌజర్ GPS లొకేషన్‌ని సపోర్ట్ చేయదు.");
+            }
+        }
+
+        function selectCategory(category, element) {
+            let cards = document.querySelectorAll('.categories .cat-card');
+            cards.forEach(c => c.classList.remove('active'));
+            element.classList.add('active');
+
+            currentCategory = category;
+            filterData();
+        }
+
+        function toggleMarketSearch(element) {
+            let marketBox = document.getElementById('marketsContainer');
+            if (marketBox.style.display === 'block') {
+                marketBox.style.display = 'none';
+            } else {
+                marketBox.style.display = 'block';
+            }
+        }
+
+        function selectMarket(marketName, element, displayName) {
+            if(element) {
+                let chips = document.querySelectorAll('.market-chip');
+                chips.forEach(c => c.classList.remove('active-market'));
+                element.classList.add('active-market');
+            }
+
+            selectedMarket = marketName;
+            document.getElementById('currentLocText').innerHTML = `<i class="fa-solid fa-location-dot"></i> మార్కెట్: ${displayName}`;
+            document.getElementById('marketsContainer').style.display = 'none';
+            filterData();
+        }
+
+        function filterData() {
+            let searchText = document.getElementById('searchInput').value.toLowerCase().trim();
+            let priceCards = document.querySelectorAll('.price-card');
+            let visibleCount = 0;
+
+            priceCards.forEach(card => {
+                let tags = card.getAttribute('data-tags').toLowerCase();
+                let market = card.getAttribute('data-market');
+                let category = card.getAttribute('data-category');
+
+                let matchesSearch = searchText === "" || tags.includes(searchText) || market.toLowerCase().includes(searchText);
+                let matchesMarket = selectedMarket === "" || market.toLowerCase().includes(selectedMarket.toLowerCase());
+                let matchesCategory = currentCategory === 'all' || category === currentCategory;
+
+                if (matchesSearch && matchesMarket && matchesCategory) {
+                    card.style.display = 'flex';
+                    visibleCount++;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            let noData = document.getElementById('noData');
+            if (visibleCount === 0) {
+                noData.style.display = 'block';
+            } else {
+                noData.style.display = 'none';
+            }
+        }
+    </script>
+
+</body>
+</html>

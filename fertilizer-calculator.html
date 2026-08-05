@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="te">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ఎరువుల కాలిక్యులేటర్ - రైతు మిత్ర</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#eef7ee;
+}
+
+.header{
+background:#2E7D32;
+color:#fff;
+padding:18px;
+display:flex;
+align-items:center;
+justify-content:space-between;
+position:sticky;
+top:0;
+z-index:1000;
+box-shadow:0 3px 10px rgba(0,0,0,.2);
+}
+
+.back{
+color:#fff;
+font-size:24px;
+text-decoration:none;
+}
+
+.title{
+font-size:22px;
+font-weight:bold;
+}
+
+.container{
+padding:18px;
+max-width:700px;
+margin:auto;
+}
+
+.banner{
+background:linear-gradient(135deg,#43A047,#81C784);
+color:#fff;
+padding:25px;
+border-radius:18px;
+text-align:center;
+margin-bottom:20px;
+box-shadow:0 5px 15px rgba(0,0,0,.15);
+}
+
+.banner h2{
+font-size:28px;
+margin-bottom:8px;
+}
+
+.banner p{
+font-size:16px;
+}
+
+.card{
+background:#fff;
+padding:18px;
+border-radius:15px;
+margin-bottom:18px;
+box-shadow:0 3px 10px rgba(0,0,0,.12);
+}
+
+.card h3{
+color:#2E7D32;
+margin-bottom:15px;
+}
+
+label{
+display:block;
+font-weight:bold;
+margin-bottom:8px;
+}
+
+select,
+input{
+width:100%;
+padding:14px;
+border:1px solid #ccc;
+border-radius:12px;
+font-size:17px;
+margin-bottom:15px;
+outline:none;
+}
+
+select:focus,
+input:focus{
+border:2px solid #2E7D32;
+}
+
+button{
+width:100%;
+padding:16px;
+background:#2E7D32;
+color:#fff;
+border:none;
+border-radius:15px;
+font-size:20px;
+font-weight:bold;
+cursor:pointer;
+transition:.3s;
+}
+
+button:hover{
+background:#1B5E20;
+}
+
+.result{
+display:none;
+margin-top:20px;
+background:#E8F5E9;
+padding:20px;
+border-left:6px solid #2E7D32;
+border-radius:12px;
+}
+
+.result h2{
+color:#2E7D32;
+margin-bottom: 10px;
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+<a href="#" class="back"><i class="fa-solid fa-arrow-left"></i></a>
+<div class="title">ఎరువుల కాలిక్యులేటర్</div>
+<i class="fa-solid fa-seedling" style="font-size: 22px;"></i>
+</div>
+
+<div class="container">
+
+<div class="banner">
+<h2>రైతు మిత్ర</h2>
+<p>మీ పంటకు సరిపడే ఎరువులను సులభంగా లెక్కించండి</p>
+</div>
+
+<div class="card">
+<h3>పంట మరియు ఎరువుల వివరాలు</h3>
+
+<label>పంటను ఎంచుకోండి</label>
+<select id="crop">
+<option value="">-- పంటను ఎంచుకోండి --</option>
+
+<!-- ప్రధాన పంటలు -->
+<optgroup label="🌾 ప్రధాన పంటలు">
+<option value="వరి">వరి (Paddy)</option>
+<option value="పత్తి">పత్తి (Cotton)</option>
+<option value="మిరప">మిరప (Chilli)</option>
+<option value="మొక్కజొన్న">మొక్కజొన్న (Maize)</option>
+<option value="గోధుమ">గోధుమ (Wheat)</option>
+<option value="చెరకు">చెరకు (Sugarcane)</option>
+<option value="పొగాకు">పొగాకు (Tobacco)</option>
+<option value="పసుపు">పసుపు (Turmeric)</option>
+</optgroup>
+
+<!-- కూరగాయలు -->
+<optgroup label="🍅 కూరగాయలు">
+<option value="టమాట">టమాట (Tomato)</option>
+<option value="వంకాయ">వంకాయ (Brinjal)</option>
+<option value="బెండకాయ">బెండకాయ (Okra)</option>
+<option value="బంగాళాదుంప">బంగాళాదుంప (Potato)</option>
+<option value="ఉల్లిపాయ">ఉల్లిపాయ (Onion)</option>
+<option value="పచ్చిమిర్చి">పచ్చిమిర్చి (Green Chilli)</option>
+<option value="క్యాబేజీ">క్యాబేజీ (Cabbage)</option>
+<option value="కాలీఫ్లవర్">కాలీఫ్లవర్ (Cauliflower)</option>
+<option value="కాకరకాయ">కాకరకాయ (Bitter Gourd)</option>
+<option value="సొరకాయ">సొరకాయ (Bottle Gourd)</option>
+<option value="బీరకాయ">బీరకాయ (Ridge Gourd)</option>
+<option value="దోసకాయ">దోసకాయ (Cucumber)</option>
+<option value="ములక్కాయ">ములక్కాయ (Drumstick)</option>
+<option value="క్యారెట్">క్యారెట్ (Carrot)</option>
+<option value="బీట్రూట్">బీట్రూట్ (Beetroot)</option>
+<option value="పాలకూర">పాలకూర (Spinach)</option>
+<option value="తోటకూర">తోటకూర (Amaranthus)</option>
+</optgroup>
+
+<!-- పప్పుధాన్యాలు -->
+<optgroup label="🌱 పప్పుధాన్యాలు">
+<option value="కంది">కంది (Red Gram)</option>
+<option value="పెసర">పెసర (Green Gram)</option>
+<option value="మినప">మినప (Black Gram)</option>
+<option value="శనగలు">శనగలు (Chickpea)</option>
+<option value="ఉలవలు">ఉలవలు (Horse Gram)</option>
+<option value="బటాణీలు">బటాణీలు (Peas)</option>
+<option value="సోయాబిన్">సోయాబిన్ (Soybean)</option>
+</optgroup>
+
+<!-- చిరుధాన్యాలు -->
+<optgroup label="🌾 చిరుధాన్యాలు (మిల్లెట్స్)">
+<option value="జొన్న">జొన్న (Sorghum)</option>
+<option value="సజ్జలు">సజ్జలు (Pearl Millet)</option>
+<option value="రాగులు">రాగులు (Finger Millet)</option>
+<option value="కొర్రలు">కొర్రలు (Foxtail Millet)</option>
+<option value="సామెలు">సామెలు (Little Millet)</option>
+<option value="అరికలు">అరికలు (Kodo Millet)</option>
+<option value="ఊదలు">ఊదలు (Barnyard Millet)</option>
+<option value="ప్రొసో మిల్లెట్">ప్రొసో మిల్లెట్ (Proso Millet)</option>
+</optgroup>
+
+<!-- నూనెగింజలు & వాణిజ్య పంటలు -->
+<optgroup label="🌻 నూనెగింజలు & ఇతర పంటలు">
+<option value="వేరుశనగ">వేరుశనగ (Groundnut)</option>
+<option value="ఆవాలు">ఆవాలు (Mustard)</option>
+<option value="పొద్దుతిరుగుడు">పొద్దుతిరుగుడు (Sunflower)</option>
+<option value="కుసుమలు">కుసుమలు (Safflower)</option>
+<option value="నువ్వులు">నువ్వులు (Sesame)</option>
+<option value="ఆముదం">ఆముదం (Castor)</option>
+<option value="కొబ్బరి">కొబ్బరి (Coconut)</option>
+<option value="పామాయిల్">పామాయిల్ (Oil Palm)</option>
+</optgroup>
+
+<!-- పండ్లు మరియు తోటల పంటలు -->
+<optgroup label="🥭 పండ్లు మరియు తోటల పంటలు">
+<option value="మామిడి">మామిడి (Mango)</option>
+<option value="అరటి">అరటి (Banana)</option>
+<option value="బత్తాయి">బత్తాయి / నిమ్మ (Citrus)</option>
+<option value="బొప్పాయి">బొప్పాయి (Papaya)</option>
+<option value="జామ">జామ (Guava)</option>
+<option value="దానిమ్మ">దానిమ్మ (Pomegranate)</option>
+<option value="అల్లం">అల్లం (Ginger)</option>
+<option value="వెల్లుల్లి">వెల్లుల్లి (Garlic)</option>
+</optgroup>
+
+</select>
+
+<label>ఎరువును ఎంచుకోండి</label>
+<select id="fertilizer">
+<option value="">-- ఎరువును ఎంచుకోండి --</option>
+
+<!-- నత్రజని ఎరువులు -->
+<optgroup label="🧪 నత్రజని ఎరువులు (Nitrogen)">
+<option value="యూరియా">యూరియా (Urea - 46% N)</option>
+<option value="అమ్మోనియం సల్ఫేట్">అమ్మోనియం సల్ఫేట్ (Ammonium Sulphate)</option>
+<option value="అమ్మోనియం క్లోరైడ్">అమ్మోనియం క్లోరైడ్ (Ammonium Chloride)</option>
+<option value="కాల్షియం అమోనియం నైట్రేట్">కాల్షియం అమోనియం నైట్రేట్ (CAN)</option>
+</optgroup>
+
+<!-- భాస్వరం ఎరువులు -->
+<optgroup label="🧪 భాస్వరం ఎరువులు (Phosphorus)">
+<option value="SSP">సింగిల్ సూపర్ ఫాస్ఫేట్ (SSP)</option>
+<option value="TSP">ట్రిపుల్ సూపర్ ఫాస్ఫేట్ (TSP)</option>
+<option value="రాక్ ఫాస్ఫేట్">రాక్ ఫాస్ఫేట్ (Rock Phosphate)</option>
+</optgroup>
+
+<!-- పొటాషియం ఎరువులు -->
+<optgroup label="🧪 పొటాషియం ఎరువులు (Potash)">
+<option value="MOP">మ్యూరేట్ ఆఫ్ పొటాష్ (MOP - 60%)</option>
+<option value="SOP">పొటాషియం సల్ఫేట్ (SOP - 0:0:50)</option>
+</optgroup>
+
+<!-- కాంప్లెక్స్ ఎరువులు -->
+<optgroup label="🧪 కాంప్లెక్స్ ఎరువులు (Complex Fertilizers)">
+<option value="DAP">DAP (18:46:0)</option>
+<option value="20:20:0:13">20:20:0:13 (ಫಾಸ್ಫೋಜಿಪ್ಸಮ್)</option>
+<option value="10:26:26">10:26:26 కాంప్లెక్స్</option>
+<option value="12:32:16">12:32:16 కాంప్లెక్స్</option>
+<option value="15:15:15">15:15:15 కాంప్లెక్స్</option>
+<option value="14:35:14">14:35:14 కాంప్లెక్స్</option>
+<option value="28:28:0">28:28:0 కాంప్లెక్స్</option>
+</optgroup>
+
+<!-- నీటిలో కరిగే ఎరువులు -->
+<optgroup label="💧 నీటిలో కరిగే ఎరువులు (Water Soluble)">
+<option value="19:19:19">19:19:19 (NPK)</option>
+<option value="13:0:45">13:0:45 (పొటాషియం నైట్రేట్)</option>
+<option value="00:52:34">00:52:34 (MKP)</option>
+<option value="0:32:48">0:32:48 (పొటాషియం పాలిఫాస్ఫేట్)</option>
+<option value="0:0:50">0:0:50 (సల్ఫేట్ ఆఫ్ పొటాష్)</option>
+<option value="కాల్షియం నైట్రేట్">కాల్షియం నైట్రేట్ (Calcium Nitrate)</option>
+<option value="మెగ్నీషియం సల్ఫేట్">మెగ్నీషియం సల్ఫేట్ (Epsom Salt)</option>
+<option value="యూరియా ఫాస్ಫేట్">యూరియా ఫాస్ఫేట్ (17:44:0)</option>
+</optgroup>
+
+<!-- సూక్ష్మపోషకాలు -->
+<optgroup label="🌿 సూక్ష్మపోషకాలు (Micro-nutrients)">
+<option value="జింక్ సల్ఫేట్">జింక్ సల్ఫేట్ (Zinc Sulphate - 21%/33%)</option>
+<option value="బోరాన్">బోరాన్ (Boron - 20%)</option>
+<option value="ఫెర్రస్ సల్ఫేట్">ఫెర్రస్ సల్ఫేట్ (Iron / Fe)</option>
+<option value="కాపర్ సల్ఫేట్">కాపర్ సల్ఫేట్ (Copper Sulphate)</option>
+<option value="మాంగనీస్ సల్ఫేట్">మాంగనీస్ సల్ఫేట్ (Manganese Sulphate)</option>
+<option value="మాలిబ్డినమ్">మాలిబ్డినమ్ (Molybdenum)</option>
+<option value="అటోమాటిక్ మైక్రోన్యూట్రియంట్ మిక్స్">మల్టీ మైక్రోన్యూట్రియంట్ మిక్స్ (Multi Micro Mix)</option>
+</optgroup>
+
+<!-- సేంద్రియ & జీవ ఎరువులు -->
+<optgroup label="🌱 సేంద్రియ & జీవ ఎరువులు (Organic & Bio-fertilizers)">
+<option value="పశువుల ఎరువు">పశువుల ఎరువు / పశువుల పేడ (FYM)</option>
+<option value="వర్మింకంపోస్ట్">వర్మిపోస్ట్ / వానపాముల ఎరువు (Vermicompost)</option>
+<option value="కోడి రెట్టల ఎరువు">కోడి రెట్టల ఎరువు (Poultry Manure)</option>
+<option value="వేప పిండి">వేప పిండి (Neem Cake)</option>
+<option value="ఆముదపు పిండి">ఆముదపు పిండి (Castor Cake)</option>
+<option value="రైజోబియం">రైజోబియం (Rhizobium)</option>
+<option value="అజటోబాక్టర్">అజటోబాక్టర్ (Azotobacter)</option>
+<option value="ఫాస్పో బ్యాక్టీరియా">ఫాస్పో బ్యాక్టీరియా (Phospho-Bacteria)</option>
+<option value="పొటాషియం మొబిలైజింగ్ బ్యాక్టీరియా">పొటాషియం మొబిలైజింగ్ బ్యాక్టీరియా (KMB)</option>
+<option value="మైకోరైజా">మైకోరైజా (Mycorrhiza)</option>
+<option value="హ్యూమిక్ యాసిడ్">హ్యూమిక్ యాసిడ్ (Humic Acid)</option>
+<option value="సీవీడ్ ఎక్స్‌ట్రాక్ట్">సీవీడ్ ఎక్స్‌ట్రాక్ట్ (Seaweed Extract)</option>
+</optgroup>
+
+</select>
+
+<label>ఎకరాల సంఖ్య</label>
+<input type="number" id="acre" placeholder="ఉదా : 2" step="0.5">
+
+<button onclick="calculate()">
+<i class="fa-solid fa-calculator"></i> లెక్కించండి
+</button>
+
+<div class="result" id="result">
+<h2>📊 లెక్కింపు ఫలితం</h2>
+
+<p>🌾 <b>పంట :</b> <span id="cropName"></span></p>
+<p>🧪 <b>ఎరువు :</b> <span id="fertName"></span></p>
+<p>📏 <b>ఎకరాలు :</b> <span id="acreText"></span></p>
+<p>⚖️ <b>అవసరమైన ఎరువు :</b> <span class="total" id="totalKg">0</span> కిలోలు</p>
+
+<hr style="margin:20px 0;">
+
+<h3 style="color:#2E7D32;">💰 ఎరువు ధర కాలిక్యులేటర్</h3>
+<label>1 కిలో ధర (రూ.)</label>
+<input type="number" id="price" placeholder="ఉదా : 30">
+
+<button onclick="calculatePrice()">
+💵 మొత్తం ఖర్చు లెక్కించండి
+</button>
+
+<div class="result" id="priceResult" style="display:none; margin-top:15px;">
+<h2>💰 మొత్తం ఖర్చు</h2>
+<p>₹ <span class="price" id="totalPrice">0</span></p>
+</div>
+
+</div>
+</div>
+
+</div>
+
+<script>
+function calculate(){
+let crop=document.getElementById("crop").value;
+let fertilizer=document.getElementById("fertilizer").value;
+let acre=parseFloat(document.getElementById("acre").value);
+
+if(crop=="" || fertilizer=="" || isNaN(acre)){
+alert("అన్ని వివరాలు నమోదు చేయండి");
+return;
+}
+
+let dose=0;
+switch(fertilizer){
+case "యూరియా": dose=50; break;
+case "అమ్మోనియం సల్ఫేట్": dose=50; break;
+case "అమ్మోనియం క్లోరైడ్": dose=40; break;
+case "కాల్షియం అమోనియం నైట్రేట్": dose=50; break;
+case "SSP": dose=100; break;
+case "TSP": dose=50; break;
+case "రాక్ ఫాస్ఫేట్": dose=100; break;
+case "MOP": dose=25; break;
+case "SOP": dose=25; break;
+case "DAP": dose=100; break;
+case "20:20:0:13": dose=50; break;
+case "10:26:26": dose=50; break;
+case "12:32:16": dose=50; break;
+case "15:15:15": dose=50; break;
+case "14:35:14": dose=40; break;
+case "28:28:0": dose=50; break;
+case "19:19:19": dose=10; break;
+case "13:0:45": dose=10; break;
+case "00:52:34": dose=5; break;
+case "0:32:48": dose=5; break;
+case "0:0:50": dose=10; break;
+case "కాల్షియం నైట్రేట్": dose=25; break;
+case "మెగ్నీషియం సల్ఫేట్": dose=15; break;
+case "యూరియా ఫాస్ಫేట్": dose=5; break;
+case "జింక్ సల్ఫేట్": dose=10; break;
+case "బోరాన్": dose=5; break;
+case "ఫెర్రస్ సల్ఫేట్": dose=10; break;
+case "కాపర్ సల్ఫేట్": dose=5; break;
+case "మాంగనీస్ సల్ఫేట్": dose=5; break;
+case "మాలిబ్డినమ్": dose=1; break;
+case "అటోమాటిక్ మైక్రోన్యూట్రియంట్ మిక్స్": dose=5; break;
+case "పశువుల ఎరువు": dose=1000; break;
+case "వర్మింకంపోస్ట్": dose=500; break;
+case "కోడి రెట్టల ఎరువు": dose=300; break;
+case "వేప పిండి": dose=100; break;
+case "ఆముదపు పిండి": dose=100; break;
+case "రైజోబియం": dose=2; break;
+case "అజటోబాక్టర్": dose=2; break;
+case "ఫాస్పో బ్యాక్టీరియా": dose=2; break;
+case "పొటాషియం మొబిలైజింగ్ బ్యాక్టీరియా": dose=2; break;
+case "మైకోరైజా": dose=4; break;
+case "హ్యూమిక్ యాసిడ్": dose=2; break;
+case "సీవీడ్ ఎక్స్‌ట్రాక్ట్": dose=2; break;
+default: dose=25;
+}
+
+let total=dose*acre;
+
+document.getElementById("cropName").innerHTML=crop;
+document.getElementById("fertName").innerHTML=fertilizer;
+document.getElementById("acreText").innerHTML=acre;
+document.getElementById("totalKg").innerHTML=total.toFixed(2);
+
+document.getElementById("result").style.display="block";
+}
+
+function calculatePrice(){
+let kg=parseFloat(document.getElementById("totalKg").innerHTML);
+let price=parseFloat(document.getElementById("price").value);
+
+if(isNaN(price)){
+alert("కిలో ధర నమోదు చేయండి");
+return;
+}
+
+let totalPrice=kg*price;
+document.getElementById("totalPrice").innerHTML=totalPrice.toFixed(2);
+document.getElementById("priceResult").style.display="block";
+}
+</script>
+
+</body>
+</html>

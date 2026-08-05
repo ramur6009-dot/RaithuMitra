@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="te">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>వ్యవసాయ వార్తలు - రైతు మిత్ర</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#eef7ee;
+scroll-behavior: smooth;
+}
+
+.header{
+background:#2E7D32;
+color:#fff;
+padding:18px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+position:sticky;
+top:0;
+z-index:999;
+box-shadow:0 4px 12px rgba(0,0,0,.15);
+}
+
+.header a{
+color:#fff;
+font-size:24px;
+text-decoration:none;
+}
+
+.container{
+max-width:1000px;
+margin:auto;
+padding:18px;
+}
+
+.banner{
+background:linear-gradient(135deg,#2E7D32,#66BB6A);
+padding:30px;
+border-radius:22px;
+text-align:center;
+color:#fff;
+margin-bottom:20px;
+}
+
+.banner h1{
+font-size:32px;
+margin-bottom:10px;
+}
+
+.banner p{
+font-size:17px;
+opacity:.95;
+}
+
+.liveBadge{
+display:inline-block;
+background:rgba(255, 255, 255, 0.2);
+color:#fff;
+padding:7px 16px;
+border-radius:30px;
+font-size:14px;
+font-weight:bold;
+margin-top:15px;
+border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.searchBox{
+background:#fff;
+padding:15px;
+border-radius:18px;
+box-shadow:0 4px 12px rgba(0,0,0,.12);
+margin-bottom:20px;
+}
+
+.searchBox input{
+width:100%;
+padding:14px;
+border:none;
+outline:none;
+border-radius:12px;
+background:#f5f5f5;
+font-size:16px;
+}
+
+.dashboard{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:15px;
+margin-bottom:20px;
+}
+
+.card{
+background:#fff;
+padding:18px;
+border-radius:18px;
+text-align:center;
+box-shadow:0 4px 12px rgba(0,0,0,.12);
+}
+
+.card i{
+font-size:34px;
+color:#2E7D32;
+margin-bottom:10px;
+}
+
+.card h3{
+color:#2E7D32;
+font-size:17px;
+margin-bottom:6px;
+}
+
+.card p{
+font-size:16px;
+color:#666;
+font-weight:bold;
+}
+
+.section{
+background:#fff;
+padding:20px;
+border-radius:18px;
+box-shadow:0 4px 12px rgba(0,0,0,.12);
+margin-bottom:20px;
+}
+
+.section h2{
+color:#2E7D32;
+margin-bottom:15px;
+font-size:22px;
+display:flex;
+align-items:center;
+gap:8px;
+}
+
+/* News Card Design */
+.news-card{
+background:#fff;
+padding:18px;
+border-radius:18px;
+margin-bottom:15px;
+box-shadow:0 4px 12px rgba(0,0,0,.1);
+border-left:6px solid #2E7D32;
+display:flex;
+gap:15px;
+align-items:flex-start;
+}
+
+.news-card img{
+width:110px;
+height:90px;
+border-radius:12px;
+object-fit:cover;
+flex-shrink:0;
+background:#ddd;
+}
+
+.news-content{
+flex:1;
+}
+
+.news-content h3{
+color:#2E7D32;
+margin:6px 0;
+font-size:17px;
+line-height:1.4;
+}
+
+.news-content p{
+color:#666;
+font-size:13px;
+margin-top:4px;
+}
+
+.badge{
+display:inline-block;
+padding:4px 10px;
+border-radius:20px;
+font-size:11px;
+font-weight:bold;
+color:white;
+}
+
+.breaking{
+background:#e53935;
+}
+
+.weather{
+background:#1e88e5;
+}
+
+.news-buttons{
+display:flex;
+gap:8px;
+margin-top:12px;
+align-items:center;
+}
+
+.readBtn{
+flex:1;
+background:#2E7D32;
+color:white;
+border:none;
+padding:10px;
+border-radius:10px;
+cursor:pointer;
+font-weight:bold;
+font-size:13px;
+display:inline-flex;
+align-items:center;
+justify-content:center;
+gap:6px;
+}
+
+.shareBtn, .favBtn{
+width:40px;
+height:40px;
+border:none;
+border-radius:10px;
+background:#f5f5f5;
+font-size:16px;
+color:#333;
+cursor:pointer;
+display:flex;
+align-items:center;
+justify-content:center;
+transition:0.2s;
+}
+
+.shareBtn:hover, .favBtn:hover{
+background:#e0e0e0;
+}
+
+/* Categories Grid */
+.categoryGrid{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:12px;
+margin-bottom:20px;
+}
+
+.category{
+padding:14px;
+border:none;
+border-radius:12px;
+background:#E8F5E9;
+color:#2E7D32;
+font-size:14px;
+font-weight:bold;
+cursor:pointer;
+text-align:center;
+transition:0.3s;
+}
+
+.category.active{
+background:#2E7D32;
+color:white;
+}
+
+/* Trending Box */
+.trendingBox{
+background:#fff;
+padding:20px;
+border-radius:18px;
+box-shadow:0 4px 12px rgba(0,0,0,.12);
+margin-bottom:20px;
+}
+
+.trendingBox h3{
+color:#2E7D32;
+margin-bottom:12px;
+font-size:18px;
+}
+
+.chips{
+display:flex;
+flex-wrap:wrap;
+gap:10px;
+}
+
+.chips span{
+background:#E8F5E9;
+padding:8px 14px;
+border-radius:25px;
+font-size:14px;
+font-weight:bold;
+color:#2E7D32;
+cursor:pointer;
+border:1px solid #C8E6C9;
+transition:0.2s;
+}
+
+.chips span:hover{
+background:#2E7D32;
+color:#fff;
+}
+
+/* Breaking Alert Box */
+.breakingBox{
+display:flex;
+align-items:center;
+gap:15px;
+background:#FFF3E0;
+padding:18px;
+border-radius:18px;
+margin-bottom:20px;
+border-left:6px solid #FF5722;
+}
+
+.breakingBox i{
+font-size:36px;
+color:#FF5722;
+flex-shrink:0;
+}
+
+.breakingBox h3{
+color:#E65100;
+margin-bottom:4px;
+font-size:16px;
+}
+
+.breakingBox p{
+color:#666;
+font-size:13px;
+transition: 0.3s ease-in-out;
+}
+
+#noResults{
+text-align:center;
+padding:20px;
+color:#e53935;
+font-weight:bold;
+display:none;
+}
+
+@media(max-width:480px){
+.news-card{
+flex-direction:column;
+align-items:center;
+text-align:center;
+}
+.news-card img{
+width:100%;
+height:140px;
+}
+.news-buttons{
+width:100%;
+justify-content:center;
+}
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+<a href="index.html"><i class="fa fa-arrow-left"></i></a>
+<h2>📰 వ్యవసాయ వార్తలు</h2>
+<i class="fa-solid fa-newspaper"></i>
+</div>
+
+<div class="container">
+
+<div class="banner">
+<h1>రైతు మిత్ర</h1>
+<p>తెలంగాణ & భారతదేశ తాజా వ్యవసాయ వార్తలు</p>
+<div class="liveBadge">
+🔴 LIVE NEWS
+</div>
+</div>
+
+<div class="searchBox">
+<input type="text" id="search" placeholder="🔍 వార్త పేరు వెతకండి (ఉదా: పత్తి, వర్షాలు)...">
+</div>
+
+<div class="dashboard">
+<div class="card">
+<i class="fa-solid fa-newspaper"></i>
+<h3>మొత్తం వార్తలు</h3>
+<p id="newsCount">0</p>
+</div>
+<div class="card">
+<i class="fa-solid fa-bolt"></i>
+<h3>Breaking News</h3>
+<p id="breakingCount">0</p>
+</div>
+<div class="card">
+<i class="fa-solid fa-heart"></i>
+<h3>Favorites</h3>
+<p id="favCount">0</p>
+</div>
+<div class="card">
+<i class="fa-solid fa-clock"></i>
+<h3>Live Updates</h3>
+<p id="updateTime">07:25 am</p>
+</div>
+</div>
+
+<div class="section" id="newsSection">
+<h2>🌾 తాజా వ్యవసాయ వార్తలు</h2>
+
+<div id="noResults">ఏ వార్తలు కనుగొనబడలేదు.</div>
+
+<!-- ===== వార్త 1 ===== -->
+<div class="news-card" data-category="crop" data-type="breaking">
+<img src="https://images.unsplash.com/photo-1586771107445-d3ca888129ff?w=300" alt="వ్యవసాయ వార్త">
+<div class="news-content">
+<span class="badge breaking">🔥 BREAKING</span>
+<h3>తెలంగాణలో రైతులకు కొత్త వ్యవసాయ పథకం ప్రకటింపు పత్తి సాగుపై ప్రత్యేక రాయితీ</h3>
+<p>📅 ఈరోజు • 🕒 09:30 AM</p>
+<p>వ్యవసాయ శాఖ రైతులకు కొత్త సబ్సిడీ పథకాన్ని ప్రకటించింది...</p>
+<div class="news-buttons">
+<button class="readBtn"><i class="fa-solid fa-book-open"></i> పూర్తి వార్త</button>
+<button class="shareBtn"><i class="fa-solid fa-share-nodes"></i></button>
+<button class="favBtn"><i class="fa-regular fa-heart"></i></button>
+</div>
+</div>
+</div>
+
+<!-- ===== వార్త 2 ===== -->
+<div class="news-card" data-category="weather" data-type="breaking">
+<img src="https://images.unsplash.com/photo-1534274988757-a28bf1a57c17?w=300" alt="వాతావరణ వార్త">
+<div class="news-content">
+<span class="badge weather">🌦️ WEATHER</span>
+<h3>తెలంగాణలో వచ్చే 3 రోజుల పాటు వర్ష సూచన భారీ వర్షాలు</h3>
+<p>📅 ఈరోజు • 🕒 08:00 AM</p>
+<p>కొన్ని జిల్లాల్లో మోస్తరు నుండి భారీ వర్షాలు కురిసే అవకాశం...</p>
+<div class="news-buttons">
+<button class="readBtn"><i class="fa-solid fa-book-open"></i> పూర్తి వార్త</button>
+<button class="shareBtn"><i class="fa-solid fa-share-nodes"></i></button>
+<button class="favBtn"><i class="fa-regular fa-heart"></i></button>
+</div>
+</div>
+</div>
+
+<!-- ===== వార్త 3 ===== -->
+<div class="news-card" data-category="market" data-type="normal">
+<img src="https://images.unsplash.com/photo-1500937386664-56d1dfef3854?w=300" alt="మార్కెట్ ధరలు">
+<div class="news-content">
+<span class="badge" style="background:#f57c00;">💰 MARKET</span>
+<h3>మార్కెట్ ధరలు: పత్తి మరియు ధాన్యం క్వింటాల్ రేటు వివరాలు</h3>
+<p>📅 ఈరోజు • 🕒 07:00 AM</p>
+<p>ప్రధాన మార్కెట్ యార్డులలో వివిధ పంటల ధరలు ఇలా ఉన్నాయి...</p>
+<div class="news-buttons">
+<button class="readBtn"><i class="fa-solid fa-book-open"></i> పూర్తి వార్త</button>
+<button class="shareBtn"><i class="fa-solid fa-share-nodes"></i></button>
+<button class="favBtn"><i class="fa-regular fa-heart"></i></button>
+</div>
+</div>
+</div>
+
+</div>
+
+<!-- ===== Categories ===== -->
+<h2 style="margin:25px 0 15px;color:#2E7D32;font-size:22px;"><i class="fa-solid fa-folder-open"></i> వార్తల విభాగాలు</h2>
+<div class="categoryGrid">
+<button class="category active" data-filter="all">📰 అన్ని</button>
+<button class="category" data-filter="crop">🌾 పంటలు</button>
+<button class="category" data-filter="weather">🌦️ వాతావరణం</button>
+<button class="category" data-filter="market">💰 మార్కెట్ ధరలు</button>
+<button class="category" data-filter="government">🏛️ ప్రభుత్వం</button>
+<button class="category" data-filter="fertilizer">🧪 ఎరువులు</button>
+<button class="category" data-filter="machinery">🚜 యంత్రాలు</button>
+<button class="category" data-filter="scheme">📢 పథకాలు</button>
+</div>
+
+<!-- ===== Trending ===== -->
+<div class="trendingBox">
+<h3>🔥 Trending Topics</h3>
+<div class="chips">
+<span data-search="పత్తి">🌾 పత్తి</span>
+<span data-search="వర్షాలు">🌦️ వర్షాలు</span>
+<span data-search="మార్కెట్ ధరలు">💰 మార్కెట్ ధరలు</span>
+<span data-search="ట్రాక్టర్">🚜 ట్రాక్టర్</span>
+<span data-search="ఎరువులు">🧪 ఎరువులు</span>
+<span data-search="రైతు భరోసా">🏛️ రైతు భరోసా</span>
+</div>
+</div>
+
+<!-- ===== Breaking News ===== -->
+<div class="breakingBox">
+<i class="fa-solid fa-bullhorn"></i>
+<div>
+<h3>🔴 Breaking Alert</h3>
+<p id="breakingText">తాజా వ్యవసాయ వార్తలు లోడ్ అవుతున్నాయి...</p>
+</div>
+</div>
+
+</div>
+
+<script>
+// Auto Count Total News and Breaking News
+const allNewsCards = document.querySelectorAll(".news-card");
+const totalNewsCount = allNewsCards.length;
+let breakingNewsCount = 0;
+let breakingTitles = [];
+
+allNewsCards.forEach(card => {
+  if(card.getAttribute("data-type") === "breaking"){
+    breakingNewsCount++;
+    const titleText = card.querySelector(".news-content h3").innerText;
+    breakingTitles.push(titleText);
+  }
+});
+
+// Update Dashboard Counters dynamically
+document.getElementById("newsCount").innerText = totalNewsCount;
+document.getElementById("breakingCount").innerText = breakingNewsCount;
+
+// Dynamic Breaking Alert Rotation
+let currentIndex = 0;
+const breakingTextElement = document.getElementById("breakingText");
+
+function rotateBreakingAlert(){
+  if(breakingTitles.length > 0){
+    breakingTextElement.innerText = breakingTitles[currentIndex];
+    currentIndex = (currentIndex + 1) % breakingTitles.length;
+  }
+}
+rotateBreakingAlert();
+setInterval(rotateBreakingAlert, 4000);
+
+let favCount = 0;
+
+// Live Search with Smooth Scroll
+const searchInput = document.getElementById("search");
+const noResults = document.getElementById("noResults");
+
+searchInput.addEventListener("keyup", function(){
+  const value = this.value.toLowerCase().trim();
+  let visibleCount = 0;
+
+  allNewsCards.forEach(card => {
+    const text = card.innerText.toLowerCase();
+    if(text.includes(value)){
+      card.style.display = "flex";
+      visibleCount++;
+    } else {
+      card.style.display = "none";
+    }
+  });
+
+  noResults.style.display = (visibleCount === 0) ? "block" : "none";
+
+  if(value.length > 0){
+    document.getElementById("newsSection").scrollIntoView({ behavior: 'smooth' });
+  }
+});
+
+// Category Filtering with Smooth Scroll
+document.querySelectorAll(".category").forEach(btn => {
+  btn.addEventListener("click", function(){
+    document.querySelectorAll(".category").forEach(x => x.classList.remove("active"));
+    this.classList.add("active");
+
+    const filter = this.getAttribute("data-filter");
+    let visibleCount = 0;
+
+    allNewsCards.forEach(card => {
+      if(filter === "all" || card.getAttribute("data-category") === filter){
+        card.style.display = "flex";
+        visibleCount++;
+      } else {
+        card.style.display = "none";
+      }
+    });
+
+    noResults.style.display = (visibleCount === 0) ? "block" : "none";
+    document.getElementById("newsSection").scrollIntoView({ behavior: 'smooth' });
+  });
+});
+
+// Trending Chips Filtering & Smooth Scroll
+document.querySelectorAll(".chips span").forEach(chip => {
+  chip.addEventListener("click", function(){
+    const query = this.getAttribute("data-search").toLowerCase();
+    searchInput.value = query;
+    let visibleCount = 0;
+
+    allNewsCards.forEach(card => {
+      const text = card.innerText.toLowerCase();
+      if(text.includes(query)){
+        card.style.display = "flex";
+        visibleCount++;
+      } else {
+        card.style.display = "none";
+      }
+    });
+
+    noResults.style.display = (visibleCount === 0) ? "block" : "none";
+    document.getElementById("newsSection").scrollIntoView({ behavior: 'smooth' });
+  });
+});
+
+// Favorite Counter
+document.querySelectorAll(".favBtn").forEach(btn => {
+  btn.addEventListener("click", function(){
+    const icon = this.querySelector("i");
+    if(icon.classList.contains("fa-regular")){
+      icon.classList.replace("fa-regular","fa-solid");
+      icon.style.color = "#e53935";
+      favCount++;
+    } else {
+      icon.classList.replace("fa-solid","fa-regular");
+      icon.style.color = "#333";
+      favCount--;
+    }
+    document.getElementById("favCount").innerHTML = favCount;
+  });
+});
+
+// Share News
+document.querySelectorAll(".shareBtn").forEach(btn => {
+  btn.addEventListener("click", function(){
+    if(navigator.share){
+      navigator.share({
+        title: "రైతు మిత్ర - వ్యవసాయ వార్తలు",
+        text: "ఈ వ్యవసాయ వార్తను చూడండి."
+      });
+    } else {
+      alert("ఈ Browserలో Share సపోర్ట్ లేదు.");
+    }
+  });
+});
+
+// Read Full News Alert
+document.querySelectorAll(".readBtn").forEach(btn => {
+  btn.addEventListener("click", function(){
+    alert("📰 V2లో పూర్తి వార్త మరియు అధికారిక Website Link జోడించబడుతుంది.");
+  });
+});
+
+// Live Update Time
+function updateTime(){
+  const now = new Date();
+  document.getElementById("updateTime").innerHTML = now.toLocaleTimeString("en-IN",{
+    hour: "2-digit",
+    minute: "2-digit"
+  }).toLowerCase();
+}
+updateTime();
+setInterval(updateTime, 60000);
+</script>
+
+</body>
+</html>

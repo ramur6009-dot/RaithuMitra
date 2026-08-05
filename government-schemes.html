@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="te">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Government Schemes Portal - రైతు మిత్ర</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+body{
+background:#eef7ee;
+}
+.header{
+background:#2E7D32;
+color:#fff;
+padding:18px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+position:sticky;
+top:0;
+z-index:999;
+box-shadow:0 5px 15px rgba(0,0,0,.15);
+}
+.header a{
+color:white;
+text-decoration:none;
+font-size:24px;
+}
+.container{
+max-width:900px;
+margin:auto;
+padding:18px;
+}
+.banner{
+background:linear-gradient(135deg,#2E7D32,#66BB6A);
+padding:30px;
+border-radius:22px;
+color:white;
+text-align:center;
+margin-bottom:20px;
+}
+.banner h1{
+font-size:32px;
+margin-bottom:10px;
+}
+.banner p{
+font-size:17px;
+}
+.searchBox{
+background:white;
+border-radius:18px;
+padding:15px;
+box-shadow:0 4px 12px rgba(0,0,0,.12);
+margin-bottom:20px;
+}
+.searchBox input{
+width:100%;
+padding:14px;
+font-size:17px;
+border:none;
+outline:none;
+background:#f5f5f5;
+border-radius:12px;
+}
+.dashboard{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:15px;
+margin-bottom:20px;
+}
+.card{
+background:white;
+padding:20px;
+border-radius:18px;
+text-align:center;
+box-shadow:0 4px 12px rgba(0,0,0,.12);
+cursor:pointer;
+transition: transform 0.2s;
+}
+.card:active{
+transform:scale(0.98);
+}
+.card i{
+font-size:34px;
+color:#2E7D32;
+margin-bottom:10px;
+}
+.card h3{
+color:#2E7D32;
+margin-bottom:8px;
+}
+.card p{
+font-size:16px;
+color:#666;
+}
+.section{
+background:white;
+padding:20px;
+border-radius:18px;
+box-shadow:0 4px 12px rgba(0,0,0,.12);
+}
+.section h2{
+color:#2E7D32;
+margin-bottom:15px;
+}
+.scheme-wrapper{
+margin-bottom:15px;
+}
+.scheme{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:16px;
+background:#F3FFF3;
+border-radius:15px;
+margin-top:12px;
+cursor:pointer;
+border:1px solid #d4ebd4;
+}
+.scheme h3{
+color:#2E7D32;
+}
+.new{
+background:red;
+color:white;
+font-size:11px;
+padding:3px 8px;
+border-radius:20px;
+margin-left:8px;
+}
+.favorite{
+color:#ff9800;
+font-size:20px;
+}
+.fa-chevron-down{
+transition: transform 0.3s ease;
+color:#555;
+}
+.schemeContent{
+display:none;
+background:#fff;
+padding:18px;
+border-left:5px solid #2E7D32;
+border-radius:0 0 15px 15px;
+line-height:1.9;
+box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+border-right: 1px solid #eee;
+border-bottom: 1px solid #eee;
+}
+.schemeContent ul{
+padding-left:22px;
+}
+.applyBtn{
+margin-top:15px;
+width:100%;
+padding:14px;
+background:#2E7D32;
+color:white;
+border:none;
+border-radius:12px;
+font-size:16px;
+font-weight:bold;
+cursor:pointer;
+box-shadow:0 3px 8px rgba(0,0,0,0.15);
+text-align:center;
+display:block;
+text-decoration:none;
+}
+.applyBtn:active{
+transform:scale(0.98);
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+<a href="index.html"><i class="fa fa-arrow-left"></i></a>
+<h2>🏛️ ప్రభుత్వ పథకాలు</h2>
+<i class="fa-solid fa-landmark"></i>
+</div>
+
+<div class="container">
+
+<div class="banner">
+<h1>రైతు మిత్ర</h1>
+<p>తెలంగాణ & కేంద్ర ప్రభుత్వ వ్యవసాయ పథకాల పోర్టల్</p>
+</div>
+
+<div class="searchBox">
+<input type="text" id="search" placeholder="🔍 పథకం పేరు వెతకండి (Search here)...">
+</div>
+
+<!-- డాష్‌బోర్డ్ కార్డ్స్ -->
+<div class="dashboard">
+<div class="card" onclick="filterSchemes('all')">
+<i class="fa-solid fa-building-columns"></i>
+<h3>మొత్తం పథకాలు</h3>
+<p id="totalCount">0</p>
+</div>
+<div class="card" onclick="filterSchemes('fav')">
+<i class="fa-solid fa-star"></i>
+<h3>ఇష్టమైనవి</h3>
+<p id="favCount">0</p>
+</div>
+<div class="card" onclick="filterSchemes('new')">
+<i class="fa-solid fa-bell"></i>
+<h3>కొత్త పథకాలు</h3>
+<p id="newCount">0</p>
+</div>
+<div class="card" onclick="alert('దరఖాస్తు విధానం: కొన్ని పథకాలకు ఆన్‌లైన్ ద్వారా (మీసేవ/అధికారిక వెబ్‌సైట్) మరియు మరికొన్నింటికి ఆఫ్‌లైన్ ద్వారా (వ్యవసాయ శాఖ అధికారుల ద్వారా) దరఖాస్తు చేసుకోవచ్చు.')">
+<i class="fa-solid fa-file-circle-check"></i>
+<h3>దరఖాస్తు</h3>
+<p>Online / Offline</p>
+</div>
+</div>
+
+<div class="section">
+<h2>🌾 ప్రభుత్వ పథకాల జాబితా</h2>
+<div id="schemesContainer">
+
+<!-- 1. రైతు భరోసా -->
+<div class="scheme-wrapper" data-new="true" data-keywords="రైతు భరోసా rythu bharosa">
+<div class="scheme" onclick="toggleScheme('scheme1', this)">
+<div><h3>🌾 రైతు భరోసా <span class="new">NEW</span></h3><p>తెలంగాణ రైతులకు పెట్టుబడి సహాయం</p></div>
+<div><i class="fa-regular fa-star favorite" onclick="toggleFav(event,this)"></i><i class="fa-solid fa-chevron-down"></i></div>
+</div>
+<div class="schemeContent" id="scheme1">
+<p><b>🎯 ఉద్దేశ్యం:</b> రైతులకు పెట్టుబడి సహాయం అందించడం.</p>
+<p><b>💰 ప్రయోజనం:</b> ఎకరానికి పెట్టుబడి ఆర్థిక సహాయం.</p>
+<p><b>📄 అవసరమైన పత్రాలు:</b> ఆధార్, పాస్‌బుక్, బ్యాంక్ ఖాతా.</p>
+<a href="https://agri.telangana.gov.in/" target="_blank" class="applyBtn">📋 పూర్తి వివరాలు / దరఖాస్తు</a>
+</div>
+</div>
+
+<!-- 2. PM-KISAN -->
+<div class="scheme-wrapper" data-new="false" data-keywords="pm kisan pmkisan పిఎం కిసాన్">
+<div class="scheme" onclick="toggleScheme('scheme2', this)">
+<div><h3>💰 PM-KISAN</h3><p>కేంద్ర ప్రభుత్వ రైతు పథకం</p></div>
+<div><i class="fa-regular fa-star favorite" onclick="toggleFav(event,this)"></i><i class="fa-solid fa-chevron-down"></i></div>
+</div>
+<div class="schemeContent" id="scheme2">
+<p><b>🎯 ఉద్దేశ్యం:</b> రైతు కుటుంబాలకు ఆదాయ మద్దతు.</p>
+<p><b>💰 ప్రయోజనం:</b> సంవత్సరానికి ₹6,000 ఆర్థిక సహాయం.</p>
+<p><b>📄 అవసరమైన పత్రాలు:</b> ఆధార్, భూ పత్రాలు, బ్యాంక్ పాస్‌బుక్.</p>
+<a href="https://pmkisan.gov.in/" target="_blank" class="applyBtn">📋 పూర్తి వివరాలు / దరఖాస్తు</a>
+</div>
+</div>
+
+<!-- 3. వ్యవసాయ యంత్రాల సబ్సిడీ -->
+<div class="scheme-wrapper" data-new="false" data-keywords="వ్యవసాయ యంత్రాల సబ్సిడీ yavsayam yanthralu subsidy tractor">
+<div class="scheme" onclick="toggleScheme('scheme3', this)">
+<div><h3>🚜 వ్యవసాయ యంత్రాల సబ్సిడీ</h3><p>ట్రాక్టర్, రోటావేటర్, స్ప్రేయర్ మొదలైన వాటిపై సబ్సిడీ</p></div>
+<div><i class="fa-regular fa-star favorite" onclick="toggleFav(event,this)"></i><i class="fa-solid fa-chevron-down"></i></div>
+</div>
+<div class="schemeContent" id="scheme3">
+<p><b>🎯 ఉద్దేశ్యం:</b> ఆధునిక వ్యవసాయ యంత్రాల కొనుగోలుకు సబ్సిడీ.</p>
+<p><b>💰 ప్రయోజనం:</b> యంత్ర ధరపై ప్రభుత్వ సబ్సిడీ.</p>
+<p><b>📄 అవసరమైన పత్రాలు:</b> ఆధార్, పాస్‌బుక్, కొటేషన్.</p>
+<a href="https://agrimachinery.nic.in/" target="_blank" class="applyBtn">📋 పూర్తి వివరాలు / దరఖాస్తు</a>
+</div>
+</div>
+
+<!-- 4. పంట బీమా -->
+<div class="scheme-wrapper" data-new="true" data-keywords="పంట బీమా panta beema crop insurance">
+<div class="scheme" onclick="toggleScheme('scheme4', this)">
+<div><h3>🛡️ పంట బీమా <span class="new">NEW</span></h3><p>ప్రకృతి వైపరీత్యాల వల్ల పంట నష్టానికి బీమా</p></div>
+<div><i class="fa-regular fa-star favorite" onclick="toggleFav(event,this)"></i><i class="fa-solid fa-chevron-down"></i></div>
+</div>
+<div class="schemeContent" id="scheme4">
+<p><b>🎯 ఉద్దేశ్యం:</b> పంట నష్టపోయినప్పుడు ఆర్థిక భద్రత.</p>
+<p><b>💰 ప్రయోజనం:</b> నష్టపరిహారం అందజేయడం.</p>
+<p><b>📄 అవసరమైన పత్రాలు:</b> ఆధార్, పంట వివరాలు, బ్యాంక్ పాస్‌బుక్.</p>
+<a href="https://pmfby.gov.in/" target="_blank" class="applyBtn">📋 పూర్తి వివరాలు / దరఖాస్తు</a>
+</div>
+</div>
+
+<!-- 5. రైతు బీమా -->
+<div class="scheme-wrapper" data-new="true" data-keywords="రైతు బీమా rythu beema insurance">
+<div class="scheme" onclick="toggleScheme('scheme5', this)">
+<div><h3>📜 రైతు బీమా <span class="new">NEW</span></h3><p>రైతు కుటుంబానికి ఆర్థిక భరోసా పథకం</p></div>
+<div><i class="fa-regular fa-star favorite" onclick="toggleFav(event,this)"></i><i class="fa-solid fa-chevron-down"></i></div>
+</div>
+<div class="schemeContent" id="scheme5">
+<p><b>🎯 ఉద్దేశ్యం:</b> రైతు మరణిస్తే కుటుంబానికి ఆర్థిక సహాయం.</p>
+<p><b>💰 ప్రయోజనం:</b> నామినీ ఖాతాలో ₹5 లక్షలు జమ.</p>
+<p><b>📄 అవసరమైన పత్రాలు:</b> ఆధార్, నామినీ వివరాలు, పాస్‌బుక్.</p>
+<a href="https://agri.telangana.gov.in/" target="_blank" class="applyBtn">📋 పూర్తి వివరాలు / దరఖాస్తు</a>
+</div>
+</div>
+
+<!-- 6. సూక్ష్మ సేద్యం -->
+<div class="scheme-wrapper" data-new="true" data-keywords="సూక్ష్మ సేద్యం sukshma sedhyam drip sprinkler">
+<div class="scheme" onclick="toggleScheme('scheme6', this)">
+<div><h3>💧 సూక్ష్మ సేద్యం (డ్రిప్/స్ప్రింక్లర్) <span class="new">NEW</span></h3><p>బిందు మరియు తుంపర సేద్య పరికరాలపై సబ్సిడీ</p></div>
+<div><i class="fa-regular fa-star favorite" onclick="toggleFav(event,this)"></i><i class="fa-solid fa-chevron-down"></i></div>
+</div>
+<div class="schemeContent" id="scheme6">
+<p><b>🎯 ఉద్దేశ్యం:</b> నీటి వృధాను అరికట్టి సమర్థవంతంగా సాగు చేయడం.</p>
+<p><b>💰 ప్రయోజనం:</b> డ్రిప్ పరికరాలపై భారీ సబ్సిడీ.</p>
+<p><b>📄 అవసరమైన పత్రాలు:</b> ఆధార్, పాస్‌బుక్, ఫొటో.</p>
+<a href="https://tshhorticulture.cgg.gov.in/" target="_blank" class="applyBtn">📋 పూర్తి వివరాలు / దరఖాస్తు</a>
+</div>
+</div>
+
+<!-- 7. ఉచిత విద్యుత్ -->
+<div class="scheme-wrapper" data-new="true" data-keywords="ఉచిత విద్యుత్ uchitha vidhyuth free electricity current">
+<div class="scheme" onclick="toggleScheme('scheme7', this)">
+<div><h3>⚡ వ్యవసాయానికి ఉచిత విద్యుత్ <span class="new">NEW</span></h3><p>వ్యవసాయ పంపుసెట్లకు ఉచిత కరెంట్ సరఫరా</p></div>
+<div><i class="fa-regular fa-star favorite" onclick="toggleFav(event,this)"></i><i class="fa-solid fa-chevron-down"></i></div>
+</div>
+<div class="schemeContent" id="scheme7">
+<p><b>🎯 ఉద్దేశ్యం:</b> రైతుల విద్యుత్ ఖర్చులను తగ్గించడం.</p>
+<p><b>💰 ప్రయోజనం:</b> వ్యవసాయ బోర్లకు ఉచిత విద్యుత్.</p>
+<p><b>📄 అవసరమైన పత్రాలు:</b> మీటర్ వివరాలు, పాస్‌బుక్.</p>
+<a href="https://tssouthernpower.com/" target="_blank" class="applyBtn">📋 పూర్తి వివరాలు / దరఖాస్తు</a>
+</div>
+</div>
+
+<!-- 8. సాయిల్ హెర్త్ కార్డ్ -->
+<div class="scheme-wrapper" data-new="false" data-keywords="సాయిల్ హెర్త్ కార్డ్ soil health card matti pariksha">
+<div class="scheme" onclick="toggleScheme('scheme8', this)">
+<div><h3>🧪 సాయిల్ హెర్త్ కార్డ్ (మట్టి పరీక్ష)</h3><p>నేల స్వభావం మరియు పోషకాల నిర్ధారణ</p></div>
+<div><i class="fa-regular fa-star favorite" onclick="toggleFav(event,this)"></i><i class="fa-solid fa-chevron-down"></i></div>
+</div>
+<div class="schemeContent" id="scheme8">
+<p><b>🎯 ఉద్దేశ్యం:</b> నేల సారాన్ని పరీక్షించి తగిన ఎరువులు సూచించడం.</p>
+<p><b>💰 ప్రయోజనం:</b> తక్కువ ఖర్చుతో ఎక్కువ దిగుబడి సాధించడం.</p>
+<p><b>📄 అవసరమైన పత్రాలు:</b> భూమి వివరాలు, ఆధార్ కార్డ్.</p>
+<a href="https://soilhealth.dac.gov.in/" target="_blank" class="applyBtn">📋 పూర్తి వివరాలు / దరఖాస్తు</a>
+</div>
+</div>
+
+<!-- 9. పాడి పరిశ్రమ -->
+<div class="scheme-wrapper" data-new="false" data-keywords="పాడి పరిశ్రమ padi parisrama dairy animals">
+<div class="scheme" onclick="toggleScheme('scheme9', this)">
+<div><h3>🐄 పాడి పరిశ్రమ & పశువుల సబ్సిడీ</h3><p>గేదెలు, ఆవులు మరియు షెడ్ల నిర్మాణానికి సహాయం</p></div>
+<div><i class="fa-regular fa-star favorite" onclick="toggleFav(event,this)"></i><i class="fa-solid fa-chevron-down"></i></div>
+</div>
+<div class="schemeContent" id="scheme9">
+<p><b>🎯 ఉద్దేశ్యం:</b> రైతులకు ఉపాధి మరియు అదనపు ఆదాయం.</p>
+<p><b>💰 ప్రయోజనం:</b> పశువుల కొనుగోలుపై సబ్సిడీ రుణాలు.</p>
+<p><b>📄 అవసరమైన పత్రాలు:</b> ఆధార్, పాస్‌బుక్, పాస్పోర్ట్ ఫోటో.</p>
+<a href="https://dahd.nic.in/" target="_blank" class="applyBtn">📋 పూర్తి వివరాలు / దరఖాస్తు</a>
+</div>
+</div>
+
+<!-- 10. ఉద్యానవన పంటలు -->
+<div class="scheme-wrapper" data-new="true" data-keywords="ఉద్యానవన పంటలు udhyanavana pantalu horticulture">
+<div class="scheme" onclick="toggleScheme('scheme10', this)">
+<div><h3>🌳 ఉద్యానవన పంటల ప్రోత్సాహం <span class="new">NEW</span></h3><p>తోటల పెంపకం మరియు గ్రీన్ హౌస్‌లకు సబ్సిడీ</p></div>
+<div><i class="fa-regular fa-star favorite" onclick="toggleFav(event,this)"></i><i class="fa-solid fa-chevron-down"></i></div>
+</div>
+<div class="schemeContent" id="scheme10">
+<p><b>🎯 ఉద్దేశ్యం:</b> హార్టికల్చర్ సాగును ప్రోత్సహించడం.</p>
+<p><b>💰 ప్రయోజనం:</b> మొక్కల కొనుగోలు మరియు షేడ్ నెట్లకు సబ్సిడీ.</p>
+<p><b>📄 అవసరమైన పత్రాలు:</b> ఆధార్, పాస్‌బుక్.</p>
+<a href="https://tshhorticulture.cgg.gov.in/" target="_blank" class="applyBtn">📋 పూర్తి వివరాలు / దరఖాస్తు</a>
+</div>
+</div>
+
+<!-- 11. ప్రకృతి సాగు -->
+<div class="scheme-wrapper" data-new="true" data-keywords="ప్రకృతి సాగు prakruthi saagu organic farming">
+<div class="scheme" onclick="toggleScheme('scheme11', this)">
+<div><h3>🌿 ప్రకృతి / సేంద్రియ సాగు ప్రోత్సాహం <span class="new">NEW</span></h3><p>రసాయన రహిత వ్యవసాయానికి ప్రత్యేక ఆర్థిక సాయం</p></div>
+<div><i class="fa-regular fa-star favorite" onclick="toggleFav(event,this)"></i><i class="fa-solid fa-chevron-down"></i></div>
+</div>
+<div class="schemeContent" id="scheme11">
+<p><b>🎯 ఉద్దేశ్యం:</b> సహజ సిద్ధమైన పద్ధతుల్లో సాగును పెంచడం.</p>
+<p><b>💰 ప్రయోజనం:</b> ఎరువుల తయారీ యూనిట్లకు సబ్సిడీ.</p>
+<p><b>📄 అవసరమైన పత్రాలు:</b> ఆధార్, భూ వివరాలు.</p>
+<a href="https://pgsindia-ncof.gov.in/" target="_blank" class="applyBtn">📋 పూర్తి వివరాలు / దరఖాస్తు</a>
+</div>
+</div>
+
+<!-- 12. కిసాన్ క్రెడిట్ కార్డ్ -->
+<div class="scheme-wrapper" data-new="false" data-keywords="కిసాన్ క్రెడిట్ కార్డ్ kcc loan">
+<div class="scheme" onclick="toggleScheme('scheme12', this)">
+<div><h3>💳 కిసాన్ క్రెడిట్ కార్డ్ (KCC రుణాలు)</h3><p>తక్కువ వడ్డీకే వ్యవసాయ రుణాలు</p></div>
+<div><i class="fa-regular fa-star favorite" onclick="toggleFav(event,this)"></i><i class="fa-solid fa-chevron-down"></i></div>
+</div>
+<div class="schemeContent" id="scheme12">
+<p><b>🎯 ఉద్దేశ్యం:</b> రైతులకు తక్కువ వడ్డీకి సులభంగా రుణాలు ఇవ్వడం.</p>
+<p><b>💰 ప్రయోజనం:</b> అతి తక్కువ వడ్డీ రేటుతో పంట రుణాలు.</p>
+<p><b>📄 అవసరమైన పత్రాలు:</b> ఆధార్, పాస్‌బుక్, ఫొటో.</p>
+<a href="https://www.nabard.org/" target="_blank" class="applyBtn">📋 పూర్తి వివరాలు / దరఖాస్తు</a>
+</div>
+</div>
+
+<!-- 13. e-NAM -->
+<div class="scheme-wrapper" data-new="false" data-keywords="enam ఈ-నామ్ market">
+<div class="scheme" onclick="toggleScheme('scheme13', this)">
+<div><h3>🌐 e-NAM (ఆన్‌లైన్ మార్కెట్)</h3><p>దేశవ్యాప్తంగా ఎక్కడైనా మీ పంటను అమ్ముకునే సౌకర్యం</p></div>
+<div><i class="fa-regular fa-star favorite" onclick="toggleFav(event,this)"></i><i class="fa-solid fa-chevron-down"></i></div>
+</div>
+<div class="schemeContent" id="scheme13">
+<p><b>🎯 ఉద్దేశ్యం:</b> రైతులకు మంచి ధర లభించేలా డిజిటల్ మార్కెటింగ్.</p>
+<p><b>💰 ప్రయోజనం:</b> దళారుల ప్రమేయం లేకుండా నేరుగా అమ్మకాలు.</p>
+<p><b>📄 అవసరమైన పత్రాలు:</b> ఆధార్, బ్యాంక్ ఖాతా వివరాలు.</p>
+<a href="https://www.enam.gov.in/" target="_blank" class="applyBtn">📋 పూర్తి వివరాలు / దరఖాస్తు</a>
+</div>
+</div>
+
+<!-- 14. సోలార్ పంప్‌సెట్లు -->
+<div class="scheme-wrapper" data-new="true" data-keywords="సోలార్ పంప్‌సెట్లు kusum solar pump">
+<div class="scheme" onclick="toggleScheme('scheme14', this)">
+<div><h3>☀️ PM-కుసుమ్ సోలార్ పంపుసెట్లు <span class="new">NEW</span></h3><p>సూర్యరశ్మితో పనిచేసే వ్యవసాయ మోటార్లకు సబ్సిడీ</p></div>
+<div><i class="fa-regular fa-star favorite" onclick="toggleFav(event,this)"></i><i class="fa-solid fa-chevron-down"></i></div>
+</div>
+<div class="schemeContent" id="scheme14">
+<p><b>🎯 ఉద్దేశ్యం:</b> నిరంతర విద్యుత్ కోసం సోలార్ పంపుల ఏర్పాటు.</p>
+<p><b>💰 ప్రయోజనం:</b> 90% వరకు సబ్సిడీతో సోలార్ పంపులు.</p>
+<p><b>📄 అవసరమైన పత్రాలు:</b> ఆధార్, పాస్‌బుక్, బోరు వివరాలు.</p>
+<a href="https://pmkusum.mnre.gov.in/" target="_blank" class="applyBtn">📋 పూర్తి వివరాలు / దరఖాస్తు</a>
+</div>
+</div>
+
+<!-- 15. సాగునీటి ప్రాజెక్ట్‌లు -->
+<div class="scheme-wrapper" data-new="false" data-keywords="సాగునీటి ప్రాజెక్ట్‌లు saguniti irrigation water">
+<div class="scheme" onclick="toggleScheme('scheme15', this)">
+<div><h3>🌊 సాగునీటి ప్రాజెక్ట్‌ల ద్వారా నీటి సరఫరా</h3><p>కాల్వల ద్వారా ప్రతి ఎకరానికి సాగునీరు</p></div>
+<div><i class="fa-regular fa-star favorite" onclick="toggleFav(event,this)"></i><i class="fa-solid fa-chevron-down"></i></div>
+</div>
+<div class="schemeContent" id="scheme15">
+<p><b>🎯 ఉద్దేశ్యం:</b> ప్రతి పొలానికి సాగునీరు అందించడం.</p>
+<p><b>💰 ప్రయోజనం:</b> ఉచితంగా సాగునీటి సౌకర్యం.</p>
+<p><b>📄 అవసరమైన పత్రాలు:</b> భూమి పాస్‌బుక్.</p>
+<a href="https://irrigation.telangana.gov.in/" target="_blank" class="applyBtn">📋 పూర్తి వివరాలు / దరఖాస్తు</a>
+</div>
+</div>
+
+<!-- 16. వేర్‌హౌస్ రసీదు రుణాలు -->
+<div class="scheme-wrapper" data-new="false" data-keywords="వేర్‌హౌస్ warehouse godown loan">
+<div class="scheme" onclick="toggleScheme('scheme16', this)">
+<div><h3>📦 వేర్‌హౌస్ రసీదు రుణాలు</h3><p>గోదావులలో ధాన్యం నిల్వ ఉంచి రుణం పొందే సదుపాయం</p></div>
+<div><i class="fa-regular fa-star favorite" onclick="toggleFav(event,this)"></i><i class="fa-solid fa-chevron-down"></i></div>
+</div>
+<div class="schemeContent" id="scheme16">
+<p><b>🎯 ఉద్దేశ్యం:</b> ధర తక్కువగా ఉన్నప్పుడు పంటను అమ్ముకోకుండా దాచుకోవడం.</p>
+<p><b>💰 ప్రయోజనం:</b> నిల్వ చేసిన పంటపై తక్కువ వడ్డీకి రుణం.</p>
+<p><b>📄 అవసరమైన పత్రాలు:</b> వేర్‌హౌస్ రసీదు, ఆధార్.</p>
+<a href="https://wdra.gov.in/" target="_blank" class="applyBtn">📋 పూర్తి వివరాలు / దరఖాస్తు</a>
+</div>
+</div>
+
+<!-- 17. చేపల పెంపకం -->
+<div class="scheme-wrapper" data-new="true" data-keywords="చేపల పెంపకం chepala pempakam fish">
+<div class="scheme" onclick="toggleScheme('scheme17', this)">
+<div><h3>🐟 నీలి విప్లవం - చేపల పెంపకం <span class="new">NEW</span></h3><p>చెరువులు మరియు కుంటలలో చేప పిల్లల పెంపకానికి సాయం</p></div>
+<div><i class="fa-regular fa-star favorite" onclick="toggleFav(event,this)"></i><i class="fa-solid fa-chevron-down"></i></div>
+</div>
+<div class="schemeContent" id="scheme17">
+<p><b>🎯 ఉద్దేశ్యం:</b> మత్స్యకారులు మరియు రైతులకు అదనపు ఆదాయం.</p>
+<p><b>💰 ప్రయోజనం:</b> ఉచితంగా చేప పిల్లల పంపిణీ / సబ్సిడీ.</p>
+<p><b>📄 అవసరమైన పత్రాలు:</b> కుంట లేదా చెరువు లీజు పత్రాలు, ఆధార్.</p>
+<a href="https://nfdb.gov.in/" target="_blank" class="applyBtn">📋 పూర్తి వివరాలు / దరఖాస్తు</a>
+</div>
+</div>
+
+<!-- 18. కస్టమ్ హైరింగ్ కేంద్రాలు -->
+<div class="scheme-wrapper" data-new="false" data-keywords="కస్టమ్ హైరింగ్ custom hiring chc machinery">
+<div class="scheme" onclick="toggleScheme('scheme18', this)">
+<div><h3>🚜 కస్టమ్ హైరింగ్ కేంద్రాలు (CHC)</h3><p>తక్కువ అద్దెకు పెద్ద పెద్ద ట్రాక్టర్లు మరియు యంత్రాలు</p></div>
+<div><i class="fa-regular fa-star favorite" onclick="toggleFav(event,this)"></i><i class="fa-solid fa-chevron-down"></i></div>
+</div>
+<div class="schemeContent" id="scheme18">
+<p><b>🎯 ఉద్దేశ్యం:</b> చిన్న రైతులు కూడా యంత్రాలను తక్కువ అద్దెకు వాడేలా చేయడం.</p>
+<p><b>💰 ప్రయోజనం:</b> తక్కువ ఖర్చుతో కూలీల సమస్య నివారణ.</p>
+<p><b>📄 అవసరమైన పత్రాలు:</b> రైతు గుర్తింపు కార్డు.</p>
+<a href="https://agrimachinery.nic.in/" target="_blank" class="applyBtn">📋 పూర్తి వివరాలు / దరఖాస్తు</a>
+</div>
+</div>
+
+<!-- 19. ఎరువుల సబ్సిడీ -->
+<div class="scheme-wrapper" data-new="false" data-keywords="ఎరువుల eruvula fertilizer urea">
+<div class="scheme" onclick="toggleScheme('scheme19', this)">
+<div><h3>🧪 యూరియా & రసాయన ఎరువుల సబ్సిడీ</h3><p>తక్కువ ధరకే నాణ్యమైన ఎరువుల అందజేత</p></div>
+<div><i class="fa-regular fa-star favorite" onclick="toggleFav(event,this)"></i><i class="fa-solid fa-chevron-down"></i></div>
+</div>
+<div class="schemeContent" id="scheme19">
+<p><b>🎯 ఉద్దేశ్యం:</b> రైతులకు తక్కువ ధరకే ఎరువులు అందుబాటులో ఉంచడం.</p>
+<p><b>💰 ప్రయోజనం:</b> ప్రభుత్వం అందించే సబ్సిడీ ధర.</p>
+<p><b>📄 అవసరమైన పత్రాలు:</b> ఆధార్ కార్డ్.</p>
+<a href="https://fert.nic.in/" target="_blank" class="applyBtn">📋 పూర్తి వివరాలు / దరఖాస్తు</a>
+</div>
+</div>
+
+<!-- 20. విత్తన రాయితీ -->
+<div class="scheme-wrapper" data-new="true" data-keywords="విత్తన vithana seeds subsidy">
+<div class="scheme" onclick="toggleScheme('scheme20', this)">
+<div><h3>🌱 రాయితీ విత్తనాల పంపిణీ <span class="new">NEW</span></h3><p>ప్రతి సీజన్‌లో సబ్సిడీ ధరకు నాణ్యమైన విత్తనాలు</p></div>
+<div><i class="fa-regular fa-star favorite" onclick="toggleFav(event,this)"></i><i class="fa-solid fa-chevron-down"></i></div>
+</div>
+<div class="schemeContent" id="scheme20">
+<p><b>🎯 ఉద్దేశ్యం:</b> రైతులకు తక్కువ ధరకే నాణ్యమైన విత్తనాలు ఇవ్వడం.</p>
+<p><b>💰 ప్రయోజనం:</b> రాయితీపై విత్తన బస్తాల అందజేత.</p>
+<p><b>📄 అవసరమైన పత్రాలు:</b> ఆధార్, పాస్‌బుక్.</p>
+<a href="https://agri.telangana.gov.in/" target="_blank" class="applyBtn">📋 పూర్తి వివరాలు / దరఖాస్తు</a>
+</div>
+</div>
+
+</div>
+</div>
+</div>
+
+<script>
+window.onload = function() {
+let container = document.getElementById("schemesContainer");
+let wrappers = Array.from(container.querySelectorAll(".scheme-wrapper"));
+
+// 1. NEW ఉన్నవాటిని ముందుకి, లేనివాటిని వెనుకకి సార్ట్ చేయడం
+wrappers.sort((a, b) => {
+let aNew = a.getAttribute('data-new') === 'true';
+let bNew = b.getAttribute('data-new') === 'true';
+return bNew - aNew; // true (1) ముందుకి వస్తుంది, false (0) వెనుకకి వెళ్తుంది
+});
+
+// 2. రీ-ఆర్డర్ చేసిన ఎలిమెంట్స్‌ని స్క్రీన్‌పై అపెండ్ చేయడం
+wrappers.forEach(wrapper => container.appendChild(wrapper));
+
+// కౌంట్స్ అప్‌డేట్ చేయడం
+let total = wrappers.length;
+let newSchemes = wrappers.filter(w => w.getAttribute('data-new') === 'true').length;
+
+document.getElementById("totalCount").innerText = total + "+";
+document.getElementById("newCount").innerText = newSchemes;
+};
+
+function toggleScheme(id, element) {
+const content = document.getElementById(id);
+const chevron = element.querySelector('.fa-chevron-down');
+
+if (content.style.display === "block") {
+content.style.display = "none";
+chevron.style.transform = "rotate(0deg)";
+} else {
+content.style.display = "block";
+chevron.style.transform = "rotate(180deg)";
+}
+}
+
+let fav = 0;
+function toggleFav(e, el) {
+e.stopPropagation();
+const wrapper = el.closest('.scheme-wrapper');
+if (el.classList.contains("fa-regular")) {
+el.classList.remove("fa-regular");
+el.classList.add("fa-solid");
+wrapper.classList.add('is-favorite');
+fav++;
+} else {
+el.classList.remove("fa-solid");
+el.classList.add("fa-regular");
+wrapper.classList.remove('is-favorite');
+fav--;
+}
+document.getElementById("favCount").innerHTML = fav;
+}
+
+function filterSchemes(type) {
+let wrappers = document.querySelectorAll(".scheme-wrapper");
+wrappers.forEach(wrapper => {
+if (type === 'all') {
+wrapper.style.display = "block";
+} else if (type === 'new') {
+wrapper.style.display = wrapper.getAttribute('data-new') === 'true' ? "block" : "none";
+} else if (type === 'fav') {
+wrapper.style.display = wrapper.classList.contains('is-favorite') ? "block" : "none";
+}
+});
+}
+
+// సెర్చ్ కోడ్ (చిన్న/పెద్ద ఇంగ్లీష్ అక్షరాలు మరియు తెలుగు అక్షరాలను సపోర్ట్ చేస్తుంది)
+const search = document.getElementById("search");
+search.addEventListener("input", function() {
+let filter = this.value.toLowerCase().trim();
+let wrappers = document.querySelectorAll(".scheme-wrapper");
+
+wrappers.forEach(wrapper => {
+let text = wrapper.innerText.toLowerCase();
+let keywords = wrapper.getAttribute('data-keywords') ? wrapper.getAttribute('data-keywords').toLowerCase() : "";
+
+if (text.includes(filter) || keywords.includes(filter)) {
+wrapper.style.display = "block";
+} else {
+wrapper.style.display = "none";
+}
+});
+});
+</script>
+
+</body>
+</html>

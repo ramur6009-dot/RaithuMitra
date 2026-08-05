@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+<html lang="te">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>రైతు మిత్ర - సమగ్ర సాగు గైడ్</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+body{
+background:#eef7ee;
+}
+.header{
+background:#2E7D32;
+color:#fff;
+padding:18px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+position:sticky;
+top:0;
+z-index:999;
+box-shadow:0 4px 12px rgba(0,0,0,.15);
+}
+.header a{
+color:#fff;
+font-size:24px;
+text-decoration:none;
+}
+.container{
+max-width:1000px;
+margin:auto;
+padding:18px;
+}
+.banner{
+background:linear-gradient(135deg,#2E7D32,#66BB6A);
+padding:30px;
+border-radius:22px;
+text-align:center;
+color:#fff;
+margin-bottom:20px;
+}
+.banner h1{
+font-size:32px;
+margin-bottom:10px;
+}
+.banner p{
+font-size:17px;
+opacity:.95;
+}
+.searchBox{
+background:#fff;
+padding:15px;
+border-radius:18px;
+box-shadow:0 4px 12px rgba(0,0,0,.12);
+margin-bottom:20px;
+}
+.searchBox input{
+width:100%;
+padding:14px;
+border:none;
+outline:none;
+border-radius:12px;
+background:#f5f5f5;
+font-size:16px;
+}
+.dashboard{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:15px;
+margin-bottom:20px;
+}
+.card{
+background:#fff;
+padding:18px;
+border-radius:18px;
+text-align:center;
+box-shadow:0 4px 12px rgba(0,0,0,.12);
+}
+.card i{
+font-size:34px;
+color:#2E7D32;
+margin-bottom:10px;
+}
+.card h3{
+color:#2E7D32;
+font-size:17px;
+margin-bottom:6px;
+}
+.card p{
+font-size:15px;
+color:#666;
+}
+.section{
+background:#fff;
+padding:20px;
+border-radius:18px;
+box-shadow:0 4px 12px rgba(0,0,0,.12);
+margin-bottom:20px;
+}
+.section h2{
+color:#2E7D32;
+margin-bottom:15px;
+}
+@media(max-width:768px){
+.dashboard{
+grid-template-columns:repeat(2,1fr);
+}
+.categoryGrid{
+grid-template-columns:repeat(2,1fr) !important;
+}
+}
+.crop-card{
+background:#fff;
+padding:18px;
+border-radius:18px;
+margin-bottom:15px;
+box-shadow:0 4px 12px rgba(0,0,0,.1);
+border-left:6px solid #2E7D32;
+cursor:pointer;
+transition:all 0.3s ease;
+}
+.crop-card:hover{
+transform:translateY(-3px);
+box-shadow:0 6px 16px rgba(0,0,0,0.15);
+}
+.crop-card.highlight{
+border-left:6px solid #FF9800;
+background:#FFF8E1;
+}
+.crop-card h3{
+color:#2E7D32;
+margin-bottom:10px;
+font-size:18px;
+}
+.crop-details{
+display:flex;
+flex-wrap:wrap;
+gap:8px;
+margin-bottom:12px;
+}
+.crop-details span{
+background:#E8F5E9;
+color:#2E7D32;
+padding:5px 10px;
+border-radius:8px;
+font-size:13px;
+font-weight:bold;
+}
+.categoryGrid{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:10px;
+margin-bottom:20px;
+}
+.category{
+padding:12px;
+border:none;
+border-radius:10px;
+background:#E8F5E9;
+color:#2E7D32;
+font-size:13px;
+font-weight:bold;
+cursor:pointer;
+transition:.3s;
+text-align:center;
+}
+.category.active{
+background:#2E7D32;
+color:white;
+}
+.trendBox{
+background:white;
+padding:20px;
+border-radius:18px;
+box-shadow:0 4px 12px rgba(0,0,0,.12);
+margin-bottom:20px;
+border-top:5px solid #FF9800;
+}
+.trendBox h3{
+color:#E65100;
+margin-bottom:12px;
+display:flex;
+align-items:center;
+gap:8px;
+}
+.chips{
+display:flex;
+flex-wrap:wrap;
+gap:10px;
+}
+.chips span{
+background:#FFF3E0;
+padding:8px 14px;
+border-radius:20px;
+font-size:14px;
+font-weight:bold;
+color:#E65100;
+cursor:pointer;
+border:1px solid #FFE0B2;
+transition:0.2s;
+}
+.chips span:hover{
+background:#FF9800;
+color:white;
+}
+.action-btns{
+display:flex;
+gap:8px;
+flex-wrap:wrap;
+}
+.video-btn{
+background:#D32F2F;
+color:white;
+border:none;
+padding:10px 16px;
+border-radius:8px;
+cursor:pointer;
+font-weight:bold;
+font-size:14px;
+text-decoration:none;
+display:inline-flex;
+align-items:center;
+gap:6px;
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+<a href="index.html"><i class="fa fa-arrow-left"></i></a>
+<h2>🌾 రైతు మిత్ర - సమగ్ర సాగు గైడ్</h2>
+<i class="fa-solid fa-seedling"></i>
+</div>
+
+<div class="container">
+
+<div class="banner">
+<h1>రైతు మిత్ర</h1>
+<p>తెలంగాణలో సాగు చేసే అన్ని రకాల పంటల పూర్తి సమాచార వేదిక</p>
+</div>
+
+<div class="searchBox">
+<input type="text" id="search" placeholder="🔍 పంట పేరు వెతకండి (ఉదా: vari, patti, mirchi, tamata, banti)...">
+</div>
+
+<!-- 🔥 Trending Card -->
+<div class="trendBox">
+<h3><i class="fa-solid fa-fire"></i> Trending & Popular Searches (ట్రెండింగ్ పంటలు)</h3>
+<div class="chips">
+<span onclick="filterAndScroll('వరి')">🌾 వరి</span>
+<span onclick="filterAndScroll('పత్తి')">🌱 పత్తి</span>
+<span onclick="filterAndScroll('మిర్చి')">🌶️ మిర్చి</span>
+<span onclick="filterAndScroll('టమాట')">🍅 టమాట</span>
+<span onclick="filterAndScroll('వేరుశెనగ')">🥜 వేరుశెనగ</span>
+<span onclick="filterAndScroll('మామిడి')">🥭 మామిడి</span>
+<span onclick="filterAndScroll('బంతి')">🌸 బంతి</span>
+<span onclick="filterAndScroll('పసుపు')">🟡 పసుపు</span>
+</div>
+</div>
+
+<div class="dashboard">
+<div class="card">
+<i class="fa-solid fa-list-check"></i>
+<h3>మొత్తం పంటలు</h3>
+<p>62</p>
+</div>
+<div class="card">
+<i class="fa-solid fa-layer-group"></i>
+<h3>కేటగిరీలు</h3>
+<p>9 రకాలు</p>
+</div>
+<div class="card">
+<i class="fa-solid fa-heart"></i>
+<h3>Favorites</h3>
+<p id="favCount">0</p>
+</div>
+<div class="card">
+<i class="fa-solid fa-bookmark"></i>
+<h3>Saved</h3>
+<p id="saveCount">0</p>
+</div>
+</div>
+
+<!-- ===== Categories Grid ===== -->
+<h2 style="color:#2E7D32;margin-bottom:15px;">📂 పంటల కేటగిరీలు</h2>
+<div class="categoryGrid">
+<button class="category active" data-filter="all">🌾 అన్ని పంటలు (62)</button>
+<button class="category" data-filter="grains">🌾 ధాన్యపు పంటలు</button>
+<button class="category" data-filter="pulses">🌱 పప్పు పంటలు</button>
+<button class="category" data-filter="oilseeds">🌻 నూనె గింజలు</button>
+<button class="category" data-filter="commercial">🌿 వాణిజ్య పంటలు</button>
+<button class="category" data-filter="vegetables">🍅 కూరగాయల పంటలు</button>
+<button class="category" data-filter="fruits">🥭 పండ్ల పంటలు</button>
+<button class="category" data-filter="spices">🧄 సుగంధ ద్రవ్యాలు</button>
+<button class="category" data-filter="flowers">🌸 పూల పంటలు</button>
+<button class="category" data-filter="plantation">🌳 తోటల పంటలు</button>
+</div>
+
+<div class="section" id="cropSection">
+<h2>📋 సమగ్ర పంటల జాబితా (మొత్తం 62)</h2>
+
+<div id="cropList">
+  <!-- 1. ధాన్యపు పంటలు -->
+  <div class="crop-card" data-category="grains" data-keywords="వరి vari ధాన్యం">
+    <h3>🌾 1. వరి (Paddy)</h3>
+    <div class="crop-details"><span>📖 పరిచయం</span><span>🌱 విత్తనాలు</span><span>🌍 నేల</span><span>💧 నీరు</span><span>🛡️ పురుగుల నివారణ</span></div>
+    <div class="action-btns">
+      <a href="https://www.youtube.com/results?search_query=paddy+cultivation+telugu" target="_blank" class="video-btn"><i class="fa-brands fa-youtube"></i> సాగు శిక్షణ వీడియోలు</a>
+    </div>
+  </div>
+
+  <div class="crop-card" data-category="grains" data-keywords="గోధుమ godhuma wheat">
+    <h3>🌾 2. గోధుమ (Wheat)</h3>
+    <div class="crop-details"><span>📖 పరిచయం</span><span>🌱 విత్తనాలు</span><span>🌍 నేల</span><span>💧 నీరు</span><span>🛡️ పురుగుల నివారణ</span></div>
+    <div class="action-btns">
+      <a href="https://www.youtube.com/results?search_query=wheat+cultivation+telugu" target="_blank" class="video-btn"><i class="fa-brands fa-youtube"></i> సాగు శిక్షణ వీడియోలు</a>
+    </div>
+  </div>
+
+  <div class="crop-card" data-category="grains" data-keywords="మొక్కజొన్న mokkajonna maize">
+    <h3>🌾 3. మొక్కజొన్న (Maize)</h3>
+    <div class="crop-details"><span>📖 పరిచయం</span><span>🌱 విత్తనాలు</span><span>🌍 నేల</span><span>💧 నీరు</span><span>🛡️ పురుగుల నివారణ</span></div>
+    <div class="action-btns">
+      <a href="https://www.youtube.com/results?search_query=maize+cultivation+telugu" target="_blank" class="video-btn"><i class="fa-brands fa-youtube"></i> సాగు శిక్షణ వీడియోలు</a>
+    </div>
+  </div>
+
+  <div class="crop-card" data-category="grains" data-keywords="జొన్న jonna jowar">
+    <h3>🌾 4. జొన్న (Sorghum)</h3>
+    <div class="crop-details"><span>📖 పరిచయం</span><span>🌱 విత్తనాలు</span><span>🌍 నేల</span><span>💧 నీరు</span><span>🛡️ పురుగుల నివారణ</span></div>
+    <div class="action-btns">
+      <a href="https://www.youtube.com/results?search_query=jowar+cultivation+telugu" target="_blank" class="video-btn"><i class="fa-brands fa-youtube"></i> సాగు శిక్షణ వీడియోలు</a>
+    </div>
+  </div>
+
+  <div class="crop-card" data-category="grains" data-keywords="సజ్జ sajja pearl millet">
+    <h3>🌾 5. సజ్జ (Pearl Millet)</h3>
+    <div class="crop-details"><span>📖 పరిచయం</span><span>🌱 విత్తనాలు</span><span>🌍 నేల</span><span>💧 నీరు</span><span>🛡️ పురుగుల నివారణ</span></div>
+    <div class="action-btns">
+      <a href="https://www.youtube.com/results?search_query=pearl+millet+cultivation+telugu" target="_blank" class="video-btn"><i class="fa-brands fa-youtube"></i> సాగు శిక్షణ వీడియోలు</a>
+    </div>
+  </div>
+
+  <div class="crop-card" data-category="grains" data-keywords="రాగి ragi finger millet">
+    <h3>🌾 6. రాగి (Finger Millet)</h3>
+    <div class="crop-details"><span>📖 పరిచయం</span><span>🌱 విత్తనాలు</span><span>🌍 నేల</span><span>💧 నీరు</span><span>🛡️ పురుగుల నివారణ</span></div>
+    <div class="action-btns">
+      <a href="https://www.youtube.com/results?search_query=ragi+cultivation+telugu" target="_blank" class="video-btn"><i class="fa-brands fa-youtube"></i> సాగు శిక్షణ వీడియోలు</a>
+    </div>
+  </div>
+
+  <!-- 2. పప్పు పంటలు -->
+  <div class="crop-card" data-category="pulses" data-keywords="కందులు kandulu red gram">
+    <h3>🌱 7. కందులు (Red Gram)</h3>
+    <div class="crop-details"><span>📖 పరిచయం</span><span>🌱 విత్తనాలు</span><span>🌍 నేల</span><span>💧 నీరు</span><span>🛡️ పురుగుల నివారణ</span></div>
+    <div class="action-btns">
+      <a href="https://www.youtube.com/results?search_query=red+gram+cultivation+telugu" target="_blank" class="video-btn"><i class="fa-brands fa-youtube"></i> సాగు శిక్షణ వీడియోలు</a>
+    </div>
+  </div>
+
+  <div class="crop-card" data-category="pulses" data-keywords="శనగ senaga chickpea">
+    <h3>🌱 8. శనగ (Chickpea)</h3>
+    <div class="crop-details"><span>📖 పరిచయం</span><span>🌱 విత్తనాలు</span><span>🌍 నేల</span><span>💧 నీరు</span><span>🛡️ పురుగుల నివారణ</span></div>
+    <div class="action-btns">
+      <a href="https://www.youtube.com/results?search_query=chickpea+cultivation+telugu" target="_blank" class="video-btn"><i class="fa-brands fa-youtube"></i> సాగు శిక్షణ వీడియోలు</a>
+    </div>
+  </div>
+
+  <div class="crop-card" data-category="pulses" data-keywords="పెసర pesara green gram">
+    <h3>🌱 9. పెసర (Green Gram)</h3>
+    <div class="crop-details"><span>📖 పరిచయం</span><span>🌱 విత్తనాలు</span><span>🌍 నేల</span><span>💧 నీరు</span><span>🛡️ పురుగుల నివారణ</span></div>
+    <div class="action-btns">
+      <a href="https://www.youtube.com/results?search_query=green+gram+cultivation+telugu" target="_blank" class="video-btn"><i class="fa-brands fa-youtube"></i> సాగు శిక్షణ వీడియోలు</a>
+    </div>
+  </div>
+
+  <div class="crop-card" data-category="pulses" data-keywords="మినుము minumu black gram">
+    <h3>🌱 10. మినుము (Black Gram)</h3>
+    <div class="crop-details"><span>📖 పరిచయం</span><span>🌱 విత్తనాలు</span><span>🌍 నేల</span><span>💧 నీరు</span><span>🛡️ పురుగుల నివారణ</span></div>
+    <div class="action-btns">
+      <a href="https://www.youtube.com/results?search_query=black+gram+cultivation+telugu" target="_blank" class="video-btn"><i class="fa-brands fa-youtube"></i> సాగు శిక్షణ వీడియోలు</a>
+    </div>
+  </div>
+
+  <div class="crop-card" data-category="pulses" data-keywords="ఉలవలు ulavalu horse gram">
+    <h3>🌱 11. ఉలవలు (Horse Gram)</h3>
+    <div class="crop-details"><span>📖 పరిచయం</span><span>🌱 విత్తనాలు</span><span>🌍 నేల</span><span>💧 నీరు</span><span>🛡️ పురుగుల నివారణ</span></div>
+    <div class="action-btns">
+      <a href="https://www.youtube.com/results?search_query=horse+gram+cultivation+telugu" target="_blank" class="video-btn"><i class="fa-brands fa-youtube"></i> సాగు శిక్షణ వీడియోలు</a>
+    </div>
+  </div>
+
+  <div class="crop-card" data-category="pulses" data-keywords="బొబ్బర్లు bobbarlu cowpea">
+    <h3>🌱 12. బొబ్బర్లు (Cowpea)</h3>
+    <div class="crop-details"><span>📖 పరిచయం</span><span>🌱 విత్తనాలు</span><span>🌍 నేల</span><span>💧 నీరు</span><span>🛡️ పురుగుల నివారణ</span></div>
+    <div class="action-btns">
+      <a href="https://www.youtube.com/results?search_query=cowpea+cultivation+telugu" target="_blank" class="video-btn"><i class="fa-brands fa-youtube"></i> సాగు శిక్షణ వీడియోలు</a>
+    </div>
+  </div>
+
+  <!-- 3. నూనె గింజల పంటలు -->
+  <div class="crop-card" data-category="oilseeds" data-keywords="వేరుశెనగ verusenaga groundnut">
+    <h3>🌻 13. వేరుశెనగ (Groundnut)</h3>
+    <div class="crop-details"><span>📖 పరిచయం</span><span>🌱 విత్తనాలు</span><span>🌍 నేల</span><span>💧 నీరు</span><span>🛡️ పురుగుల నివారణ</span></div>
+    <div class="action-btns">
+      <a href="https://www.youtube.com/results?search_query=groundnut+cultivation+telugu" target="_blank" class="video-btn"><i class="fa-brands fa-youtube"></i> సాగు శిక్షణ వీడియోలు</a>
+    </div>
+  </div>
+
+  <div class="crop-card" data-category="oilseeds" data-keywords="నువ్వులు nuvvulu sesame">
+    <h3>🌻 14. నువ్వులు (Sesame)</h3>
+    <div class="crop-details"><span>📖 పరిచయం</span><span>🌱 విత్తనాలు</span><span>🌍 నేల</span><span>💧 నీరు</span><span>🛡️ పురుగుల నివారణ</span></div>
+    <div class="action-btns">
+      <a href="https://www.youtube.com/results?search_query=sesame+cultivation+telugu" target="_blank" class="video-btn"><i class="fa-brands fa-youtube"></i> సాగు శిక్షణ వీడియోలు</a>
+    </div>
+  </div>
+
+  <div class="crop-card" data-category="oilseeds" data-keywords="పొద్దుతిరుగుడు podduthirugudu sunflower">
+    <h3>🌻 15. పొద్దుతిరుగుడు (Sunflower)</h3>
+    <div class="crop-details"><span>📖 పరిచయం</span><span>🌱 విత్తనాలు</span><span>🌍 నేల</span><span>💧 నీరు</span><span>🛡️ పురుగుల నివారణ</span></div>
+    <div class="action-btns">
+      <a href="https://www.youtube.com/results?search_query=sunflower+cultivation+telugu" target="_blank" class="video-btn"><i class="fa-brands fa-youtube"></i> సాగు శిక్షణ వీడియోలు</a>
+    </div>
+  </div>
+
+  <div class="crop-card" data-category="oilseeds" data-keywords="ఆముదం aamudam castor">
+    <h3>🌻 16. ఆముదం (Castor)</h3>
+    <div class="crop-details"><span>📖 పరిచయం</span><span>🌱 విత్తనాలు</span><span>🌍 నేల</span><span>💧 నీరు</span><span>🛡️ పురుగుల నివారణ</span></div>
+    <div class="action-btns">
+      <a href="https://www.youtube.com/results?search_query=castor+cultivation+telugu" target="_blank" class="video-btn"><i class="fa-brands fa-youtube"></i> సాగు శిక్షణ వీడియోలు</a>
+    </div>
+  </div>
+
+  <div class="crop-card" data-category="oilseeds" data-keywords="సోయాబీన్ soybean">
+    <h3>🌻 17. సోయాబీన్ (Soybean)</h3>
+    <div class="crop-details"><span>📖 పరిచయం</span><span>🌱 విత్తనాలు</span><span>🌍 నేల</span><span>💧 నీరు</span><span>🛡️ పురుగుల నివారణ</span></div>
+    <div class="action-btns">
+      <a href="https://www.youtube.com/results?search_query=soybean+cultivation+telugu" target="_blank" class="video-btn"><i class="fa-brands fa-youtube"></i> సాగు శిక్షణ వీడియోలు</a>
+    </div>
+  </div>
+
+  <div class="crop-card" data-category="oilseeds" data-keywords="ఆవాలు avalu mustard">
+    <h3>🌻 18. ఆవాలు (Mustard)</h3>
+    <div class="crop-details"><span>📖 పరిచయం</span><span>🌱 విత్తనాలు</span><span>🌍 నేల</span><span>💧 నీరు</span><span>🛡️ పురుగుల నివారణ</span></div>
+    <div class="action-btns">
+      <a href="https://www.youtube.com/results?search_query=mustard+cultivation+telugu" target="_blank" class="video-btn"><i class="fa-brands fa-youtube"></i> సాగు శిక్షణ వీడియోలు</a>
+    </div>
+  </div>
+
+  <!-- 4. వాణిజ్య పంటలు -->
+  <div class="crop-card" data-category="commercial" data-keywords="పత్తి patti cotton">
+    <h3>🌿 19. పత్తి (Cotton)</h3>
+    <div class="crop-details"><span>📖 పరిచయం</span><span>🌱 విత్తనాలు</span><span>🌍 నేల</span><span>💧 నీరు</span><span>🛡️ పురుగుల నివారణ</span></div>
+    <div class="action-btns">
+      <a href="https://www.youtube.com/results?search_query=cotton+cultivation+telugu" target="_blank" class="video-btn"><i class="fa-brands fa-youtube"></i> సాగు శిక్షణ వీడియోలు</a>
+    </div>
+  </div>
+
+  <div class="crop-card" data-category="commercial" data-keywords="చెరకు cheruku sugarcane">
+    <h3>🌿 20. చెరకు (Sugarcane)</h3>
+    <div class="crop-details"><span>📖 పరిచయం</span><span>🌱 విత్తనాలు</span><span>🌍 నేల</span><span>💧 నీరు</span><span>🛡️ పురుగుల నివారణ</span></div>
+    <div class="action-btns">
+      <a href="https://www.youtube.com/results?search_query=sugarcane+cultivation+telugu" target="_blank" class="video-btn"><i class="fa-brands fa-youtube"></i> సాగు శిక్షణ వీడియోలు</a>
+    </div>
+  </div>
+
+  <div class="crop-card" data-category="commercial" data-keywords="పొగాకు pogaku tobacco">
+    <h3>🌿 21. పొగాకు (Tobacco)</h3>
+    <div class="crop-details"><span>📖 పరిచయం</span><span>🌱 విత్తనాలు</span><span>🌍 నేల</span><span>💧 నీరు</span><span>🛡️ పురుగుల నివారణ</span></div>
+    <div class="action-btns">
+      <a href="https://www.youtube.com/results?search_query=tobacco+cultivation+telugu" target="_blank" class="video-btn"><i class="fa-brands fa-youtube"></i> సాగు శిక్షణ వీడియోలు</a>
+    </div>
+  </div>
+
+  <!-- 5. కూరగాయల పంటలు -->
+  <div class="crop-card" data-category="vegetables" data-keywords="టమాట tamata tomato">
+    <h3>🍅 22. టమాట (Tomato)</h3>
+    <div class="crop-details"><span>📖 పరిచయం</span><span>🌱 విత్తనాలు</span><span>🌍 నేల</span><span>💧 నీరు</span><span>🛡️ పురుగుల నివారణ</span></div>
+    <div class="action-btns">
+      <a href="https://www.youtube.com/results?search_query=tomato+cultivation+telugu" target="_blank" class="video-btn"><i class="fa-brands fa-youtube"></i> సాగు శిక్షణ వీడియోలు</a>
+    </div>
+  </div>
+
+  <div class="crop-card" data-category="vegetables" data-keywords="మిర్చి mirchi chilli">
+    <h3>🍅 23. మిర్చి (Chilli)</h3>
+    <div class="crop-details"><span>📖 పరిచయం</span><span>🌱 విత్తనాలు</span><span>🌍 నేల</span><span>💧 నీరు</span><span>🛡️ పురుగుల నివారణ</span></div>
+    <div class="action-btns">
+      <a href="https://www.youtube.com/results?search_query=chilli+cultivation+telugu" target="_blank" class="video-btn"><i class="fa-brands fa-youtube"></i> సాగు శిక్షణ వీడియోలు</a>
+    </div>
+  </div>
+
+  <div class="crop-card" data-category="vegetables" data-keywords="వంకాయ vankaya brinjal">
+    <h3>🍅 24. వంకాయ (Brinjal)</h3>
+    <div class="crop-details"><span>📖 పరిచయం</span><span>🌱 విత్తనాలు</span><span>🌍 నేల</span><span>💧 నీరు</span><span>🛡️ పురుగుల నివారణ</span></div>
+    <div class="action-btns">
+      <a href="https://www.youtube.com/results?search_query=brinjal+cultivation+telugu" target="_blank" class="video-btn"><i class="fa-brands fa-youtube"></i> సాగు శిక్షణ వీడియోలు</a>
+    </div>
+  </div>
+
+  <div class="crop-card" data-category="vegetables" data-keywords="బెండకాయ bendakkai okra">
+    <h3>🍅 25. బెండకాయ (Okra)</h3>
+    <div class="crop-details"><span>📖 పరిచయం</span><span>🌱 విత్తనాలు</span><span>🌍 నేల</span><span>💧 నీరు</span><span>🛡️ పురుగుల నివారణ</span></div>
+    <div class="action-btns">
+      <a href="https://www.youtube.com/results?search_query=okra+cultivation+telugu" target="_blank" class="video-btn"><i class="fa-brands fa-youtube"></i> సాగు శిక్షణ వీడియోలు</a>
+    </div>
+  </div>
+
+  <div class="crop-card" data-category="vegetables" data-keywords="దొండకాయ dondakaya ivy gourd">
+    <h3>🍅 26. దొండకాయ (Ivy Gourd)</h3>
+    <div class="crop-details"><span>📖 పరిచయం</span><span>🌱 విత్తనాలు</span><span>🌍 నేల</span><span>💧 నీరు</span><span>🛡️ పురుగుల నివారణ</span></div>
+    <div class="action-btns">
+      <a href="https://www.youtube.com/results?search_query=ivy+gourd+cultivation+telugu" target="_blank" class="video-btn"><i class="fa-brands fa-youtube"></i> సాగు శిక్షణ వీడియోలు</a>
+    </div>
+  </div>
+
+  <div class="crop-card" data-category="vegetables" data-keywords="బీరకాయ beerakaya ridge gourd">
+    <h3>🍅 27. బీరకాయ (Ridge Gourd)</h3>
+    <div class="crop-details"><span>📖 పరిచయం</span><span>🌱 విత్తనాలు</span><span>🌍 నేల</span><span>💧 నీరు</span><span>🛡️ పురుగుల నివారణ</span></div>
+    <div class="action-btns">
+      <a href="https://www.youtube.com/results?search_query=ridge+gourd+cultivation+telugu" target="_blank" class="video-btn"><i class="fa-brands fa-youtube"></i> సాగు శిక్షణ వీడియోలు</a>
+    </div>
+  </div>
+
+  <div class="crop-card" data-category="vegetables" data-keywords="కాకరకాయ kakarakaya bitter gourd">
+    <h3>🍅 28. కాకరకాయ (Bitter Gourd)</h3>
+    <div class="crop-details"><span>📖 పరిచయం</span><span>🌱 విత్తనాలు</span><span>🌍 నేల</span><span>💧 నీరు</span><span>🛡️ పురుగుల నివారణ</span></div>
+    <div class="action-btns">
+      <a href="https://www.youtube.com/results?search_query=bitter+gourd+cultivation+telugu" target="_blank" class="video-btn"><i class="fa-brands fa-youtube"></i> సాగు శిక్షణ వీడియోలు</a>
+    </div>
+  </div>
+
+  <div class="crop-card" data-category="vegetables" data-keywords="సొరకాయ sorakaya bottle gourd">
+    <h3>🍅 29. సొరకాయ (Bottle Gourd)</h3>
+    <div class="crop-details"><span>📖 పరిచయం</span><span>🌱 విత్తనాలు</span><span>🌍 నేల</span><span>💧 నీరు</span><span>🛡️ పురుగుల నివారణ</span></div>
+    <div class="action-btns">
+      <a href="https://www.youtube.com/results?search_query=bottle+gourd+cultivation+telugu" target="_blank" class="video-btn"><i class="fa-brands fa-youtube"></i> సాగు శిక్షణ వీడియోలు</a>
+    </div>
+  </div>
+
+  <div class="crop-card" data-category="vegetables" data-keywords="గుమ్మడికాయ gummadikaya pumpkin">
+    <h3>🍅 30. గుమ్మడికాయ (Pumpkin)</h3>
+    <div class="crop-details"><span>📖 పరిచయం</span><span>🌱 విత్తనాలు</span><span>🌍 నేల</span><span>💧 నీరు</span><span>🛡️ పురుగుల నివారణ</span></div>
+    <div class="action-btns">
+      <a href="https://www.youtube.com/results?search_query=pumpkin+cultivation+telugu" target="_blank" class="video-btn"><i class="fa-brands fa-youtube"></i> సాగు శిక్షణ వీడియోలు</a>
+    </div>
+  </div>
+
+  <div class="crop-card" data-category="vegetables" data-keywords="దోసకాయ dosakaya cucumber">
+    <h3>🍅 31. దోసకాయ (Cucumber)</h3>
+    <div class="crop-details"><span>📖 పరిచయం</span><span>🌱 విత్తనాలు</span><span>🌍 నేల</span><span>💧 నీరు</span><span>🛡️ పురుగుల నివారణ</span></div>
+    <div class="action-btns">
+      <a href="https://www.youtube.com/results?search_query=cucumber+cultivation+telugu" target="_blank" class="video-btn"><i class="fa-brands fa-youtube"></i> సాగు శిక్షణ వీడియోలు</a>
+    </div>
+  </div>
+
+  <div class="crop-card" data-category="vegetables" data-keywords="క్యాబేజీ cabbage">
+    <h3>🍅 32. క్యాబేజీ (Cabbage)</h3>
+    <div class="crop-details"><span>📖 పరిచయం</span><span>🌱 విత్తనాలు</span><span>🌍 నేల</span><span>💧 నీరు</span><span>🛡️ పురుగుల నివారణ</span></div>
+    <div class="action-btns">
+      <a href="https://www.youtube.com/results?search_query=cabbage+cultivation+telugu" target="_blank" class="video-btn"><i class="fa-brands fa-youtube"></i> సాగు శిక్షణ వీడియోలు</a>
+    </div>
+  </div>
+
+  <div class="crop-card" data-category="vegetables" data-keywords="కాలీఫ్లవర్ cauliflower">
+    <h3>🍅 33. కాలీఫ్లవర్ (Cauliflower)</h3>
+    <div class="crop-details"><span>📖 పరిచయం</span><span>🌱 విత్తనాలు</span><span>🌍 నేల</span><span>💧 నీరు</span><span>🛡️ పురుగుల నివారణ</span></div>
+    <div class="action-btns">
+      <a href="https://www.youtube.com/results?search_query=cauliflower+cultivation+telugu" target="_blank" class="video-btn"><i class="fa-brands fa-youtube"></i> సాగు శిక్షణ వీడియోలు</a>
+    </div>
+  </div>
+
+  <div class="crop-card" data-category="vegetables" data-keywords="క్యారెట్ carrot">
+    <h3>🍅 34. క్యారెట్ (Carrot)</h3>
+    <div class="crop-details"><span>📖 పరిచయం</span><span>🌱 విత్తనాలు</span><span>🌍 నేల</span><span>💧 నీరు</span><span>🛡️ పురుగుల నివారణ</span></div>
+    <div class="action-btns">
+      <a href="https://www.youtube.com/results?search_query=carrot+cultivation+telugu" target="_blank" class="video-btn"><i class="fa-brands fa-youtube"></i> సాగు శిక్షణ వీడియోలు</a>
+    </div>
+  </div>
+
+  <div class="crop-card" data-category="vegetables" data-keywords="బీట్రూట్ beetroot">
+    <h3>🍅 35. బీట్రూట్ (Beetroot)</h3>
+    <div class="crop-details"><span>📖 పరిచయం</span><span>🌱 విత్తనాలు</span><span>🌍 నేల</span><span>💧 నీరు</span><span>🛡️ పురుగుల నివారణ</span></div>
+    <div class="action-btns">
+      <a href="https://www.youtube.com/results?search_query=beetroot+cultivation+telugu" target="_blank" class="video-btn"><i class="fa-brands fa-youtube"></i> సాగు శిక్షణ వీడియోలు</a>
+    </div>
+  </div>
+
+  <div class="crop-card" data-category="vegetables" data-keywords="ఉల్లిపాయ ullipaya onion">
+    <h3>🍅 36. ఉల్లిపాయ (Onion)</h3>
+    <div class="crop-details"><span>📖 పరిచయం</span><span>🌱 విత్తనాలు</span><span>🌍 నేల</span><span>💧 నీరు</span><span>🛡️ పురుగుల నివారణ</span></div>
+    <div class="action-btns">
+      <a href="https://www.youtube.com/results?search_query=onion+cultivation+telugu" target="_blank" class="video-btn"><i class="fa-brands fa-youtube"></i> సాగు శిక్షణ వీడియోలు</a>
+    </div>
+  </div>
+
+  <div class="crop-card" data-category="vegetables" data-keywords="వెల్లుల్లి vellulli garlic">
+    <h3>🍅 37. వెల్లుల్లి (Garlic)</h3>
+    <div class="crop-details"><span>📖 పరిచయం</span><span>🌱 విత్తనాలు</span><span>🌍 నేల</span><span>💧 నీరు</span><span>🛡️ పురుగుల నివారణ</span></div>
+    <div class="action-btns">
+      <a href="https://www.youtube.com/results?search_query=garlic+cultivation+telugu" target="_blank" class="video-btn"><i class="fa-brands fa-youtube"></i> సాగు శిక్షణ వీడియోలు</a>
+    </div>
+  </div>
+
+  <div class="crop-card" data-category="vegetables" data-keywords="బంగాళాదుంప bangaladumpa potato">
+    <h3>🍅 38. బంగాళాదుంప (Potato)</h3>
+    <div class="crop-details"><span>📖 పరిచయం</span><span>🌱 విత్తనాలు</span><span>🌍 నేల</span><span>💧 నీరు</span><span>🛡️ పురుగుల నివారణ</span></div>
+    <div class="action-btns">
+      <a href="https://www.youtube.com/results?search_query=potato+cultivation+telugu" target="_blank" class="video-btn"><i class="fa-brands fa-youtube"></i> సాగు శిక్షణ వీడియోలు</a>
+    </div>
+  </div>
+
+  <!-- 6. పండ్ల పంటలు -->
+  <div class="crop-card" data-category="fruits" data-keywords="మామిడి mamidi mango">
+    <h3>🥭 39. మామిడి (Mango)</h3>
+    <div class="crop-details"><span>📖 పరిచయం</span><span>🌱 విత్తనాలు</span><span>🌍 నేల</span><span>💧 నీరు</span><span>🛡️ పురుగుల నివారణ</span></div>
+    <div class="action-btns">
+      <a href="https://www.youtube.com/results?search_query=mango+cultivation+telugu" target="_blank" class="video-btn"><i class="fa-brands fa-youtube"></i> సాగు శిక్షణ వీడియోలు</a>
+    </div>
+  </div>
+
+  <div class="crop-card" data-category="fruits" data-keywords="అరటి arati banana">
+    <h3>🥭 40. అరటి (Banana)</h3>
+    <div class="crop-details"><span>📖 పరిచయం</span><span>🌱 విత్తనాలు</span><span>🌍 నేల</span><span>💧 నీరు</span><span>🛡️ పురుగుల నివారణ</span></div>
+    <div class="action-btns">
+      <a href="https://www.youtube.com/results?search_query=banana+cultivation+telugu" target="_blank" class="video-btn"><i class="fa-brands fa-youtube"></i> సాగు శిక్షణ వీడియోలు</a>
+    </div>
+  </div>
+
+  <div class="crop-card" data-category="fruits" data-keywords="జామ jama guava">
+    <h3>🥭 41. జామ (Guava)</h3>
+    <div class="crop-details"><span>📖 పరిచయం</span><span>🌱 విత్తనాలు</span><span>🌍 నేల</span><span>💧 నీరు</span><span>🛡️ పురుగుల నివారణ</span></div>
+    <div class="action-btns">
+      <a href="https://www.youtube.com/results?search_query=guava+cultivation+telugu" target="_blank" class="video-btn"><i class="fa-brands fa-youtube"></i> సాగు శిక్షణ వీడియోలు</a>
+    </div>
+  </div>
+
+  <div class="crop-card" data-category="fruits" data-keywords="బొప్పాయి boppayi papaya">
+    <h3>🥭 42. బొప్పాయి (Papaya)</h3>
+    <div class="crop-details"><span>📖 పరిచయం</span><span>🌱 విత్తనాలు</span><span>🌍 నేల</span><span>💧 నీరు</span><span>🛡️ పురుగుల నివారణ</span></div>
+    <div class="action-btns">
+      <a href="https://www.youtube.com/results?search_query=papaya+cultivation+telugu" target="_blank" class="video-btn"><i class="fa-brands fa-youtube"></i> సాగు శిక్షణ వీడియోలు</a>
+    </div>
+  </div>
+
+  <div class="crop-card" data-category="fruits" data-keywords="దానిమ్మ danimma pomegranate">
+    <h3>🥭 43. దానిమ్మ (Pomegranate)</h3>
+    <div class="crop-details"><span>📖 పరిచయం</span><span>🌱 విత్తనాలు</span><span>🌍 నేల</span><span>💧 నీరు</span><span>🛡️ పురుగుల నివారణ</span></div>
+    <div class="action-btns">
+      <a href="https://www.youtube.com/results?search_query=pomegranate+cultivation+telugu" target="_blank" class="video-btn"><i class="fa-brands fa-youtube"></i> సాగు శిక్షణ వీడియోలు</a>
+    </div>
+  </div>
+
+  <div class="crop-card" data-category="fruits" data-keywords="సీతాఫలం seethaphalam custard apple">
+    <h3>🥭 44. సీతాఫలం (Custard Apple)</h3>
+    <div class="crop-details"><span>📖 పరిచయం</span><span>🌱 విత్తనాలు</span><span>🌍 నేల</span><span>💧 నీరు</span><span>🛡️ పురుగుల నివారణ</span></div>
+    <div class="action-btns">
+      <a href="https://www.youtube.com/results?search_query=custard+apple+cultivation+telugu" target="_blank" class="video-btn"><i class="fa-brands fa-youtube"></i> సాగు శిక్షణ వీడియోలు</a>
+    </div>
+  </div>
+
+  <div class="crop-card" data-category="fruits" data-keywords="నిమ్మ nimma lemon">
+    <h3>🥭 45. నిమ్మ (Lemon)</h3>
+    <div class="crop-details"><span>📖 పరిచయం</span><span>🌱 విత్తనాలు</span><span>🌍 నేల</span><span>💧 నీరు</span><span>🛡️ పురుగుల నివారణ</span></div>
+    <div class="action-btns">
+      <a href="https://www.youtube.com/results?search_query=lemon+cultivation+telugu" target="_blank" class="video-btn"><i class="fa-brands fa-youtube"></i> సాగు శిక్షణ వీడియోలు</a>
+    </div>
+  </div>
+
+  <div class="crop-card" data-category="fruits" data-keywords="బత్తాయి batthayi sweet orange">
+    <h3>🥭 46. బత్తాయి (Sweet Orange)</h3>
+    <div class="crop-details"><span>📖 పరిచయం</span><span>🌱 విత్తనాలు</span><span>🌍 నేల</span><span>💧 నీరు</span><span>🛡️ పురుగుల నివారణ</span></div>
+    <div class="action-btns">
+      <a href="https://www.youtube.com/results?search_query=sweet+orange+cultivation+telugu" target="_blank" class="video-btn"><i class="fa-brands fa-youtube"></i> సాగు శిక్షణ వీడియోలు</a>
+    </div>
+  </div>
+
+  <div class="crop-card" data-category="fruits" data-keywords="కమలా kamala mandarin">
+    <h3>🥭 47. కమలా (Mandarin)</h3>
+    <div class="crop-details"><span>📖 పరిచయం</span><span>🌱 విత్తనాలు</span><span>🌍 నేల</span><span>💧 నీరు</span><span>🛡️ పురుగుల నివారణ</span></div>
+    <div class="action-btns">
+      <a href="https://www.youtube.com/results?search_query=mandarin+cultivation+telugu" target="_blank" class="video-btn"><i class="fa-brands fa-youtube"></i> సాగు శిక్షణ వీడియోలు</a>
+    </div>
+  </div>
+
+  <div class="crop-card" data-category="fruits" data-keywords="ద్రాక్ష draksha grapes">
+    <h3>🥭 48. ద్రాక్ష (Grapes)</h3>
+    <div class="crop-details"><span>📖 పరిచయం</span><span>🌱 విత్తనాలు</span><span>🌍 నేల</span><span>💧 నీరు</span><span>🛡️ పురుగుల నివారణ</span></div>
+    <div class="action-btns">
+      <a href="https://www.youtube.com/results?search_query=grapes+cultivation+telugu" target="_blank" class="video-btn"><i class="fa-brands fa-youtube"></i> సాగు శిక్షణ వీడియోలు</a>
+    </div>
+  </div>
+
+  <div class="crop-card" data-category="fruits" data-keywords="కొబ్బరి kobbari coconut">
+    <h3>🥭 49. కొబ్బరి (Coconut)</h3>
+    <div class="crop-details"><span>📖 పరిచయం</span><span>🌱 విత్తనాలు</span><span>🌍 నేల</span><span>💧 నీరు</span><span>🛡️ పురుగుల నివారణ</span></div>
+    <div class="action-btns">
+      <a href="https://www.youtube.com/results?search_query=coconut+cultivation+telugu" target="_blank" class="video-btn"><i class="fa-brands fa-youtube"></i> సాగు శిక్షణ వీడియోలు</a>
+    </div>
+  </div>
+
+  <!-- 7. సుగంధ ద్రవ్యాలు -->
+  <div class="crop-card" data-category="spices" data-keywords="పసుపు pasupu turmeric">
+    <h3>🧄 50. పసుపు (Turmeric)</h3>
+    <div class="crop-details"><span>📖 పరిచయం</span><span>🌱 విత్తనాలు</span><span>🌍 నేల</span><span>💧 నీరు</span><span>🛡️ పురుగుల నివారణ</span></div>
+    <div class="action-btns">
+      <a href="https://www.youtube.com/results?search_query=turmeric+cultivation+telugu" target="_blank" class="video-btn"><i class="fa-brands fa-youtube"></i> సాగు శిక్షణ వీడియోలు</a>
+    </div>
+  </div>
+
+  <div class="crop-card" data-category="spices" data-keywords="అల్లం allam ginger">
+    <h3>🧄 51. అల్లం (Ginger)</h3>
+    <div class="crop-details"><span>📖 పరిచయం</span><span>🌱 విత్తనాలు</span><span>🌍 నేల</span><span>💧 నీరు</span><span>🛡️ పురుగుల నివారణ</span></div>
+    <div class="action-btns">
+      <a href="https://www.youtube.com/results?search_query=ginger+cultivation+telugu" target="_blank" class="video-btn"><i class="fa-brands fa-youtube"></i> సాగు శిక్షణ వీడియోలు</a>
+    </div>
+  </div>
+
+  <div class="crop-card" data-category="spices" data-keywords="ధనియాలు dhaniyalu coriander">
+    <h3>🧄 52. ధనియాలు (Coriander)</h3>
+    <div class="crop-details"><span>📖 పరిచయం</span><span>🌱 విత్తనాలు</span><span>🌍 నేల</span><span>💧 నీరు</span><span>🛡️ పురుగుల నివారణ</span></div>
+    <div class="action-btns">
+      <a href="https://www.youtube.com/results?search_query=coriander+cultivation+telugu" target="_blank" class="video-btn"><i class="fa-brands fa-youtube"></i> సాగు శిక్షణ వీడియోలు</a>
+    </div>
+  </div>
+
+  <div class="crop-card" data-category="spices" data-keywords="జీలకర్ర jeelakara cumin">
+    <h3>🧄 53. జీలకర్ర (Cumin)</h3>
+    <div class="crop-details"><span>📖 పరిచయం</span><span>🌱 విత్తనాలు</span><span>🌍 నేల</span><span>💧 నీరు</span><span>🛡️ పురుగుల నివారణ</span></div>
+    <div class="action-btns">
+      <a href="https://www.youtube.com/results?search_query=cumin+cultivation+telugu" target="_blank" class="video-btn"><i class="fa-brands fa-youtube"></i> సాగు శిక్షణ వీడియోలు</a>
+    </div>
+  </div>
+
+  <div class="crop-card" data-category="spices" data-keywords="మెంతులు menthulu fenugreek">
+    <h3>🧄 54. మెంతులు (Fenugreek)</h3>
+    <div class="crop-details"><span>📖 పరిచయం</span><span>🌱 విత్తనాలు</span><span>🌍 నేల</span><span>💧 నీరు</span><span>🛡️ పురుగుల నివారణ</span></div>
+    <div class="action-btns">
+      <a href="https://www.youtube.com/results?search_query=fenugreek+cultivation+telugu" target="_blank" class="video-btn"><i class="fa-brands fa-youtube"></i> సాగు శిక్షణ వీడియోలు</a>
+    </div>
+  </div>
+
+  <!-- 8. పూల పంటలు -->
+  <div class="crop-card" data-category="flowers" data-keywords="బంతి banti marigold">
+    <h3>🌸 55. బంతి (Marigold)</h3>
+    <div class="crop-details"><span>📖 పరిచయం</span><span>🌱 విత్తనాలు</span><span>🌍 నేల</span><span>💧 నీరు</span><span>🛡️ పురుగుల నివారణ</span></div>
+    <div class="action-btns">
+      <a href="https://www.youtube.com/results?search_query=marigold+cultivation+telugu" target="_blank" class="video-btn"><i class="fa-brands fa-youtube"></i> సాగు శిక్షణ వీడియోలు</a>
+    </div>
+  </div>
+
+  <div class="crop-card" data-category="flowers" data-keywords="మల్లె malle jasmine">
+    <h3>🌸 56. మల్లె (Jasmine)</h3>
+    <div class="crop-details"><span>📖 పరిచయం</span><span>🌱 విత్తనాలు</span><span>🌍 నేల</span><span>💧 నీరు</span><span>🛡️ పురుగుల నివారణ</span></div>
+    <div class="action-btns">
+      <a href="https://www.youtube.com/results?search_query=jasmine+cultivation+telugu" target="_blank" class="video-btn"><i class="fa-brands fa-youtube"></i> సాగు శిక్షణ వీడియోలు</a>
+    </div>
+  </div>
+
+  <div class="crop-card" data-category="flowers" data-keywords="గులాబీ gulabi rose">
+    <h3>🌸 57. గులాబీ (Rose)</h3>
+    <div class="crop-details"><span>📖 పరిచయం</span><span>🌱 విత్తనాలు</span><span>🌍 నేల</span><span>💧 నీరు</span><span>🛡️ పురుగుల నివారణ</span></div>
+    <div class="action-btns">
+      <a href="https://www.youtube.com/results?search_query=rose+cultivation+telugu" target="_blank" class="video-btn"><i class="fa-brands fa-youtube"></i> సాగు శిక్షణ వీడియోలు</a>
+    </div>
+  </div>
+
+  <div class="crop-card" data-category="flowers" data-keywords="చామంతి chamanthi chrysanthemum">
+    <h3>🌸 58. చామంతి (Chrysanthemum)</h3>
+    <div class="crop-details"><span>📖 పరిచయం</span><span>🌱 విత్తనాలు</span><span>🌍 నేల</span><span>💧 నీరు</span><span>🛡️ పురుగుల నివారణ</span></div>
+    <div class="action-btns">
+      <a href="https://www.youtube.com/results?search_query=chrysanthemum+cultivation+telugu" target="_blank" class="video-btn"><i class="fa-brands fa-youtube"></i> సాగు శిక్షణ వీడియోలు</a>
+    </div>
+  </div>
+
+  <!-- 9. తోటల పంటలు -->
+  <div class="crop-card" data-category="plantation" data-keywords="ఆయిల్ పామ్ oil palm">
+    <h3>🌳 59. ఆయిల్ పామ్ (Oil Palm)</h3>
+    <div class="crop-details"><span>📖 పరిచయం</span><span>🌱 విత్తనాలు</span><span>🌍 నేల</span><span>💧 నీరు</span><span>🛡️ పురుగుల నివారణ</span></div>
+    <div class="action-btns">
+      <a href="https://www.youtube.com/results?search_query=oil+palm+cultivation+telugu" target="_blank" class="video-btn"><i class="fa-brands fa-youtube"></i> సాగు శిక్షణ వీడియోలు</a>
+    </div>
+  </div>
+
+  <div class="crop-card" data-category="plantation" data-keywords="జీడిమామిడి jeedimamidi cashew">
+    <h3>🌳 60. జీడిమామిడి (Cashew)</h3>
+    <div class="crop-details"><span>📖 పరిచయం</span><span>🌱 విత్తనాలు</span><span>🌍 నేల</span><span>💧 నీరు</span><span>🛡️ పురుగుల నివారణ</span></div>
+    <div class="action-btns">
+      <a href="https://www.youtube.com/results?search_query=cashew+cultivation+telugu" target="_blank" class="video-btn"><i class="fa-brands fa-youtube"></i> సాగు శిక్షణ వీడియోలు</a>
+    </div>
+  </div>
+
+  <div class="crop-card" data-category="plantation" data-keywords="యూకలిప్టస్ eucalyptus">
+    <h3>🌳 61. యూకలిప్టస్ (Eucalyptus)</h3>
+    <div class="crop-details"><span>📖 పరిచయం</span><span>🌱 విత్తనాలు</span><span>🌍 నేల</span><span>💧 నీరు</span><span>🛡️ పురుగుల నివారణ</span></div>
+    <div class="action-btns">
+      <a href="https://www.youtube.com/results?search_query=eucalyptus+cultivation+telugu" target="_blank" class="video-btn"><i class="fa-brands fa-youtube"></i> సాగు శిక్షణ వీడియోలు</a>
+    </div>
+  </div>
+
+  <div class="crop-card" data-category="plantation" data-keywords="సుబాబుల్ subabul">
+    <h3>🌳 62. సుబాబుల్ (Subabul)</h3>
+    <div class="crop-details"><span>📖 పరిచయం</span><span>🌱 విత్తనాలు</span><span>🌍 నేల</span><span>💧 నీరు</span><span>🛡️ పురుగుల నివారణ</span></div>
+    <div class="action-btns">
+      <a href="https://www.youtube.com/results?search_query=subabul+cultivation+telugu" target="_blank" class="video-btn"><i class="fa-brands fa-youtube"></i> సాగు శిక్షణ వీడియోలు</a>
+    </div>
+  </div>
+
+</div>
+
+</div>
+
+</div>
+
+<script>
+// Search Functionality
+document.getElementById("search").addEventListener("keyup", function(){
+  const value = this.value.toLowerCase().trim();
+  document.querySelectorAll(".crop-card").forEach(card => {
+    const text = card.innerText.toLowerCase();
+    const keywords = card.getAttribute("data-keywords").toLowerCase();
+    if(text.includes(value) || keywords.includes(value)){
+      card.style.display = "block";
+    } else {
+      card.style.display = "none";
+    }
+  });
+});
+
+// Filter by Trending Chips & Smooth Scroll
+function filterAndScroll(keyword) {
+  const searchInput = document.getElementById("search");
+  searchInput.value = keyword;
+  const event = new Event('keyup');
+  searchInput.dispatchEvent(event);
+  
+  const cards = document.querySelectorAll(".crop-card");
+  for(let card of cards) {
+    if(card.style.display !== "none") {
+      card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      highlightCard(card);
+      break;
+    }
+  }
+}
+
+// Smooth Scroll when clicking any Crop Card directly
+document.querySelectorAll(".crop-card").forEach(card => {
+  card.addEventListener("click", function(e) {
+    if(e.target.closest('.video-btn')) return;
+    this.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    highlightCard(this);
+  });
+});
+
+// Highlight effect function
+function highlightCard(card) {
+  document.querySelectorAll(".crop-card").forEach(c => c.classList.remove("highlight"));
+  card.classList.add("highlight");
+  setTimeout(() => {
+    card.classList.remove("highlight");
+  }, 2000);
+}
+
+// Category Filtering with Smooth Scroll to Crop Section
+document.querySelectorAll(".category").forEach(btn => {
+  btn.addEventListener("click", function(){
+    document.querySelectorAll(".category").forEach(x => {
+      x.classList.remove("active");
+    });
+    this.classList.add("active");
+    const filter = this.dataset.filter;
+    
+    document.querySelectorAll(".crop-card").forEach(card => {
+      if(filter === "all" || card.dataset.category === filter){
+        card.style.display = "block";
+      }else{
+        card.style.display = "none";
+      }
+    });
+
+    // Smooth scroll down to the crop section automatically
+    document.getElementById("cropSection").scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+});
+</script>
+
+</body>
+</html>
