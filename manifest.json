@@ -1,7 +1,7 @@
 {
   "id": "/index.html",
   "name": "Raithu Mitra",
-  "short_name": "Raithu",
+"short_name": "Raithu Mitra",
   "description": "Smart Agriculture Assistant for Farmers",
   "start_url": "./index.html",
   "scope": "./",
