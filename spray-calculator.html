@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="te">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>స్ప్రే కాలిక్యులేటర్ - రైతు మిత్ర</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+body{
+background:#eef7ee;
+}
+.header{
+background:#2E7D32;
+color:#fff;
+padding:18px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+position:sticky;
+top:0;
+z-index:1000;
+}
+.header h2{
+font-size:24px;
+}
+.back{
+color:white;
+font-size:24px;
+text-decoration:none;
+}
+.container{
+padding:20px;
+max-width:700px;
+margin:auto;
+}
+.card{
+background:#fff;
+border-radius:18px;
+padding:20px;
+box-shadow:0 5px 15px rgba(0,0,0,.12);
+margin-bottom:20px;
+}
+.title{
+background:linear-gradient(135deg,#43a047,#81c784);
+padding:25px;
+border-radius:20px;
+text-align:center;
+color:white;
+margin-bottom:20px;
+box-shadow:0 8px 20px rgba(0,0,0,.15);
+}
+.title h1{
+font-size:34px;
+margin-bottom:10px;
+}
+.title p{
+font-size:18px;
+}
+label{
+display:block;
+margin-top:15px;
+margin-bottom:6px;
+font-weight:bold;
+font-size:16px;
+}
+select,input{
+width:100%;
+padding:14px;
+font-size:16px;
+border:1px solid #ccc;
+border-radius:10px;
+outline:none;
+}
+select:focus,input:focus{
+border:2px solid #2E7D32;
+}
+button{
+width:100%;
+margin-top:20px;
+padding:16px;
+font-size:18px;
+border:none;
+border-radius:12px;
+background:#2E7D32;
+color:white;
+font-weight:bold;
+cursor:pointer;
+transition:.3s;
+}
+button:hover{
+background:#1B5E20;
+}
+.result{
+display:none;
+margin-top:20px;
+background:#f1fff1;
+padding:18px;
+border-radius:12px;
+border-left:6px solid #2E7D32;
+}
+.result h3{
+color:#2E7D32;
+margin-bottom:12px;
+}
+.result p{
+margin:8px 0;
+font-size:17px;
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+<a href="#" class="back"><i class="fa fa-arrow-left"></i></a>
+<h2>🧴 స్ప్రే కాలిక్యులేటర్</h2>
+<i class="fa-solid fa-spray-can" style="font-size:22px;"></i>
+</div>
+
+<div class="container">
+
+<div class="title">
+<h1>రైతు మిత్ర</h1>
+<p>పురుగుమందుల మోతాదును సులభంగా లెక్కించండి</p>
+</div>
+
+<div class="card">
+
+<label>🌾 పంటను ఎంచుకోండి</label>
+<select id="crop">
+<option value="">-- పంటను ఎంచుకోండి --</option>
+<optgroup label="🌾 ప్రధాన పంటలు">
+<option value="cotton">పత్తి (Cotton)</option>
+<option value="paddy">వరి (Paddy)</option>
+<option value="chilli">మిరప (Chilli)</option>
+<option value="maize">మొక్కజొన్న (Maize)</option>
+<option value="redgram">కంది (Red Gram)</option>
+<option value="sugarcane">చెరకు (Sugarcane)</option>
+<option value="groundnut">వేరుశనగ (Groundnut)</option>
+</optgroup>
+<optgroup label="🍅 కూరగాయలు">
+<option value="tomato">టమాట (Tomato)</option>
+<option value="brinjal">వంకాయ (Brinjal)</option>
+<option value="okra">బెండకాయ (Okra)</option>
+<option value="potato">బంగాళాదుంప (Potato)</option>
+<option value="onion">ఉల్లిపాయ (Onion)</option>
+<option value="cabbage">క్యాబేజీ / కాలీఫ్లవర్ (Cabbage/Cauliflower)</option>
+<option value="cucurbits">దోస/కాకర/బీర (Cucurbits)</option>
+</optgroup>
+<optgroup label="🌱 పప్పుధాన్యాలు & నూనెగింజలు">
+<option value="bengalgram">శనగలు (Bengal Gram)</option>
+<option value="greengram">పెసర / మినప (Green/Black Gram)</option>
+<option value="soybean">సోయాబిన్ (Soybean)</option>
+<option value="sunflower">పొద్దుతిరుగుడు (Sunflower)</option>
+</optgroup>
+<optgroup label="🌾 చిరుధాన్యాలు">
+<option value="sorghum">జొన్న / సజ్జలు (Sorghum/Millets)</option>
+<option value="ragi">రాగులు (Ragi)</option>
+</optgroup>
+<optgroup label="🥭 పండ్లు & తోటల పంటలు">
+<option value="mango">మామిడి (Mango)</option>
+<option value="banana">అరటి (Banana)</option>
+<option value="citrus">బత్తాయి / నిమ్మ (Citrus)</option>
+<option value="pomegranate">దానిమ్మ (Pomegranate)</option>
+</optgroup>
+</select>
+
+<label>🐛 పురుగు / తెగులు / సమస్య</label>
+<select id="pest">
+<option value="">-- సమస్యను ఎంచుకోండి --</option>
+<optgroup label="చిన్న కీటకాలు & రసం పీల్చే పురుగులు">
+<option value="whitefly">తెల్లదోమ (Whitefly)</option>
+<option value="thrips">త్రిప్స్ (Thrips)</option>
+<option value="aphids">పేనుబంక / ఏఫిడ్స్ (Aphids)</option>
+<option value="jassids">ఆకుపచ్చ దోమ / జాసిడ్స్ (Jassids)</option>
+<option value="mealybug">పిండినల్లి (Mealy Bug)</option>
+<option value="mites">నల్లపేను / మైట్స్ (Mites)</option>
+</optgroup>
+<optgroup label="పురుగులు & లద్దెపురుగులు">
+<option value="bollworm">కాయతొలుచు పురుగు (Bollworm / Fruit Borer)</option>
+<option value="stemborer">కాండం తొలుచు పురుగు (Stem Borer)</option>
+<option value="leafroller">ఆకు చుట్టు పురుగు (Leaf Folder / Roller)</option>
+<option value="armyworm">కత్తెర పురుగు / ఆర్మీ వార్మ్ (Armyworm)</option>
+<option value="cutworm">మొగ్గ/వేరు పురుగు (Cutworm)</option>
+</optgroup>
+<optgroup label="శిలీంధ్ర తెగుళ్లు (Fungal Diseases)">
+<option value="leafspot">ఆకుమచ్చ తెగులు (Leaf Spot / Blight)</option>
+<option value="powderymildew">బూడిద తెగులు (Powdery Mildew)</option>
+<option value="downy">డౌనీ మిల్డ్యూ (Downy Mildew)</option>
+<option value="rootrot">వేరు కుళ్ళు / ఎండు తెగులు (Root Rot / Wilt)</option>
+<option value="blast">బ్లాస్ట్ / అగ్గి తెగులు (Blast Disease)</option>
+</optgroup>
+<optgroup label="బాక్టీరియల్ & వైరస్ తెగుళ్లు">
+<option value="bacterialblight">బ్యాక్టీరియల్ ఆకు ఎండు తెగులు (Blight)</option>
+<option value="leafcurl">తామర / ఆకు ముడుత వైరస్ (Leaf Curl / Mosaic)</option>
+</optgroup>
+</select>
+
+<label>🌱 ఎకరాలు</label>
+<input type="number" id="acre" placeholder="ఉదా : 2" step="0.5">
+
+<label>🚜 ట్యాంక్ సైజు</label>
+<select id="tank">
+<option value="16">16 లీటర్లు (నాప్సాక్ స్ప్రేయర్)</option>
+<option value="20">20 లీటర్లు</option>
+<option value="200">200 లీటర్లు (డ్రమ్ / పవర్ స్ప్రేయర్)</option>
+<option value="500">500 లీటర్లు (ట్రాక్టర్ / హెవీ ట్యాంక్)</option>
+</select>
+
+<button onclick="calculateSpray()">
+<i class="fa fa-calculator"></i> లెక్కించండి
+</button>
+
+<div class="result" id="result">
+<h3>📊 లెక్కింపు ఫలితం</h3>
+<p><b>సమస్య / తెగులు :</b> <span id="pestName"></span></p>
+<p><b>సిఫార్సు చేసిన మందు :</b> <span id="medicine"></span></p>
+<p><b>మొత్తం మోతాదు :</b> <span id="dose"></span></p>
+<p><b>నీటి పరిమాణం :</b> <span id="water"></span></p>
+<p><b>కావలసిన ట్యాంకులు :</b> <span id="tanks"></span></p>
+</div>
+
+</div>
+</div>
+
+<script>
+function calculateSpray(){
+let crop=document.getElementById("crop").value;
+let pest=document.getElementById("pest").value;
+let acre=parseFloat(document.getElementById("acre").value);
+let tank=parseFloat(document.getElementById("tank").value);
+
+if(crop=="" || pest=="" || isNaN(acre)){
+alert("దయచేసి పంట, సమస్య మరియు ఎకరాల వివరాలను పూర్తిగా నమోదు చేయండి");
+return;
+}
+
+let medicine="";
+let dosePerAcre=0;
+
+// తెగుళ్ల ఆధారంగా మందు మరియు డోస్ నిర్ణయించడం
+if(pest=="whitefly"){
+medicine="Imidacloprid 17.8% SL లేదా Thiamethoxam 25% WG";
+dosePerAcre=40; // ml or g per acre
+} else if(pest=="thrips"){
+medicine="Fipronil 5% SC లేదా Spinetoram 11.7% SC";
+dosePerAcre=300;
+} else if(pest=="aphids"){
+medicine="Dimethoate 30% EC లేదా Imidacloprid";
+dosePerAcre=50;
+} else if(pest=="jassids"){
+medicine="Flonicamid 50% WG లేదా Acetamiprid";
+dosePerAcre=80;
+} else if(pest=="mealybug"){
+medicine="Profenofos 50% EC లేదా Buprofezin";
+dosePerAcre=400;
+} else if(pest=="mites"){
+medicine="Propargite 57% EC లేదా Spiromesifen";
+dosePerAcre=400;
+} else if(pest=="bollworm"){
+medicine="Emamectin Benzoate 5% SG లేదా Chlorantraniliprole";
+dosePerAcre=100;
+} else if(pest=="stemborer"){
+medicine="Cartap Hydrochloride 50% SP లేదా Fipronil";
+dosePerAcre=500;
+} else if(pest=="leafroller"){
+medicine="Quinalphos 25% EC లేదా Flubendiamide";
+dosePerAcre=400;
+} else if(pest=="armyworm"){
+medicine="Spinetoram 11.7% SC లేదా Chlorpyrifos";
+dosePerAcre=200;
+} else if(pest=="cutworm"){
+medicine="Chlorpyrifos 20% EC (నేలలో లేదా మొక్కల ძირలో)";
+dosePerAcre=500;
+} else if(pest=="leafspot"){
+medicine="Mancozeb 75% WP లేదా Hexaconazole 5% SC";
+dosePerAcre=500;
+} else if(pest=="powderymildew"){
+medicine="Sulfur 80% WP లేదా Difenoconazole";
+dosePerAcre=400;
+} else if(pest=="downy"){
+medicine="Metalaxyl + Mancozeb (Ridomil Gold)";
+dosePerAcre=500;
+} else if(pest=="rootrot"){
+medicine="Carbendazim 50% WP (నేల తడిపేందుకు)";
+dosePerAcre=400;
+} else if(pest=="blast"){
+medicine="Tricyclazole 75% WP లేదా Isoprothiolane";
+dosePerAcre=120;
+} else if(pest=="bacterialblight"){
+medicine="Copper Hydroxide లేదా Streptocycline";
+dosePerAcre=200;
+} else if(pest=="leafcurl"){
+medicine="مందులతో పాటు తెల్లదోమ నివారణకు తగిన మందు వాడాలి (సలహా మేరకు)";
+dosePerAcre=100;
+} else {
+medicine="సమగ్ర పురుగుమందు (General Broad-spectrum Pesticide)";
+dosePerAcre=250;
+}
+
+let totalDose = dosePerAcre * acre;
+let totalWater = 200 * acre; // ఎకరానికి సాధారణంగా 200 లీటర్ల నీరు
+let totalTanks = totalWater / tank;
+
+let pestText = document.getElementById("pest").options[document.getElementById("pest").selectedIndex].text;
+
+document.getElementById("pestName").innerHTML = pestText;
+document.getElementById("medicine").innerHTML = medicine;
+document.getElementById("dose").innerHTML = totalDose + " మి.లీ లేదా గ్రాములు";
+document.getElementById("water").innerHTML = totalWater + " లీటర్లు";
+document.getElementById("tanks").innerHTML = Math.ceil(totalTanks) + " ట్యాంకులు (" + tank + " లీటర్ల ట్యాంక్ చొప్పున)";
+
+document.getElementById("result").style.display = "block";
+}
+</script>
+
+</body>
+</html>
