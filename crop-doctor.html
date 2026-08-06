@@ -237,7 +237,7 @@ problems:["మామిడి హాపర్", "పౌడరీ మిల్డ
 },
 papaya:{
 name:"🍈 బొప్పాయి",
-problems:[ "రింగ్ స్పాట్ వైరస్", "మీలీ బగ్", "కాలర్ రాట్", "పౌడరీ మిల్డ్యూ", "ఆంథ్రాక్నోస్"]
+problems:["రింగ్ స్పాట్ వైరస్", "మీలీ బగ్", "కాలర్ రాట్", "పౌడరీ మిల్డ్యూ", "ఆంథ్రాక్నోస్"]
 },
 cabbage:{
 name:"🥬 క్యాబేజీ",
@@ -248,7 +248,7 @@ problems:[ "డైమండ్ బ్యాక్ మాత్", "ఆఫిడ�
 const cropData = {
 "cotton":{
 "తెల్లదోమ":{
-image:"images/cotton/whitefly.jpg",
+image:"https://images.unsplash.com/photo-1586771107445-d3ca888129ff?w=600",
 symptoms:"ఆకులు పసుపు రంగులోకి మారడం, రసం పీల్చడం, మొక్క బలహీనపడటం.",
 reason:"తెల్లదోమ రసం పీల్చే పురుగు.",
 medicine:"ఇమిడాక్లోప్రిడ్ 17.8 SL",
@@ -259,9 +259,21 @@ warning:"అధిక మోతాదు వాడవద్దు.",
 prevention:"పసుపు స్టిక్కీ ట్రాప్స్ ఏర్పాటు చేయండి.",
 level:"🔴 ఎక్కువ"
 },
+"పేనుబంక":{
+image:"https://images.unsplash.com/photo-1530183562514-fde137096b0a?w=600",
+symptoms:"ఆకుల కింద చేరి రసం పీల్చడం వలన ఆకులు ముడుచుకుపోతాయి.",
+reason:"ఆఫిడ్స్ (పేనుబంక) ఆశించడం వల్ల.",
+medicine:"డైమెథోయేట్ 30 EC",
+dose:"400 ml / ఎకరం",
+water:"200 లీటర్లు",
+time:"ఉదయం లేదా సాయంత్రం",
+warning:"పిల్లలకు దూరంగా ఉంచండి.",
+prevention:"మిత్ర పురుగులను కాపాడుకోవాలి.",
+level:"🟠 మధ్యస్థ"
+},
 "త్రిప్స్":{
-image:"images/cotton/thrips.jpg",
-symptoms:"ఆకులు వెండి రంగులోకి మారడం.",
+image:"https://images.unsplash.com/photo-1586771107445-d3ca888129ff?w=600",
+symptoms:"ఆకులు వెండి రంగులోకి మారడం మరియు పైకి ముడుచుకోవడం.",
 reason:"త్రిప్స్ రసం పీల్చడం.",
 medicine:"ఫిప్రోనిల్ 5 SC",
 dose:"300 ml / ఎకరం",
@@ -270,33 +282,69 @@ time:"సాయంత్రం",
 warning:"సిఫార్సు చేసిన మోతాదులో మాత్రమే వాడండి.",
 prevention:"కలుపు మొక్కలు తొలగించండి.",
 level:"🟠 మధ్యస్థ"
+},
+"జాసిడ్స్":{
+image:"https://images.unsplash.com/photo-1530183562514-fde137096b0a?w=600",
+symptoms:"ఆకుల అంచులు ఎర్రగా మారి కాలిపోయినట్లు అవుతాయి.",
+reason:"రసం పీల్చే పురుగుల ఉధృతి.",
+medicine:"అసిటామిప్రిడ్ 7.8 SP",
+dose:"40 గ్రా / ఎకరం",
+water:"200 లీటర్లు",
+time:"ఉదయం వేళల్లో",
+warning:"తగిన రక్షణ పరికరాలు ధరించాలి.",
+prevention:"ఎక్కువ నత్రజని ఎరువులు వాడకండి.",
+level:"🟠 మధ్యస్థ"
+},
+"గులాబీ కాయ తొలిచే పురుగు":{
+image:"https://images.unsplash.com/photo-1586771107445-d3ca888129ff?w=600",
+symptoms:"కాయలలో రంధ్రాలు చేసి గింజలను పాడు చేస్తాయి.",
+reason:"పింక్ బోల్ వార్మ్ లార్వా.",
+medicine:"ప్రొఫెనోఫాస్ 50 EC",
+dose:"400 ml / ఎకరం",
+water:"200 లీటర్లు",
+time:"సాయంత్రం పూట",
+warning:"కాంటాక్ట్ స్ప్రే జాగ్రత్తగా చేయాలి.",
+prevention:"ఫెరోమోన్ ట్రాప్స్ ఎకరానికి 4-5 ఏర్పాటు చేయాలి.",
+level:"🔴 ఎక్కువ"
 }
 },
 "paddy":{
 "బ్లాస్ట్":{
-image:"images/paddy/blast.jpg",
-symptoms:"ఆకులపై వజ్రాకార మచ్చలు.",
-reason:"శిలీంధ్ర వ్యాధి.",
+image:"https://images.unsplash.com/photo-1500937386664-56d1dfef3854?w=600",
+symptoms:"ఆకులపై వజ్రాకారపు మచ్చలు ఏర్పడతాయి.",
+reason:"శిలీంధ్ర (Fungus) వ్యాధి.",
 medicine:"ట్రైసైక్లాజోల్ 75 WP",
 dose:"120 గ్రా / ఎకరం",
 water:"200 లీటర్లు",
 time:"ఉదయం",
-warning:"వర్షం ముందు స్ప్రే చేయవద్దు.",
-prevention:"సమతుల్య ఎరువులు వాడండి.",
+warning:"వర్షం పడే సమయంలో స్ప్రే చేయవద్దు.",
+prevention:"సమతుల్య నత్రజని ఎరువులు వాడాలి.",
 level:"🔴 ఎక్కువ"
+},
+"షీత్ బ్లైట్":{
+image:"https://images.unsplash.com/photo-1500937386664-56d1dfef3854?w=600",
+symptoms:"నీటి మట్టానికి ఆనుకుని ఉన్నకాండంపై మచ్చలు ఏర్పడతాయి.",
+reason:"రైజోక్టోనియా సోలాని ఫంగస్.",
+medicine:"వాలిడామైసిన్ 3L",
+dose:"200 ml / ఎకరం",
+water:"200 లీటర్లు",
+time:"ఉదయం లేదా సాయంత్రం",
+warning:"నిపుణుల సలహా పాటించండి.",
+prevention:"పొలంలో గాలి, వెలుతురు బాగా ఉండేలా చూడాలి.",
+level:"🟠 మధ్యస్థ"
 }
 },
 "maize":{
 "ఫాల్ ఆర్మీవార్మ్":{
-image:"images/maize/fall-armyworm.jpg",
-symptoms:"ఆకులు తినివేయడం.",
-reason:"ఫాల్ ఆర్మీవార్మ్ పురుగు.",
+image:"https://images.unsplash.com/photo-1551754655-cd97e38d206f?w=600",
+symptoms:"ఆకులు తినేయడం మరియు గరాటు భాగంలో రంపపు పొట్టు లాంటి విసర్జన.",
+reason:"ఫాల్ ఆర్మీవార్మ్ గొంగళి పురుగు.",
 medicine:"ఎమామెక్టిన్ బెంజోయేట్ 5 SG",
 dose:"80 గ్రా / ఎకరం",
 water:"200 లీటర్లు",
 time:"సాయంత్రం",
-warning:"ప్రారంభ దశలోనే స్ప్రే చేయండి.",
-prevention:"ఫెరోమోన్ ట్రాప్స్ ఏర్పాటు చేయండి.",
+warning:"ఆకుల గరాటులో పడేలా స్ప్రే చేయాలి.",
+prevention:"దీపపు ఎరలను ఏర్పాటు చేయాలి.",
 level:"🔴 ఎక్కువ"
 }
 }
@@ -326,12 +374,24 @@ alert("ముందుగా పంట మరియు సమస్యను ఎ
 return;
 }
 
-if(!cropData[crop] || !cropData[crop][problem]){
-alert("ఈ సమస్యకు సమాచారం ఇంకా జోడించలేదు.");
-return;
+// ఒకవేళ నిర్దిష్ట డేటా లేకపోతే ఆటోమేటిక్‌గా డిఫాల్ట్ సమాచారాన్ని చూపించును
+let info;
+if(cropData[crop] && cropData[crop][problem]){
+info = cropData[crop][problem];
+} else {
+info = {
+image: "https://images.unsplash.com/photo-1530183562514-fde137096b0a?w=600",
+symptoms: "ఈ సమస్య లక్షణాలు త్వరలో అప్‌డేట్ చేయబడతాయి. స్థానిక వ్యవసాయ అధికారిని సంప్రదించండి.",
+reason: "వాతావరణ మార్పులు లేదా పోషకాల లోపం వల్ల కావచ్చు.",
+medicine: "సిఫార్సు చేయబడిన సాధారణ పురుగుమందు / శిలీంద్రనాశిని",
+dose: "స్థానిక నిపుణుల సూచన మేరకు",
+water: "200 లీటర్లు",
+time: "ఉదయం లేదా సాయంత్రం",
+warning: "అధిక మోతాదులో రసాయనాలు వాడకండి.",
+prevention: "పొలాన్ని శుభ్రంగా ఉంచుకోండి.",
+level: "🟡 సాధారణ"
+};
 }
-
-const info = cropData[crop][problem];
 
 document.getElementById("diseaseImage").src = info.image;
 document.getElementById("disease").innerHTML = problem;
@@ -389,9 +449,9 @@ setTimeout(function(){
 document.getElementById("problem").value = problem;
 },200);
 }
-};
 
 const resultEl = document.getElementById("result");
+if(resultEl){
 resultEl.insertAdjacentHTML("beforeend", `
 <div style="display:grid; grid-template-columns:repeat(2,1fr); gap:10px; margin-top:20px;">
 <button onclick="saveFavourite()" style="background:#ff9800;">⭐ Favourite</button>
@@ -400,6 +460,8 @@ resultEl.insertAdjacentHTML("beforeend", `
 <button onclick="copyMedicine()" style="background:#9C27B0;">📋 Copy</button>
 </div>
 `);
+}
+};
 
 function copyMedicine(){
 let text = "🌿 సమస్య : "+document.getElementById("disease").innerText +
